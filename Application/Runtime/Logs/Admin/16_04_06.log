@@ -1,0 +1,15 @@
+[ 2016-04-06T17:45:14+08:00 ] ::1 /shop/index.php/Admin/Index/order.php?act=list
+ERR: 非法操作:order.php
+
+[ 2016-04-06T17:45:16+08:00 ] ::1 /shop/index.php/Admin/Index/order.php?act=add
+ERR: 非法操作:order.php
+
+[ 2016-04-06T17:45:17+08:00 ] ::1 /shop/index.php/Admin/Index/order.php?act=delivery_list
+ERR: 非法操作:order.php
+
+[ 2016-04-06T17:45:18+08:00 ] ::1 /shop/index.php/Admin/Index/order.php?act=back_list
+ERR: 非法操作:order.php
+
+[ 2016-04-06T17:48:31+08:00 ] ::1 /shop/index.php/Admin/Category/goods.php?act=list&cat_id=1
+ERR: 非法操作:goods.php
+
