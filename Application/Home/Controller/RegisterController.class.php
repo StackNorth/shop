@@ -8,6 +8,7 @@ class RegisterController extends BaseController {
 			$password = I('password');
 			$email = I('email');
 			$captcha = I('captcha');
+
 			$verify = new \Think\Verify();
 			if (!$verify->check($captcha)) {
 				$this->error('验证码错误');

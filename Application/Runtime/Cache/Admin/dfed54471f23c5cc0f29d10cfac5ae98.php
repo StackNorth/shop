@@ -10,7 +10,7 @@
 <body>
 
 <h1>
-<span class="action-span"><a href="/shop/index.php/Admin/Category/index">商品分类</a></span>
+<span class="action-span"><a href="/shop/index.php/admin/category/index">商品分类</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加分类 </span>
 <div style="clear:both"></div>
 </h1>
@@ -85,7 +85,7 @@
 
 
 <div id="footer">
-	版权所有 &copy; 2012-2013 传智播客 - PHP培训 - 
+	版权所有 &copy; 翻版必究 
 </div>
 
 </div>

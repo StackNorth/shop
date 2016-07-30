@@ -20,7 +20,14 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Goods/index">XXXX商城</a></b>[<a href="">登录</a>][<a href="">注册</a>]</p>
+				<p>您好，欢迎来到<b><a href="/shop/index.php/home/goods/index">XXXX商城</a></b>
+				<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/home/Login/index">登录</a>][<a href="/shop/index.php/home/Register/index">注册</a>]
+   				<?php else: ?>
+   					 [<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
+   					 [<a href="/shop/index.php/home/goods/logout">退出</a>]<?php endif; ?>
+
+				</p>
+
 			</div>
 			<!-- Header TopNav Left End -->
 
@@ -135,13 +142,13 @@
 				<ul class="shop_hd_menu_all_category_hd_menu clearfix">
 					<!-- 单个菜单项 -->
 					<?php if(is_array($cats)): $k = 0; $__LIST__ = $cats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k; if($k < 8): ?><li id="cat_1" class="">
-						<h3><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo["cat_id"]); ?>" title="<?php echo ($vo["cat_name"]); ?>"><?php echo ($vo["cat_name"]); ?></a></h3>
+						<h3><a href="/shop/index.php/home/Category/index/id/<?php echo ($vo["cat_id"]); ?>" title="<?php echo ($vo["cat_name"]); ?>"><?php echo ($vo["cat_name"]); ?></a></h3>
 						
 						<div id="cat_1_menu" class="cat_menu clearfix" style="">
 							<?php if(is_array($vo["child"])): $i = 0; $__LIST__ = $vo["child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?><dl class="clearfix">
-								<dt><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo1["cat_id"]); ?>"><?php echo ($vo1["cat_name"]); ?></a></dt>
+								<dt><a href="/shop/index.php/home/Category/index/id/<?php echo ($vo1["cat_id"]); ?>"><?php echo ($vo1["cat_name"]); ?></a></dt>
 								<dd>
-									<?php if(is_array($vo1["child"])): $i = 0; $__LIST__ = $vo1["child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo2["cat_id"]); ?>"><?php echo ($vo2["cat_name"]); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+									<?php if(is_array($vo1["child"])): $i = 0; $__LIST__ = $vo1["child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?><a href="/shop/index.php/home/Category/index/id/<?php echo ($vo2["cat_id"]); ?>"><?php echo ($vo2["cat_name"]); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
 								</dd>
 							</dl><?php endforeach; endif; else: echo "" ;endif; ?>                                                     
 						</div>
@@ -157,7 +164,7 @@
 
 		<!-- 普通导航菜单 -->
 		<ul class="shop_hd_menu_nav">
-			<li class="current_link"><a href=""><span>首页</span></a></li>
+			<li class="current_link"><a href="__MODUEL__/index/index"><span>首页</span></a></li>
 			<li class="link"><a href=""><span>团购</span></a></li>
 			<li class="link"><a href=""><span>品牌</span></a></li>
 			<li class="link"><a href=""><span>优惠卷</span></a></li>
@@ -201,7 +208,7 @@
 				<script type="text/javascript" src="/shop/Public/js/lib.js"></script>
 				<script type="text/javascript" src="/shop/Public/js/163css.js"></script>
 				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="/shop<?php echo ($goods["goods_img"]); ?>" jqimg="/shop<?php echo ($goods["goods_img"]); ?>" width="350">
+					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="/shop/<?php echo ($goods["goods_img"]); ?>" jqimg="/shop/<?php echo ($goods["goods_img"]); ?>" width="350">
 						</div>
 						<div id="spec-n5">
 							<div class=control id="spec-left">
@@ -209,7 +216,7 @@
 							</div>
 							<div id="spec-list">
 								<ul class="list-h">
-									<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><img src="/shop{goods.goods_thumb}"> </li><?php endforeach; endif; else: echo "" ;endif; ?>									
+									<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><img src="/shop/{goods.goods_thumb}"> </li><?php endforeach; endif; else: echo "" ;endif; ?>									
 								</ul>
 							</div>
 							<div class=control id="spec-right">

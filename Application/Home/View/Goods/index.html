@@ -41,7 +41,7 @@
 				<script type="text/javascript" src="__PUBLIC__/js/lib.js"></script>
 				<script type="text/javascript" src="__PUBLIC__/js/163css.js"></script>
 				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="__ROOT__{$goods.goods_img}" jqimg="__ROOT__{$goods.goods_img}" width="350">
+					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="__ROOT__/{$goods.goods_img}" jqimg="__ROOT__/{$goods.goods_img}" width="350">
 						</div>
 						<div id="spec-n5">
 							<div class=control id="spec-left">
@@ -50,7 +50,7 @@
 							<div id="spec-list">
 								<ul class="list-h">
 									<volist name = "goods" id = "vo">
-									<li><img src="__ROOT__{goods.goods_thumb}"> </li>
+									<li><img src="__ROOT__/{goods.goods_thumb}"> </li>
 									</volist>									
 								</ul>
 							</div>

@@ -183,7 +183,6 @@
 <div class="clear"></div>
 <!-- Header End -->
 
-
 	<!-- Body -wll-2013/03/24 -->
 	<div class="shop_bd clearfix">
             <!-- 第一块区域  -->
@@ -295,7 +294,7 @@
                             <ul>
                             <?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
                                     <dl>
-                                        <dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><img src="/shop<?php echo ($vo["goods_img"]); ?>" /></a></dt>
+                                        <dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><img src="<?php echo ($vo["goods_img"]); ?>" /></a></dt>
                                         <dd><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><?php echo ($vo["goods_name"]); ?></a></dd>
                                         <dd> 商城价：<em><?php echo ($vo["shop_price"]); ?></em>元</dd>
                                     </dl>

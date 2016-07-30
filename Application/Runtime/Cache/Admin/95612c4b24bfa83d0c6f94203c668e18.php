@@ -65,7 +65,7 @@
 
 
 <div id="footer">
-	版权所有 &copy; 2012-2013 传智播客 - PHP培训 - 
+	版权所有 &copy; 翻版必究 
 </div>
 
 </div>

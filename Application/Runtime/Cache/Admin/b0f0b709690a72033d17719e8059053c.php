@@ -5,8 +5,8 @@
 <title>SHOP 管理中心</title>
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/shop/Public/styles/general.css" rel="stylesheet" type="text/css" />
-<link href="/shop/Public/styles/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo (ADMIN_PUBLIC); ?>/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo (ADMIN_PUBLIC); ?>/styles/main.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 

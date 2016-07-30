@@ -38,7 +38,7 @@
 					</dl>
 					<dl>
 						<dt>验证码</dt>
-						<dd><input type="text" name="captcha" class="text" size="10" > <img src="/shop/index.php/Home/Register/code" alt="CAPTCHA" border="1" onclick= this.src="/shop/index.php/Home/Register/code/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。" /></dd></dd>
+						<dd><input type="text" name="captcha" class="text" size="10" > <img src="/shop/index.php/home/register/code" alt="CAPTCHA" border="1" onclick= this.src="/shop/index.php/home/register/code/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。" /></dd></dd>
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
