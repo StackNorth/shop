@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50505
-Source Host           : localhost:3306
+Source Server Version : 50617
+Source Host           : 127.0.0.1:3306
 Source Database       : shopcz
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-01 16:48:13
+Date: 2016-08-05 18:13:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `cz_address`
+-- Table structure for cz_address
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_address`;
 CREATE TABLE `cz_address` (
@@ -39,7 +39,7 @@ CREATE TABLE `cz_address` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_admin`
+-- Table structure for cz_admin
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_admin`;
 CREATE TABLE `cz_admin` (
@@ -54,10 +54,10 @@ CREATE TABLE `cz_admin` (
 -- ----------------------------
 -- Records of cz_admin
 -- ----------------------------
-INSERT INTO `cz_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@itcast.cn', '0');
+INSERT INTO `cz_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@itcast.cn', '0');
 
 -- ----------------------------
--- Table structure for `cz_attribute`
+-- Table structure for cz_attribute
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_attribute`;
 CREATE TABLE `cz_attribute` (
@@ -79,7 +79,7 @@ INSERT INTO `cz_attribute` VALUES ('1', '型号', '2', '1', '1', 'L\r\nXL\r\nXXL
 INSERT INTO `cz_attribute` VALUES ('2', '风格', '2', '0', '1', '休闲\r\n性格\r\n韩风', '50');
 
 -- ----------------------------
--- Table structure for `cz_brand`
+-- Table structure for cz_brand
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_brand`;
 CREATE TABLE `cz_brand` (
@@ -99,7 +99,7 @@ CREATE TABLE `cz_brand` (
 INSERT INTO `cz_brand` VALUES ('1', '耐克', 'nike男鞋', 'www.nike.cn', './Public/Uploads/2016-04-10/570a13c2d0622.gif', '50', '1');
 
 -- ----------------------------
--- Table structure for `cz_cart`
+-- Table structure for cz_cart
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_cart`;
 CREATE TABLE `cz_cart` (
@@ -121,7 +121,7 @@ CREATE TABLE `cz_cart` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_category`
+-- Table structure for cz_category
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_category`;
 CREATE TABLE `cz_category` (
@@ -134,7 +134,7 @@ CREATE TABLE `cz_category` (
   `is_show` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否显示，默认显示',
   PRIMARY KEY (`cat_id`),
   KEY `pid` (`parent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_category
@@ -144,9 +144,28 @@ INSERT INTO `cz_category` VALUES ('2', '男装', '1', '阿道夫', '50', '个', 
 INSERT INTO `cz_category` VALUES ('3', '女装', '1', '阿斯蒂芬', '50', '个', '1');
 INSERT INTO `cz_category` VALUES ('4', '西装', '2', '多舒服啊', '50', '套', '1');
 INSERT INTO `cz_category` VALUES ('5', '连衣裙', '3', '爱的色放', '50', '件', '1');
+INSERT INTO `cz_category` VALUES ('6', '书籍', '0', '无', '50', '本', '1');
+INSERT INTO `cz_category` VALUES ('7', '文艺', '6', '文艺书籍', '50', '本', '1');
+INSERT INTO `cz_category` VALUES ('8', '抒情', '7', '', '50', '本', '1');
 
 -- ----------------------------
--- Table structure for `cz_galary`
+-- Table structure for cz_config
+-- ----------------------------
+DROP TABLE IF EXISTS `cz_config`;
+CREATE TABLE `cz_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cz_config
+-- ----------------------------
+INSERT INTO `cz_config` VALUES ('1', 'cookie_prefix', null);
+
+-- ----------------------------
+-- Table structure for cz_galary
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_galary`;
 CREATE TABLE `cz_galary` (
@@ -164,7 +183,7 @@ CREATE TABLE `cz_galary` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_goods`
+-- Table structure for cz_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_goods`;
 CREATE TABLE `cz_goods` (
@@ -195,16 +214,17 @@ CREATE TABLE `cz_goods` (
   KEY `cat_id` (`cat_id`),
   KEY `brand_id` (`brand_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_goods
 -- ----------------------------
 INSERT INTO `cz_goods` VALUES ('3', '123456', '衬衫', '士大夫', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '2', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-04-10/570a207c08c02.gif', '', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
 INSERT INTO `cz_goods` VALUES ('4', '156645', '短袖', '', '&lt;p&gt;&amp;nbsp;的萨芬阿斯顿发士大夫&lt;/p&gt;', '2', '1', '3612.00', '3010.00', '0.00', '0', '0', './Public/Uploads/2016-04-10/570a2a361960a.gif', '', '4', '0', '0', '0', '1', '0', '1', '1', '1460283958');
+INSERT INTO `cz_goods` VALUES ('5', '156644', '心里大师', '', '', '8', '1', '3612.00', '3010.00', '0.00', '0', '0', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '', '4', '0', '0', '0', '1', '1', '1', '1', '1470291541');
 
 -- ----------------------------
--- Table structure for `cz_goods_attr`
+-- Table structure for cz_goods_attr
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_goods_attr`;
 CREATE TABLE `cz_goods_attr` (
@@ -223,7 +243,7 @@ CREATE TABLE `cz_goods_attr` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_goods_type`
+-- Table structure for cz_goods_type
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_goods_type`;
 CREATE TABLE `cz_goods_type` (
@@ -238,7 +258,39 @@ CREATE TABLE `cz_goods_type` (
 INSERT INTO `cz_goods_type` VALUES ('2', '服装');
 
 -- ----------------------------
--- Table structure for `cz_order`
+-- Table structure for cz_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `cz_menu`;
+CREATE TABLE `cz_menu` (
+  `menu_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_parent_id` int(11) NOT NULL DEFAULT '0',
+  `menu_name` varchar(255) DEFAULT NULL COMMENT '菜单名称',
+  `menu_model` varchar(255) DEFAULT NULL COMMENT '模块',
+  `menu_action` varchar(255) DEFAULT NULL COMMENT '方法',
+  `menu_controller` varchar(255) DEFAULT NULL COMMENT '控制器',
+  `menu_class` varchar(255) DEFAULT NULL COMMENT 'css选择器',
+  `menu_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cz_menu
+-- ----------------------------
+INSERT INTO `cz_menu` VALUES ('1', '0', '商品管理', '', null, null, 'explode', null);
+INSERT INTO `cz_menu` VALUES ('2', '0', '订单管理', null, null, null, 'explode', null);
+INSERT INTO `cz_menu` VALUES ('3', '0', '用户列表', null, null, null, 'explode', null);
+INSERT INTO `cz_menu` VALUES ('4', '1', '商品类型', '/shop/index.php/Admin', 'index', 'Type', 'menu-item', '');
+INSERT INTO `cz_menu` VALUES ('5', '1', '添加新商品', '/shop/index.php/Admin', 'add', 'Goods', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('6', '1', '商品列表', '/shop/index.php/Admin', 'index', 'Goods', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('7', '1', '商品分类', '/shop/index.php/Admin', 'index', 'Category', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('8', '2', '订单列表', '/shop/index.php/Admin', 'index', 'Order', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('9', '2', '添加订单', '/shop/index.php/Admin', 'add', 'Order', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('10', '1', '商品品牌', '/shop/index.php/Admin', 'index', 'Brand', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('11', '3', '管理员列表', '/shop/index.php/Admin', 'index', 'User', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('12', '3', '客户列表', '/shop/index.php/Admin', 'customer', 'User', 'menu-item', null);
+
+-- ----------------------------
+-- Table structure for cz_order
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_order`;
 CREATE TABLE `cz_order` (
@@ -265,7 +317,7 @@ CREATE TABLE `cz_order` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_order_goods`
+-- Table structure for cz_order_goods
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_order_goods`;
 CREATE TABLE `cz_order_goods` (
@@ -287,7 +339,7 @@ CREATE TABLE `cz_order_goods` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_payment`
+-- Table structure for cz_payment
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_payment`;
 CREATE TABLE `cz_payment` (
@@ -303,7 +355,7 @@ CREATE TABLE `cz_payment` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_region`
+-- Table structure for cz_region
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_region`;
 CREATE TABLE `cz_region` (
@@ -319,7 +371,7 @@ CREATE TABLE `cz_region` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_shipping`
+-- Table structure for cz_shipping
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_shipping`;
 CREATE TABLE `cz_shipping` (
@@ -336,7 +388,7 @@ CREATE TABLE `cz_shipping` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `cz_user`
+-- Table structure for cz_user
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_user`;
 CREATE TABLE `cz_user` (
@@ -351,4 +403,4 @@ CREATE TABLE `cz_user` (
 -- ----------------------------
 -- Records of cz_user
 -- ----------------------------
-INSERT INTO `cz_user` VALUES ('2', 'admin', '1340652578@qq.com', 'e10adc3949ba59abbe56e057f20f883e', '1462084060');
+INSERT INTO `cz_user` VALUES ('2', 'north', '1340652578@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060');
