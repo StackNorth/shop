@@ -1,6 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<include file="Public/header"/>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title></title>
+	<link href="<?php echo (ADMIN_PUBLIC); ?>/styles/general.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo (ADMIN_PUBLIC); ?>/styles/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo (ADMIN_PUBLIC); ?>/js/utils.js"></script>
+	<script type="text/javascript" src="<?php echo (ADMIN_PUBLIC); ?>/js/selectzone.js"></script>
+	<script type="text/javascript" src="<?php echo (ADMIN_PUBLIC); ?>/js/colorselector.js"></script>
+	<script type="text/javascript" src="/shop/Public/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="<?php echo (ADMIN_PUBLIC); ?>/js/calendar.php?lang="></script>
+</head>
 <body>
 <h1>
 	<span class="action-span"><a href="index.php?p=admin&c=goods&a=index">商品列表</a></span>
@@ -42,11 +52,9 @@
 				<td>
 					<select name="cat_id" onchange="hideCatDiv()">
 						<option value="0">请选择...</option>
-						<volist name="cats" id ="vo">
-							<option value="{$vo.cat_id}">
-							{$vo.level|str_repeat="&nbsp;&nbsp;",###}
-							{$vo.cat_name}</option>
-						</volist>
+						<?php if(is_array($cats)): $i = 0; $__LIST__ = $cats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["cat_id"]); ?>">
+							<?php echo (str_repeat("&nbsp;&nbsp;",$vo["level"])); ?>
+							<?php echo ($vo["cat_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
 					</select>
                  </td>
 			</tr>
@@ -55,9 +63,7 @@
 				<td>
 					<select name="brand_id" onchange="hideBrandDiv()">
 						<option value="0">请选择...</option>
-						<volist name="brands" id="vo">
-							<option value="{$vo.brand_id}">{$vo.brand_name}</option>
-						</volist>
+						<?php if(is_array($brands)): $i = 0; $__LIST__ = $brands;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["brand_id"]); ?>"><?php echo ($vo["brand_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
 					</select>
 				</td>
 			</tr>
@@ -103,7 +109,7 @@
             <td class="label">上传商品图片：</td>
             <td>
               <input type="file" name="goods_img" size="35">
-                              <a href="goods.php?act=show_image&amp;img_url={$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/200905/goods_img/32_G_1242110760868.jpg" target="_blank"><img src="{$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/yes.gif" border="0"></a>
+                              <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/goods_img/32_G_1242110760868.jpg" target="_blank"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/yes.gif" border="0"></a>
                             <br><input type="text" size="40" value="商品图片外部URL" style="color:#aaa;" onfocus="if (this.value == '商品图片外部URL'){this.value='http://';this.style.color='#000';}" name="goods_img_url">
             </td>
           </tr>
@@ -111,7 +117,7 @@
             <td class="label"> 上传商品缩略图：</td>
             <td id="auto_thumb_3">
               <input type="file" name="goods_thumb" size="35" disabled="">
-                              <a href="goods.php?act=show_image&amp;img_url={$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/200905/thumb_img/32_thumb_G_1242110760196.jpg" target="_blank"><img src="{$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/yes.gif" border="0"></a>
+                              <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/thumb_img/32_thumb_G_1242110760196.jpg" target="_blank"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/yes.gif" border="0"></a>
                             <br><input type="text" size="40" value="商品缩略图外部URL" style="color:#aaa;" onfocus="if (this.value == '商品缩略图外部URL'){this.value='http://';this.style.color='#000';}" name="goods_thumb_url" disabled="">
                             <br><label for="auto_thumb"><input type="checkbox" id="auto_thumb" name="auto_thumb" checked="true" value="1" onclick="handleAutoThumb(this.checked)">自动生成商品缩略图</label>            </td>
           </tr>
@@ -120,7 +126,7 @@
         <!-- 详细描述 -->
         <table width="90%" id="detail-table" style="display: none;">
           <tbody><tr>
-            <td><input type="hidden" id="goods_desc" name="goods_desc" value="" style="display:none"><input type="hidden" id="goods_desc___Config" value="" style="display:none"><iframe id="goods_desc___Frame" src="{$Think.const.ADMIN_PUBLIC}/fckeditor/editor/fckeditor.html?InstanceName=goods_desc&amp;Toolbar=Normal" width="100%" height="320" frameborder="0" scrolling="no" style="margin: 0px; padding: 0px; border: 0px; background-color: transparent; background-image: none; width: 100%; height: 320px;"></iframe></td>
+            <td><input type="hidden" id="goods_desc" name="goods_desc" value="" style="display:none"><input type="hidden" id="goods_desc___Config" value="" style="display:none"><iframe id="goods_desc___Frame" src="<?php echo (ADMIN_PUBLIC); ?>/fckeditor/editor/fckeditor.html?InstanceName=goods_desc&amp;Toolbar=Normal" width="100%" height="320" frameborder="0" scrolling="no" style="margin: 0px; padding: 0px; border: 0px; background-color: transparent; background-image: none; width: 100%; height: 320px;"></iframe></td>
           </tr>
         </tbody></table>
 
@@ -131,7 +137,7 @@
             <td><input type="text" name="goods_weight" value="" size="20"> <select name="weight_unit"><option value="1">千克</option><option value="0.001" selected="">克</option></select></td>
           </tr>
                               <tr>
-            <td class="label"><a href="javascript:showNotice('noticeStorage');" title="点击此处查看提示信息"><img src="{$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品库存数量：</td>
+            <td class="label"><a href="javascript:showNotice('noticeStorage');" title="点击此处查看提示信息"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品库存数量：</td>
 <!--            <td><input type="text" name="goods_number" value="4" size="20" readonly="readonly" /><br />-->
             <td><input type="text" name="goods_number" value="4" size="20"><br>
             <span class="notice-span" style="display:block" id="noticeStorage">库存在商品为虚货或商品存在货品时为不可编辑状态，库存数值取决于其虚货数量或货品数量</span></td>
@@ -166,7 +172,7 @@
           </tr>
           <tr>
             <td class="label">
-            <a href="javascript:showNotice('noticeSellerNote');" title="点击此处查看提示信息"><img src="{$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商家备注： </td>
+            <a href="javascript:showNotice('noticeSellerNote');" title="点击此处查看提示信息"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商家备注： </td>
             <td><textarea name="seller_note" cols="40" rows="3"></textarea><br>
             <span class="notice-span" style="display:block" id="noticeSellerNote">仅供商家自己看的信息</span></td>
           </tr>
@@ -180,9 +186,7 @@
 					<td>
 						<select name="type_id" id="sw_type">
 							<option value="0">请选择商品类型</option>
-							<volist name="types" id="vo">
-							<option value="{$vo.type_id}">{$vo.type_name}</option>
-						</volist>            
+							<?php if(is_array($types)): $i = 0; $__LIST__ = $types;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["type_id"]); ?>"><?php echo ($vo["type_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>            
 						</select><br>
 						<span class="notice-span" style="display:block" id="noticeGoodsType">请选择商品的所属类型，进而完善此商品的属性</span>
 					</td>
@@ -201,8 +205,8 @@
             <td>
 				<div id="gallery_41" style="float:left; text-align:center; border: 1px solid #DADADA; margin: 4px; padding:2px;">
                 <a href="javascript:;" onclick="if (confirm('您确实要删除该图片吗？')) dropImg('41')">[-]</a><br>
-                <a href="goods.php?act=show_image&amp;img_url={$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/200905/goods_img/32_P_1242110760641.jpg" target="_blank">
-                <img src="../{$Think.const.ADMIN_PUBLIC}//{$Think.const.ADMIN_PUBLIC}//images/200905/thumb_img/32_thumb_P_1242110760997.jpg" width="100" height="100" border="0">
+                <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/goods_img/32_P_1242110760641.jpg" target="_blank">
+                <img src="../<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/thumb_img/32_thumb_P_1242110760997.jpg" width="100" height="100" border="0">
                 </a><br>
                 <input type="text" value="" size="15" name="old_img_desc[41]">
               </div>
@@ -233,7 +237,7 @@
 <div id="footer">
 	版权所有 &copy; 翻版必究 
 </div>
-<script type="text/javascript" src="{$Think.const.ADMIN_PUBLIC}/js/tab.js"></script>
+<script type="text/javascript" src="<?php echo (ADMIN_PUBLIC); ?>/js/tab.js"></script>
 <script type="text/javascript">
 	function addImg(obj){
       var src  = obj.parentNode.parentNode;
@@ -268,7 +272,7 @@
     var type_id = this.value;
 		$.ajax({
 			type : "GET",//传输方式
-			url : "__MODULE__/Attribute/getAttrs",//路径，此控制器下的模型attribute的getAttrs方法方法
+			url : "/shop/index.php/Admin/Attribute/getAttrs",//路径，此控制器下的模型attribute的getAttrs方法方法
 			data : "type_id="+type_id,//传输的数据
 			dataType : 'html',//传输类型
 			//成功后加载id为tbody-goodsAttr的框架中

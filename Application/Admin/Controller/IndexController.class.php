@@ -12,7 +12,10 @@ class IndexController extends BaseController {
     }
 
     public function menu(){
-    	$this->display();
+    	$menu = D('menu');
+        $datas = $menu->menuTree();
+        $this->assign('menu',$datas);
+        $this->display();
     }
 
     public function drag(){

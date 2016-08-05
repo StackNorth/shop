@@ -43,25 +43,14 @@
 	<div id="main-div">
 		<div id="menu-list">
 			<ul id="menu-ul">
-				<li class="explode" key="02_cat_and_goods" name="menu"> 商品管理        
-					<ul>
-						 
-						  <li class="menu-item"><a href="/shop/index.php/Admin/Category/index" target="main-frame">商品分类</a></li>
-						  <li class="menu-item"><a href="/shop/index.php/Admin/Brand/index" target="main-frame">商品品牌</a></li>
-						  <li class="menu-item"><a href="/shop/index.php/Admin/Type/index" target="main-frame">商品类型</a></li>				
-						  <li class="menu-item"><a href="/shop/index.php/Admin/Goods/add" target="main-frame">添加新商品</a></li>
-						  <li class="menu-item"><a href="/shop/index.php/Admin/Goods/index" target="main-frame">商品列表</a></li>
-					</ul>
-				</li>
+      <?php if(is_array($menu)): foreach($menu as $key=>$vo): if($vo["level"] == 0): ?><li class="<?php echo ($vo["menu_class"]); ?>"> <?php echo ($vo["menu_name"]); ?>
+            <ul>
 
-				<li class="explode" key="04_order" name="menu"> 订单管理        
-					<ul style="display: block;">
-						<li class="menu-item"><a href="/shop/index.php/Admin/Order/index" target="main-frame">订单列表</a></li>
-						<li class="menu-item"><a href="/shop/index.php/Admin/Order/add" target="main-frame">添加订单</a></li>
-						<li class="menu-item"><a href="order.php?act=delivery_list" target="main-frame">发货单列表</a></li>
-						<li class="menu-item"><a href="order.php?act=back_list" target="main-frame">退货单列表</a></li>
-					</ul>
-				</li>				
+              <?php if(is_array($menu)): foreach($menu as $key=>$vo1): if(($vo["menu_id"] == $vo1["menu_parent_id"] ) AND ($vo1["level"] == 1) ): ?><li class="<?php echo ($vo1["menu_class"]); ?>"><a href="<?php echo ($vo1["menu_url"]); ?>/" target="main-frame"><?php echo ($vo1["menu_name"]); ?></a></li><?php endif; endforeach; endif; ?>
+            </ul>
+          </li><?php endif; endforeach; endif; ?>
+         
+				
 			</ul>
 		</div>
 		<div id="help-div" style="display:none">

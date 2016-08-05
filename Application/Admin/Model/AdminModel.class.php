@@ -15,4 +15,15 @@ class AdminModel extends Model {
 			return false;
 		}
 	}
+	/**
+	 * [updateUser description]
+	 * @param  [array] $data [更新的数据]
+	 * @return [boolean]   
+	 */
+	public function updateUser($condition) {
+		if ($this->where($condition['admin_id'])->save($condition)) {
+			return true; 
+		}
+	return false;
+	}
 }

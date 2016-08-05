@@ -94,11 +94,12 @@
 	<div id="license-div" style="bgcolor:#000000;"></div>
 	<div id="submenu-div">
 		<ul>
-			  <li><a href="index.php?act=about_us" target="main-frame">关于本店</a></li>
+			  <li><a href="javascript:web_address();" target="main-frame">关于本店</a></li>
 			  <li><a href="javascript:web_address();">帮助</a></li>
-			  <li><a href="../" target="_blank">查看网店</a></li>
-			  <li><a href="message.php?act=list" target="main-frame">管理员留言</a></li>
-			  <li><a href="privilege.php?act=modif" target="main-frame">个人设置</a></li>
+			  <!-- <li><a href="../" target="_blank">查看网店</a></li>
+         
+         <li><a href="message.php?act=list" target="main-frame">管理员留言</a></li>-->
+			  <li><a href="/shop/index.php/Admin/user/index" target="main-frame">管理员</a></li>
 			  <li><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()">刷新</a></li>
 			 <!--  <li><a href="#"  onclick="ShowToDoList()">记事本</a></li>
        <li style="border-left:none;"><a href="index.php?act=first" target="main-frame">开店向导</a></li> -->
