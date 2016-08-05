@@ -21,7 +21,7 @@
 		#menu-list li { padding-left: 16px; line-height: 16px;cursor: hand;  cursor: pointer;}
 		#main-div a:visited, #menu-list a:link, #menu-list a:hover {color: #335B64;text-decoration: none;}
 		#menu-list a:active {color: #EB8A3D;}
-		.explode {background: url(<?php echo (ADMIN_PUBLIC); ?>/images/menu_minus.gif) no-repeat 0px 3px; font-weight: bold;}
+		.explode {background: url({$Think.const.ADMIN_PUBLIC}/images/menu_minus.gif) no-repeat 0px 3px; font-weight: bold;}
 		.collapse { background: url(<?php echo (ADMIN_PUBLIC); ?>/images/menu_plus.gif) no-repeat 0px 3px; font-weight: bold;}
 		.menu-item { background: url(<?php echo (ADMIN_PUBLIC); ?>/images/menu_arrow.gif) no-repeat 0px 3px; font-weight: normal;}
 		#help-title {font-size: 14px; color: #000080; margin: 5px 0; padding: 0px;}

@@ -7,5 +7,6 @@ class GoodsModel extends Model  {
 	//自动验证规则
 	protected $_validate = array(
 		array('goods_name','require','商品名称不能为空'),
+		array('goods_ns','unique','商品编号重复'),
 	);
 }

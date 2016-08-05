@@ -38,4 +38,3 @@ class CategoryModel extends Model {
 		return array_reverse($res);//数组前后倒置
 	}
 }
-?>

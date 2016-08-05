@@ -19,6 +19,10 @@ class LoginController extends Controller {
 			
 			//再来检查用户名和密码,调用模型来完成
 			if (D('admin')->checkUser($username,$password)) {
+				if (I('post.remember') == 1) {
+					cookie('username',I('post.username'),3600 * 24 * 7);
+					cookie('password',I('post.password'),3600 * 24 * 7);
+				} 	
 				$this->success('登录成功',U('Index/index'),1);
 			} else {
 				$this->error('用户名或密码错误');
@@ -39,6 +43,8 @@ class LoginController extends Controller {
 	//注销
 	public function logout(){
 		session('[destroy]'); // 销毁session
+		cookie('username',null);
+		cookie('password',null);
 		$this->success('注销成功',U('Login/login'),1);
 	}
 

@@ -28,6 +28,7 @@ class ContentReplaceBehavior {
     protected function templateContentReplace($content) {
         // 系统默认的特殊变量替换
         $replace =  array(
+        	'__TMPL__' 		=>  THEME_PATH,  // 项目模板目录
             '__ROOT__'      =>  __ROOT__,       // 当前网站地址
             '__APP__'       =>  __APP__,        // 当前应用地址
             '__MODULE__'    =>  __MODULE__,

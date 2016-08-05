@@ -1,9 +1,0 @@
-[ 2016-05-01T12:59:04+08:00 ] ::1 /shop/index.php/Admin/Login/index
-ERR: 非法操作:index
-
-[ 2016-05-01T12:59:07+08:00 ] ::1 /shop/index.php/Admin/Login/
-ERR: 非法操作:index
-
-[ 2016-05-01T16:44:34+08:00 ] ::1 /shop/index.php/Admin/Login/index
-ERR: 非法操作:index
-
