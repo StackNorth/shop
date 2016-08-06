@@ -5,10 +5,10 @@ return array(
 	'DB_HOST'     =>  '127.0.0.1', // 服务器地址
 	'DB_NAME'     =>  'shopcz',      // 数据库名
 	'DB_USER'     =>  'root',      // 用户名
-	'DB_PWD'      =>  '',    // 密码
+	'DB_PWD'      =>  'DT19950712',    // 密码
 	'DB_PORT'     =>  '3306',      // 端口
 	'DB_PREFIX'   =>  'cz_',    // 数据库表前缀
 
 	//开启调试
-	'SHOW_PAGE_TRACE' => true,
+	'SHOW_PAGE_TRACE' => false,
 );
