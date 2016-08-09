@@ -13,4 +13,11 @@ class GoodsController extends BaseController {
 		$this->display();
 	}
 
+	 public function search() {
+    	$search_content = I('search_content');
+    	$goodsModel = M('goods');
+    	$where = "goods_name like '{%$search_content%}' or goods_brief like '{%$search_content%}'";
+    	
+    }
+
 }

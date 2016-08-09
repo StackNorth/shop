@@ -9,7 +9,7 @@
 <body>
 
 <h1>
-<span class="action-span"><a href="/shop/index.php/Admin/Attribute/add">添加属性</a></span>
+<span class="action-span"><a href="/shop/index.php/admin/attribute/add">添加属性</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品属性 </span>
 <div style="clear:both"></div>
 </h1>
@@ -41,7 +41,7 @@
 			<th>操作</th>
 		</tr>
       <?php if(is_array($attrs)): $i = 0; $__LIST__ = $attrs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-			<td nowrap="true" valign="top"><span><input value="1" name="checkboxes[]" type="checkbox">1</span></td>
+			<td nowrap="true" valign="top"><span><input value="1" name="checkboxes[]" type="checkbox"><?php echo ($vo["attr_id"]); ?></span></td>
 			<td class="first-cell" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_attr_name', 1)"><?php echo ($vo["attr_name"]); ?></span></td>
 			<td nowrap="true" valign="top"><span><?php echo ($vo["type_name"]); ?></span></td>
 			<td nowrap="true" valign="top"><span><?php echo ($vo["attr_input_type"]); ?></span></td>

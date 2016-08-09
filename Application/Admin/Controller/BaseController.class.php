@@ -17,7 +17,11 @@ class BaseController extends Controller {
 			$this->error('请先登录吧',U('Login/login'));
 		}
 	}
-
+    /**
+     * 删除文件函数
+     * @param  [type] $dirname [description]
+     * @return [type]          [description]
+     */
     protected function rmdirr($dirname) {
         if (!file_exists($dirname)) {
             return false;

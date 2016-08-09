@@ -9,7 +9,7 @@
 <body>
 
 <h1>
-<span class="action-span"><a href="/shop/index.php/Admin/Brand/add">添加品牌</a></span>
+<span class="action-span"><a href="/shop/index.php/admin/brand/add">添加品牌</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品品牌 </span>
 <div style="clear:both"></div>
 </h1>
@@ -49,31 +49,17 @@
       <?php echo (ADMIN_PUBLIC); ?>/images/no.gif<?php endif; ?>
       '></td>
       <td align="center">
-        <a href="/shop/index.php/Admin/Brand/edit/id/<?php echo ($vo["brand_id"]); ?>" title="编辑">编辑</a> |
-        <a href="/shop/index.php/Admin/Brand/delete/id/<?php echo ($vo["brand_id"]); ?>" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
+        <a href="/shop/index.php/admin/brand/edit/id/<?php echo ($vo["brand_id"]); ?>" title="编辑">编辑</a> |
+        <a href="/shop/index.php/admin/brand/delete/id/<?php echo ($vo["brand_id"]); ?>" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
       </td>
     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     <tr>
-		<td align="right" nowrap="true" colspan="6">
-            <div id="turn-page">
-            <?php echo ($page); ?>
-            <!--
-			总计  <span id="totalRecords">11</span>
-        个记录分为 <span id="totalPages">2</span>
-        页当前第 <span id="pageCurrent">1</span>
-        页，每页 <input type="text" size="3" id="pageSize" value="10" onkeypress="return listTable.changePageSize(event)">
-        <span id="page-link">
-          <a href="javascript:listTable.gotoPageFirst()">第一页</a>
-          <a href="javascript:listTable.gotoPagePrev()">上一页</a>
-          <a href="javascript:listTable.gotoPageNext()">下一页</a>
-          <a href="javascript:listTable.gotoPageLast()">最末页</a>
-          <select id="gotoPage" onchange="listTable.gotoPage(this.value)">
-            <option value="1">1</option><option value="2">2</option>          </select>
-        </span>
-        -->
-      </div>
-      </td>
-    </tr>
+	<td align="right" nowrap="true" colspan="6">
+		<div id="turn-page">
+			<?php echo ($page); ?>
+		</div>
+	</td>
+</tr>
   </tbody></table>
 
 <!-- end brand list -->

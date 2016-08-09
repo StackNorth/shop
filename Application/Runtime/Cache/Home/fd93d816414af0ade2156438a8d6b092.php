@@ -1,27 +1,180 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>商品列表页</title>
-	<link rel="stylesheet" href="__PUBLIC__/css/base.css" type="text/css" />
-	<link rel="stylesheet" href="__PUBLIC__/css/shop_common.css" type="text/css" />
-	<link rel="stylesheet" href="__PUBLIC__/css/shop_header.css" type="text/css" />
-    <link rel="stylesheet" href="__PUBLIC__/css/shop_list.css" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/js/jquery.js" ></script>
-    <script type="text/javascript" src="__PUBLIC__/js/topNav.js" ></script>
-    <script type="text/javascript" src="__PUBLIC__/js/shop_list.js" ></script>
+	<link rel="stylesheet" href="/shop/Public/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_header.css" type="text/css" />
+    <link rel="stylesheet" href="/shop/Public/css/shop_list.css" type="text/css" />
+    <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
+    <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
+    <script type="text/javascript" src="/shop/Public/js/shop_list.js" ></script>
 </head>
 <body>
-	<include file="Public/header" />
+	<!-- Header  -wll-2013/03/24 -->
+<div class="shop_hd">
+	<!-- Header TopNav -->
+	<div class="shop_hd_topNav">
+		<div class="shop_hd_topNav_all">
+			<!-- Header TopNav Left -->
+			<div class="shop_hd_topNav_all_left">
+				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Category/index">XXXX商城</a></b>
+					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
+						<?php else: ?>
+						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
+						[<a href="/shop/index.php/Home/Category/logout">退出</a>]<?php endif; ?>
+
+				</p>
+
+			</div>
+			<!-- Header TopNav Left End -->
+
+			<!-- Header TopNav Right -->
+			<div class="shop_hd_topNav_all_right">
+				<ul class="topNav_quick_menu">
+
+					<li>
+						<div class="topNav_menu">
+							<a href="#" class="topNavHover">我的商城<i></i></a>
+							<div class="topNav_menu_bd" style="display:none;" >
+								<ul>
+									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
+									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
+									<li><a title="我的好友" target="_top" href="#">我的好友</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+
+					<li>
+						<div class="topNav_menu">
+							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
+							<div class="topNav_menu_bd" style="display:none;">
+								<!--
+					            <ul>
+					              <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
+					              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
+					            </ul>
+					        -->
+					        <p>还没有商品，赶快去挑选！</p>
+					    </div>
+					</div>
+				</li>
+
+				<li>
+					<div class="topNav_menu">
+						<a href="#" class="topNavHover">我的收藏<i></i></a>
+						<div class="topNav_menu_bd" style="display:none;">
+							<ul>
+								<li><a title="收藏的商品" target="_top" href="#">收藏的商品</a></li>
+								<li><a title="收藏的店铺" target="_top" href="#">收藏的店铺</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+
+				<li>
+					<div class="topNav_menu">
+						<a href="#">站内消息</a>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+		<!-- Header TopNav Right End -->
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<!-- Header TopNav End -->
+
+<!-- TopHeader Center -->
+<div class="shop_hd_header">
+	<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="/shop/Public/images//logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+	<div class="shop_hd_header_search">
+		<ul class="shop_hd_header_search_tab">
+			<li id="search" class="current">商品</li>
+		</ul>
+		<div class="clear"></div>
+		<div class="search_form">
+		<form method="post" action="/shop/index.php/Home/Goods/search">
+				<div class="search_formstyle">
+					<input type="text" class="search_form_text" name="search_content"  placeholder="搜索其实很简单！" />
+					<input type="submit" class="search_form_sub" name="secrch_submit" value="" title="搜索" />
+				</div>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- <div class="search_tag">
+			<a href="">李宁</a>
+			<a href="">耐克</a>
+			<a href="">Kappa</a>
+			<a href="">双肩包</a>
+			<a href="">手提包</a>
+		</div> -->
+
+	</div>
+</div>
+<div class="clear"></div>
+<!-- TopHeader Center End -->
+
+<!-- Header Menu -->
+<div class="shop_hd_menu">
+	<!-- 所有商品菜单 -->
+
+	<div class="shop_hd_menu_all_category <?php if(($index) == "true"): ?>shop_hd_menu_hover<?php endif; ?>" <?php if(($index) != "true"): ?>id="shop_hd_menu_all_category"<?php endif; ?>><!-- 首页去掉 id="shop_hd_menu_all_category" 加上clsss shop_hd_menu_hover -->
+		<div class="shop_hd_menu_all_category_title"><h2 title="所有商品分类"><a href="javascript:void(0);">所有商品分类</a></h2><i></i></div>
+		<div id="shop_hd_menu_all_category_hd" class="shop_hd_menu_all_category_hd">
+			<ul class="shop_hd_menu_all_category_hd_menu clearfix">
+				<!-- 单个菜单项 -->
+				<?php if(is_array($cats)): $k = 0; $__LIST__ = $cats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k; if($k < 8): ?><li id="cat_1" class="">
+							<h3><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo["cat_id"]); ?>" title="<?php echo ($vo["cat_name"]); ?>"><?php echo ($vo["cat_name"]); ?></a></h3>
+
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<?php if(is_array($vo["child"])): $i = 0; $__LIST__ = $vo["child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i;?><dl class="clearfix">
+										<dt><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo1["cat_id"]); ?>"><?php echo ($vo1["cat_name"]); ?></a></dt>
+										<dd>
+											<?php if(is_array($vo1["child"])): $i = 0; $__LIST__ = $vo1["child"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo2): $mod = ($i % 2 );++$i;?><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo2["cat_id"]); ?>"><?php echo ($vo2["cat_name"]); ?></a><?php endforeach; endif; else: echo "" ;endif; ?>
+										</dd>
+									</dl><?php endforeach; endif; else: echo "" ;endif; ?>                                                     
+							</div>
+
+						</li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+				<!-- 单个菜单项 End -->
+
+				<li class="more"><a href="">查看更多分类</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 所有商品菜单 END -->
+
+	<!-- 普通导航菜单 -->
+	<ul class="shop_hd_menu_nav">
+		<li class="current_link"><a href="/shop/index.php/Home/index/index"><span>首页</span></a></li>
+		<li class="link"><a href=""><span>团购</span></a></li>
+		<li class="link"><a href=""><span>品牌</span></a></li>
+		<li class="link"><a href=""><span>优惠卷</span></a></li>
+		<li class="link"><a href=""><span>积分中心</span></a></li>
+		<li class="link"><a href=""><span>运动专场</span></a></li>
+		<li class="link"><a href=""><span>微商城</span></a></li>
+	</ul>
+	<!-- 普通导航菜单 End -->
+</div>
+<!-- Header Menu End -->
+
+
+
+</div>
+<div class="clear"></div>
+<!-- Header End -->
 	<!-- 面包屑 注意首页没有 -->
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="__MODULE__/Index/index">首页</a>&nbsp;›&nbsp;
-			<volist name="parentCats" id="vo">
-				<a href="__MODULE__/Category/index/id/{$vo.cat_id}">
-					{$vo.cat_name}</a> <if condition="$i != count($parentCats)" >&nbsp;›&nbsp;</if>
-			</volist>
+			<a href="/shop/index.php/Home/Index/index">首页</a>&nbsp;›&nbsp;
+			<?php if(is_array($parentCats)): $i = 0; $__LIST__ = $parentCats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo["cat_id"]); ?>">
+					<?php echo ($vo["cat_name"]); ?></a> <?php if($i != count($parentCats)): ?>&nbsp;›&nbsp;<?php endif; endforeach; endif; else: echo "" ;endif; ?>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -36,20 +189,12 @@
 			<!-- 左边商品分类 -->
 			<div class="shop_bd_list_bk clearfix">
 				<div class="title">商品分类</div>
-				<volist name="leftMenu" id="vo">
-						<if condition="$vo.level eq 1">
-							<div class="contents clearfix">
+				<?php if(is_array($leftMenu)): $i = 0; $__LIST__ = $leftMenu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["level"] == 1): ?><div class="contents clearfix">
 								<dl class="shop_bd_list_type_links clearfix">
-									<dt><strong>{$vo.cat_name}</strong></dt>
-									<volist name ="leftMenu" id="vo1">	
-										<if condition="$vo1.level eq 2 AND $vo.cat_id eq $vo1.parent_id  ">
-											<dd><span><a href="__MODULE__/Category/index/id/{$vo1.cat_id}">{$vo1.cat_name}</a></span></dd>
-										</if>
-									</volist>
+									<dt><strong><?php echo ($vo["cat_name"]); ?></strong></dt>
+									<?php if(is_array($leftMenu)): $i = 0; $__LIST__ = $leftMenu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i; if($vo1["level"] == 2 AND $vo["cat_id"] == $vo1["parent_id"] ): ?><dd><span><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo1["cat_id"]); ?>"><?php echo ($vo1["cat_name"]); ?></a></span></dd><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 								</dl>
-							</div>
-						</if>	
-				</volist>
+							</div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
 			</div>
 			<!-- 左边商品分类 End -->
 
@@ -58,16 +203,14 @@
 				<div class="title">热卖推荐商品</div>
 				<div class="contents clearfix">
 					<ul class="clearfix">
-						<volist name="hotGoods" id="hotGood">
-						<li class="clearfix">
-							<div class="goods_name"><a href="">{$hotGood.goods_name}|{$hotGood.goods_sn}|原价{$hotGood.shop_price}元</a></div>
-							<div class="goods_pic"><span class="goods_price">{$hotGood.promote_price} </span><a href=""><img src="__ROOT__/{$hotGood.goods_img}" /></a></div>
+						<?php if(is_array($hotGoods)): $i = 0; $__LIST__ = $hotGoods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$hotGood): $mod = ($i % 2 );++$i;?><li class="clearfix">
+							<div class="goods_name"><a href=""><?php echo ($hotGood["goods_name"]); ?>|<?php echo ($hotGood["goods_sn"]); ?>|原价<?php echo ($hotGood["shop_price"]); ?>元</a></div>
+							<div class="goods_pic"><span class="goods_price"><?php echo ($hotGood["promote_price"]); ?> </span><a href=""><img src="/shop/<?php echo ($hotGood["goods_img"]); ?>" /></a></div>
 							<div class="goods_xiaoliang">
-								<span class="goods_xiaoliang_link"><a href="__MODULE__/Goods/index/id/{hotGood.goods_id}">去看看</a></span>
+								<span class="goods_xiaoliang_link"><a href="/shop/index.php/Home/Goods/index/id/{hotGood.goods_id}">去看看</a></span>
 							<!-- 	<span class="goods_xiaoliang_nums">已销售<strong>99</strong>笔</span> -->
 							</div>
-						</li>
-						</volist>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
 						
 
 					</ul>
@@ -179,25 +322,21 @@
 			<!-- 商品列表 -->
 			<div class="shop_bd_list_content clearfix">
 				<ul>
-				<volist name="goods" id="good">
-					<li>
+				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$good): $mod = ($i % 2 );++$i;?><li>
 						<dl>
-							<dt><a href="__MODULE__/Goods/index/id/{$good.goods_id}"><img src="__ROOT__/{$good.goods_img}" /></a></dt>
-							<dd class="title"><a href="__MODULE__/Goods/index/id/{$good.goods_id}">{$good.goods_brief}</a></dd>
+							<dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><img src="/shop/<?php echo ($good["goods_img"]); ?>" /></a></dt>
+							<dd class="title"><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><?php echo ($good["goods_brief"]); ?></a></dd>
 							<dd class="content">
-								<span class="goods_jiage">￥<strong>{$good.shop_price}</strong></span>
+								<span class="goods_jiage">￥<strong><?php echo ($good["shop_price"]); ?></strong></span>
 							</dd>
 						</dl>
-					</li>
-
-
-				</volist>
+					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 			<div class="clear"></div>
 			<div class="pagination" > 
 				<ul >
-					<li><span class="currentpage">{$page}</span></li>
+					<li><span class="currentpage"><?php echo ($page); ?></span></li>
 				</ul> 
 			</div>
 			<!-- 商品列表 End -->
@@ -231,7 +370,7 @@
 <!--
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -242,7 +381,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -253,7 +392,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -264,7 +403,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -275,7 +414,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -286,7 +425,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -297,7 +436,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -308,7 +447,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -319,7 +458,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -330,7 +469,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -341,7 +480,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -352,7 +491,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -363,7 +502,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -374,7 +513,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -385,7 +524,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -396,7 +535,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -407,7 +546,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -418,7 +557,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -429,7 +568,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -440,7 +579,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -451,7 +590,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -462,7 +601,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -473,7 +612,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -484,7 +623,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -495,7 +634,7 @@
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>
@@ -504,11 +643,20 @@
 						</dl>
 					</li>
 
-				
+					<li>
+						<dl>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
+							<dd class="content">
+								<span class="goods_jiage">￥<strong>249.00</strong></span>
+								<span class="goods_chengjiao">最近成交5笔</span>
+							</dd>
+						</dl>
+					</li>
 
 					<li>
 						<dl>
-							<dt><a href=""><img src="__PUBLIC__/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
 							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
 							<dd class="content">
 								<span class="goods_jiage">￥<strong>249.00</strong></span>

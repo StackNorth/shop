@@ -37,4 +37,26 @@ class CategoryModel extends Model {
 		}
 		return array_reverse($res);//数组前后倒置
 	}
+	/**
+	 * 获取所有的category 信息
+	 */
+	public function Tree() {
+		$obj = $this->select();
+		return $this->getMenuTree($obj);
+	}
+
+	public function getMenuTree($obj ,$pid = 0 , $level = 0) {
+		static $tree;
+		foreach ($obj as $v) {
+			if ($v['parent_id'] == $pid) {
+				$v['level'] = $level;
+				$tree[] = $v;
+				$this->getMenuTree($obj ,$v['cat_id'] , $level+1);
+			}
+		}
+		return $tree;
+	}
+
+
+	
 }
