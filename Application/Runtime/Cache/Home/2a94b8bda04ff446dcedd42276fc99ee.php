@@ -280,7 +280,7 @@
                     <div class="tuijian_content">
                         <div id="tuijian_content_1" class="tuijian_shangpin" style="display: block;">
                             <ul>
-                            <?php if(is_array($best)): $i = 0; $__LIST__ = $best;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                            <?php if(is_array($best)): $i = 0; $__LIST__ = array_slice($best,1,4,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
                                     <dl>
                                         <dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><img src="/shop/<?php echo ($vo["goods_img"]); ?>" style="width:100%;height: auto;"/></a></dt>
                                         <dd><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><?php echo ($vo["goods_name"]); ?></a></dd>
@@ -411,60 +411,26 @@
                 <div class="shop_bd_home_block_right">
                     <div class="title"><h3>商品排行</h3></div>
                     <ol class="saletop-list">
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">1</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="/shop/Public/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">2</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="/shop/Public/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">3</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="/shop/Public/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        
-                        <li class="normal">
-                            <i>4</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>5</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>6</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>7</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        
+
+                        <?php if(is_array($right)): $k = 0; $__LIST__ = array_slice($right,1,7,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$right): $mod = ($k % 2 );++$k; if($k < 4): ?><li class="top clearfix">
+                                    <dl>
+                                        <dt class="goods-name">
+                                        <a href="/shop/index.php/Home/Goods/index/id/<?php echo ($right["goods_id"]); ?>"><?php echo ($right["goods_name"]); ?></a>
+                                        </dt>
+                                        <dd class="nokey"><?php echo ($k); ?></dd>
+                                        <dd class="goods-pic">
+                                            <a href=""><span class="thumb size60"><img src="/shop/<?php echo ($right["goods_img"]); ?>" /></span></a>
+                                        </dd>
+                                        <dd class="goods-price"><em><?php echo ($right["market_price"]); ?></em></dd>
+                                    </dl>
+                                </li>
+                                <?php else: ?>
+
+                                <li class="normal">
+                                    <i>4</i>
+                                    <a href="/shop/index.php/Home/Goods/index/id/<?php echo ($right["goods_id"]); ?>"><?php echo ($right["goods_name"]); ?></a>
+                                </li><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+
                     </ol>
                     <div class="saletop-list_adv_pic"><a href=""><img src="/shop/Public/images//web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
                 </div>

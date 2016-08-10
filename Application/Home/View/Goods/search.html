@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>商品列表页</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_header.css" type="text/css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/shop_list.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.js" ></script>
+    <script type="text/javascript" src="__PUBLIC__/js/topNav.js" ></script>
+    <script type="text/javascript" src="__PUBLIC__/js/shop_list.js" ></script>
+</head>
+<body>
+	<include file="Public/header" />
+	<!-- 面包屑 注意首页没有 -->
+	<div class="clear"></div>
+	<!-- 面包屑 End -->
+
+	<!-- Header End -->
+	<div class="shop_bd clearfix">
+
+	<!-- List Body 2013/03/27 -->
+	
+	<include file="Public/leftGoods"/>
+		
+	<div class="shop_bd_list_right clearfix">
+
+
+			<!-- 商品列表 -->
+			<div class="shop_bd_list_content clearfix">
+				<ul>
+				<volist name="goods" id="good">
+					<li>
+						<dl>
+							<dt><a href="__MODULE__/Goods/index/id/{$good.goods_id}"><img src="__ROOT__/{$good.goods_img}" /></a></dt>
+							<dd class="title"><a href="__MODULE__/Goods/index/id/{$good.goods_id}">{$good.goods_brief}</a></dd>
+							<dd class="content">
+								<span class="goods_jiage">￥<strong>{$good.shop_price}</strong></span>
+							</dd>
+						</dl>
+					</li>
+
+
+				</volist>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="pagination" > 
+				<ul >
+					<li><span class="currentpage">{$page}</span></li>
+				</ul> 
+			</div>
+			<!-- 商品列表 End -->
+
+
+		</div>
+	</div>
+	<!-- List Body End -->
+
+	<!-- Footer - wll - 2013/3/24 -->
+	<div class="clear"></div>
+	<div class="shop_footer">
+            <div class="shop_footer_link">
+                <p>
+                    <a href="">首页</a>|
+                    <a href="">招聘英才</a>|
+                    <a href="">广告合作</a>|
+                    <a href="">关于ShopCZ</a>|
+                    <a href="">关于我们</a>
+                </p>
+            </div>
+            <div class="shop_footer_copy">
+                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+            </div>
+        </div>
+	<!-- Footer End -->
+	
+</body>
+
+</html>
+

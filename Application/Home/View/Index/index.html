@@ -125,7 +125,7 @@
                     <div class="tuijian_content">
                         <div id="tuijian_content_1" class="tuijian_shangpin" style="display: block;">
                             <ul>
-                            <volist name="best" id="vo">
+                            <volist name="best" id="vo" offset="1" length='4'>
                                 <li>
                                     <dl>
                                         <dt><a href="__MODULE__/Goods/index/id/{$vo.goods_id}"><img src="__ROOT__/{$vo.goods_img}" style="width:100%;height: auto;"/></a></dt>
@@ -272,60 +272,31 @@
                 <div class="shop_bd_home_block_right">
                     <div class="title"><h3>商品排行</h3></div>
                     <ol class="saletop-list">
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">1</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="__PUBLIC__/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">2</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="__PUBLIC__/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        <li class="top clearfix">
-                            <dl>
-                                <dt class="goods-name">
-                                    <a href="">正品都市时尚女装假两件优雅针</a>
-                                </dt>
-                                <dd class="nokey">3</dd>
-                                <dd class="goods-pic">
-                                    <a href=""><span class="thumb size60"><img src="__PUBLIC__/images//3f81874d594894d19150843c42fb1f8e.jpg_small.jpg" /></span></a>
-                                </dd>
-                                <dd class="goods-price"><em>398.00</em></dd>
-                            </dl>
-                        </li>
-                        
-                        <li class="normal">
-                            <i>4</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>5</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>6</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        <li class="normal">
-                            <i>7</i>
-                            <a href="">2011秋冬新款韩版大码毛领毛呢外套呢子大衣【演示数据】</a>
-                        </li>
-                        
+
+                        <volist name="right" id="right" key="k" offset="1" length='7'>
+
+                            <if condition="$k lt 4">
+                                <li class="top clearfix">
+                                    <dl>
+                                        <dt class="goods-name">
+                                        <a href="__MODULE__/Goods/index/id/{$right.goods_id}">{$right.goods_name}</a>
+                                        </dt>
+                                        <dd class="nokey">{$k}</dd>
+                                        <dd class="goods-pic">
+                                            <a href=""><span class="thumb size60"><img src="__ROOT__/{$right.goods_img}" /></span></a>
+                                        </dd>
+                                        <dd class="goods-price"><em>{$right.market_price}</em></dd>
+                                    </dl>
+                                </li>
+                                <else />
+
+                                <li class="normal">
+                                    <i>4</i>
+                                    <a href="__MODULE__/Goods/index/id/{$right.goods_id}">{$right.goods_name}</a>
+                                </li>
+                            </if>
+                        </volist>
+
                     </ol>
                     <div class="saletop-list_adv_pic"><a href=""><img src="__PUBLIC__/images//web-3-38_ff9bd2d724f7138cec1b1937000f4feb.jpg" /></a></div>
                 </div>
