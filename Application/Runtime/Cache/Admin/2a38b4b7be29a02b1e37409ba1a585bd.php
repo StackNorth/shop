@@ -9,7 +9,7 @@
 <body>
 
 <h1>
-<span class="action-span"><a href="/shop/index.php/admin/brand/add">添加品牌</a></span>
+<span class="action-span"><a href="/shop/index.php/Admin/Brand/add">添加品牌</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品品牌 </span>
 <div style="clear:both"></div>
 </h1>
@@ -49,8 +49,8 @@
       <?php echo (ADMIN_PUBLIC); ?>/images/no.gif<?php endif; ?>
       '></td>
       <td align="center">
-        <a href="/shop/index.php/admin/brand/edit/id/<?php echo ($vo["brand_id"]); ?>" title="编辑">编辑</a> |
-        <a href="/shop/index.php/admin/brand/delete/id/<?php echo ($vo["brand_id"]); ?>" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
+        <a href="/shop/index.php/Admin/Brand/edit/id/<?php echo ($vo["brand_id"]); ?>" title="编辑">编辑</a> |
+        <a href="/shop/index.php/Admin/Brand/delete/id/<?php echo ($vo["brand_id"]); ?>" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
       </td>
     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
     <tr>

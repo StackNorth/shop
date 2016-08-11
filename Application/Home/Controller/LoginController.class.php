@@ -13,21 +13,33 @@ class LoginController extends BaseController {
 			//先检查验证码
 			$verify = new \Think\Verify();
 			if (!$verify->check($captcha)){
-				$this->error('验证码错误');
+				$error = "alert('请先填写正确的验证码信息');";
+				$this->assign('error',$error);
+
+			} else {
+			
+				//再来检查用户名和密码,调用模型来完成
+				if (D('user')->checkUser($username,$password)) {
+					$this->redirect('Index/index');
+					return;
+				} else {
+					$error = "alert('账号或用户名错误');";
+					$this->assign('error',$error);
+
+				}
 			}
 			
-			//再来检查用户名和密码,调用模型来完成
-			if (D('user')->checkUser($username,$password)) {
-				$this->success('登录成功',U('Index/index'),1);
-			} else {
-				$this->error('用户名或密码错误');
-			}
-			return;
 		} 
 		// 载入登录页面
 		$this->display();
 	}
 
 
-
+	public function checkCaptcha() {
+		$verify = new \Think\Verify();
+		if (!$verify->check($captcha)){
+			$this->ajaxReturn("验证码错误",'eval');
+		}
+		
+	}
 }

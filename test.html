@@ -1,0 +1,62 @@
+<script type="text/javascript">
+$(function(){
+	//向客户端ajax发送数据
+	$("#verify:text").blur(function(){
+		var verify = $('#verify').val();
+		var data = 'verify=' +verify;
+		  $.ajax({  
+			  type: "post", 
+			  datatype:"json",  
+			  url: "__URL__/verify",
+			  data: data, 
+			             success: function(data){
+			            	if(data=='false'){
+			            		$("form").submit(function(e){
+			            		    e.preventDefault();
+			            		  });
+			            	}else{
+			            		GetMoreSource()
+			            		//document.getElementById('submit').submit()="false";
+			            	}
+		          	 },
+			             error: function() { alert("error"); } , 
+			      });  
+	 });
+});
+
+function GetMoreSource() { 
+	data=$('.calculate').serialize();
+	  $.ajax({  
+	  type: "post", 
+	  datatype:"json",  
+	  url: "__URL__/matchAdviserList",
+	  data: data, 
+	             success: function(data){
+	            	$("#divok").html(data);
+        	 },
+	             error: function() { alert("error"); } , 
+	          });  
+}
+
+</script>
+<body>
+<form action="" method="post" id="submitForAjax" >
+<select name="webtype" class="calculate">
+	<option value="" selected></option>
+	
+</select><br/>
+bbb :<input type="text" name="dayPv" class="calculate"><br>
+ccc:<input type="text" name="indexPage" class="calculate"><br>
+ddd:<input type="text" name="dataCon" class="calculate"><br>
+eee:<input type="text" name="verify"  nullmsg="请输入验证码" id="verify"><span id="result"></span>
+<a href="#"><img id="im"  src="__APP__/User/Login/verify" onclick="this.src='__APP__/User/Login/verify/?id='+Math.random()*5;" /></a>
+<i><a href="#" title="换一张"  onclick="document.getElementById('im').src='__APP__/User/Login/verify/?id='+Math.random()*5;">换一张</a></i>
+</form>
+<input type="submit" value="按钮" id="submit" >
+
+
+<div id="divok">
+</div>
+
+
+</body>

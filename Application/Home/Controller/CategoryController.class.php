@@ -19,7 +19,6 @@ class CategoryController extends BaseController {
 		$this->assign('goods',$goods);
 		$this->assign('page',$page->show());
 		$this->display();
-
 	}
 
 }

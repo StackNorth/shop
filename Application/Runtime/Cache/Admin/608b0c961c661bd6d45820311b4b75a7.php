@@ -40,11 +40,11 @@
 			<tbody>
 				<tr>
 					<td class="label">商品名称：</td>
-					<td><input type="text" name="goods_name"  size="30"><span class="require-field">*</span></td>
+					<td><input type="text" name="goods_name" value="<?php echo ($goods[0]["goods_name"]); ?>" size="30"><span class="require-field">*</span></td>
 				</tr>
 				<tr>
 					<td class="label">商品货号： </td>
-					<td><input type="text" name="goods_sn"  size="20" onblur="checkGoodsSn(this.value,'32')"><span id="goods_sn_notice"></span><br>
+					<td><input type="text" name="goods_sn" value="<?php echo ($goods[0]["goods_sn"]); ?>" size="20" onblur="checkGoodsSn(this.value,'32')"><span id="goods_sn_notice"></span><br>
 					<span class="notice-span" style="display:block" id="noticeGoodsSN">如果您不输入商品货号，系统将自动生成一个唯一的货号。</span></td>
 			</tr>
 			<tr>
@@ -116,7 +116,7 @@
           <tr id="auto_thumb_1">
             <td class="label"> 上传商品缩略图：</td>
             <td id="auto_thumb_3">
-              <input type="file" name="goods_thumb" size="35" >
+              <input type="file" name="goods_thumb" size="35" disabled="">
                               <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/thumb_img/32_thumb_G_1242110760196.jpg" target="_blank"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/yes.gif" border="0"></a>
                             <br><input type="text" size="40" value="商品缩略图外部URL" style="color:#aaa;" onfocus="if (this.value == '商品缩略图外部URL'){this.value='http://';this.style.color='#000';}" name="goods_thumb_url" disabled="">
                             <br><label for="auto_thumb"><input type="checkbox" id="auto_thumb" name="auto_thumb" checked="true" value="1" onclick="handleAutoThumb(this.checked)">自动生成商品缩略图</label>            </td>

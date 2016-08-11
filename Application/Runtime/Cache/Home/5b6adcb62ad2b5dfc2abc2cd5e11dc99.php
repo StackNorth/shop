@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="/shop/Public/css/base.css" />
 	<link rel="stylesheet" href="/shop/Public/css/global.css" />
 	<link rel="stylesheet" href="/shop/Public/css/login-register.css" />
-	
+	<script type="text/javascript" src="/shop/Public/js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 
@@ -21,18 +21,26 @@
 				<h3>用户登录</h3>
 			</div>
 			<div class="form-bd">
-				<form action="" method="POST">
+				<form action="" method="POST" id="actForm">
+					
 					<dl>
 						<dt>用户名</dt>
 						<dd><input type="text" name="user_name" class="text" /></dd>
+						
 					</dl>
 					<dl>
 						<dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
 						<dd><input type="password" name="password" class="text"/></dd>
+						
 					</dl>
 					<dl>
 						<dt>验证码</dt>
-						<dd><input type="text" name="captcha" class="text" size="10" > <img src="/shop/index.php/Home/Login/code" alt="CAPTCHA" border="1" onclick= this.src="/shop/index.php/Home/Login/code/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。" /></dd>
+						<dd><input type="text" name="captcha" id="captcha" class="text" size="10" > <img src="/shop/index.php/Home/Login/code" alt="CAPTCHA" border="1" onclick= this.src="/shop/index.php/Home/Login/code/"+Math.random() style="cursor: pointer;" title="看不清？点击更换另一个验证码。" /></dd>
+						
+					</dl>
+					<dl align="center">
+						<div id="error" style="color:#F00"></div>
+						
 					</dl>
 					<dl>
 						<dt>&nbsp;</dt>
@@ -69,4 +77,27 @@
 	
 	
 </body>
+<script type="text/javascript">
+
+	<?php echo ($error); ?>
+	$('#captcha').blur(
+		function() {
+			var captcha = this.value;
+			$.ajax({
+				type : "GET",//传输方式
+				url : "/shop/index.php/Home/Login/checkCaptcha",//路径，此控制器下的模型attribute的getAttrs方法方法
+				data : "captcha="+captcha,//传输的数据
+				dataType : 'html',//传输类型
+				//成功后加载id为tbody-goodsAttr的框架中
+				success : function(msg){
+					
+	        		$("#error").html(msg); 
+	        		$("#actForm").preventDefault();
+				},
+				 error : function(){alert('出错');}
+				})
+
+		}
+		);
+</script>
 </html>
