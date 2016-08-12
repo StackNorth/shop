@@ -2,7 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 class GoodsController extends BaseController {
-		
+	
 	//显示商品
 	public function index(){
 		$goodsModel = M(goods);
@@ -42,7 +42,7 @@ class GoodsController extends BaseController {
 			if (I('goods_sn')) {
 				$data['goods_sn'] = I('goods_sn'); 
 			} else {
-				$data['goods_sn'] = rand(100000,999999);
+				$data['goods_sn'] = rand(0,99999999);
 			}
 
 			$data['cat_id'] = I('cat_id'); 
@@ -64,25 +64,37 @@ class GoodsController extends BaseController {
 				$upload->rootPath = "./"; //注意，一定要设置这个
 				$upload->savePath  =  './Public/Uploads/'; // 设置附件上传目录
 				$info  =  $upload->uploadOne($_FILES['goods_img']);
+				
 				if ($info) {
 					// 上传成功
 					$data['goods_img'] = $info['savepath'].$info['savename'];
 				}
 			}
 			//处理上传图片
-			if ($_FILES['goods_thumb']['tmp_name'] != '') {
-				$upload = new \Think\Upload();// 实例化上传类
+			
+			if ($_FILES['goods_thumbs']['tmp_name'] != '') {
+				import("Org.Net.UploadFile");  
+				$upload = new \UploadFile();// 实例化上传类
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
 				$upload->rootPath = "./"; //注意，一定要设置这个
-				$upload->savePath  =  './Public/Uploads/thumb/'; // 设置附件上传目录
-				$info  =  $upload->uploadOne($_FILES['goods_thumb']);
-				if ($info) {
+				$upload->savePath  =  './Public/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
+				if ($upload->upload('goods_thumbs')) {
 					// 上传成功
-					$data['goods_thumb'] = $info['savepath'].$info['savename'];
+					$thumbs = $upload->getUploadFileInfo();
+					$goodsThumbModel = M('goods_thumb');
+					foreach ($thumbs as $thumb) {
+						$arr['thumb_img'] = $thumb['savepath'].$thumb['savename'];
+						$arr['goods_sn'] = $data['goods_sn'];
+						$arr['thumb_time'] = time();
+						if (!M('goods_thumb')->add($arr)) {
+							$this->error('添加失败，写入地址失败');
+						}
+					}
+					
 				}
 			}
-
+			
 
 			$data['goods_desc'] = I('goods_desc'); 
 			$data['goods_number'] = I('goods_number'); 
@@ -144,7 +156,7 @@ class GoodsController extends BaseController {
 			if (I('goods_sn')) {
 				$data['goods_sn'] = I('goods_sn'); 
 			} else {
-				$data['goods_sn'] = rand(100000,999999);
+				$data['goods_sn'] = rand(0,99999999);
 			}
 
 			$data['cat_id'] = I('cat_id'); 
@@ -171,7 +183,31 @@ class GoodsController extends BaseController {
 					$data['goods_img'] = $info['savepath'].$info['savename'];
 				}
 			}
-
+			//缩略图处理
+				
+			if ($_FILES['goods_thumbs']['tmp_name'] != '') {
+				import("Org.Net.UploadFile");  
+				$upload = new \UploadFile();// 实例化上传类
+				$upload->maxSize  = 3145728 ;// 设置附件上传大小
+				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+				$upload->rootPath = "./"; //注意，一定要设置这个
+				$upload->savePath  =  './Public/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
+				if ($upload->upload('goods_thumbs')) {
+					// 上传成功
+					$thumbs = $upload->getUploadFileInfo();
+					$goodsThumbModel = M('goods_thumb');
+					$goodsThumbModel->where('goods_sn = '.$data['goods_sn'])->delete();
+					foreach ($thumbs as $thumb) {
+							$arr['thumb_img'] = $thumb['savepath'].$thumb['savename'];
+							$arr['goods_sn'] = $data['goods_sn'];
+							$arr['thumb_time'] = time();
+							if (!M('goods_thumb')->add($arr)) {
+								$this->error('添加失败，写入地址失败');
+							}
+						}
+				}
+			}			
+			
 			$data['goods_desc'] = I('goods_desc'); 
 			$data['goods_number'] = I('goods_number'); 
 			$data['goods_brief'] = I('goods_brief'); 
@@ -185,7 +221,7 @@ class GoodsController extends BaseController {
 
 			if ($goodsModel->create($data)) {
 				//创建成功
-				if ($goods_id = $goodsModel->add()) {
+				if ($goods_id = $goodsModel->save()) {
 					//添加成功，添加其他表数据
 					$attr_ids = I('attr_id_list');
 					$attr_values = I('attr_value_list');
@@ -226,7 +262,9 @@ class GoodsController extends BaseController {
 		$data['goods_id'] = I('get.goods_id');
 		$goodsModel = M('goods');
 		if ($goodsModel->where($data)->delete()) {
-			$this->success('删除成功',U('index'),3);
+			$goods = $goodsModel->where($data)->select();
+			if (M('goods_thumb')->where('goods_sn ='.$goods['goods_sn'])->delete())
+				$this->success('删除成功',U('index'),3);
 		} else {
 			$this->error('删除失败',U('index'),3);
 		}

@@ -108,16 +108,16 @@
           <tr>
             <td class="label">上传商品图片：</td>
             <td>
-              <input type="file" name="goods_img" size="35">
-                              <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/goods_img/32_G_1242110760868.jpg" target="_blank"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/yes.gif" border="0"></a>
+              <input type="file" name="goods_img" value="/shop./Public/Uploads/thumb/2016/08/12/13/49/56/57ad638477791.jpg" size="35">
+                              
                             <br><input type="text" size="40" value="商品图片外部URL" style="color:#aaa;" onfocus="if (this.value == '商品图片外部URL'){this.value='http://';this.style.color='#000';}" name="goods_img_url">
             </td>
           </tr>
           <tr id="auto_thumb_1">
             <td class="label"> 上传商品缩略图：</td>
             <td id="auto_thumb_3">
-              <input type="file" name="goods_thumb" size="35" disabled="">
-                              <a href="goods.php?act=show_image&amp;img_url=<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/200905/thumb_img/32_thumb_G_1242110760196.jpg" target="_blank"><img src="<?php echo (ADMIN_PUBLIC); ?>//<?php echo (ADMIN_PUBLIC); ?>//images/yes.gif" border="0"></a>
+              <input type="file" name="goods_thumbs[]" size="35" multiple>
+                              
                             <br><input type="text" size="40" value="商品缩略图外部URL" style="color:#aaa;" onfocus="if (this.value == '商品缩略图外部URL'){this.value='http://';this.style.color='#000';}" name="goods_thumb_url" disabled="">
                             <br><label for="auto_thumb"><input type="checkbox" id="auto_thumb" name="auto_thumb" checked="true" value="1" onclick="handleAutoThumb(this.checked)">自动生成商品缩略图</label>            </td>
           </tr>

@@ -7,9 +7,11 @@ class GoodsController extends BaseController {
 		$goods_id = I('id',0,'int');
 		$condition['goods_id'] = $goods_id;
 		$goods = D('goods')->find($goods_id);
+		$goodsThumbs = M('goods_thumb')->where($goods['goods_sn'])->select();
 		$attr = M('goods_attr')->where($condition)->select();
 		$this->assign('attr',$attr);
-		$this->assign('goods',$goods);  
+		$this->assign('goods',$goods);
+		$this->assign('goodsThumbs',$goodsThumbs);
 		$this->display();
 	}
 

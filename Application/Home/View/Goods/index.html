@@ -50,9 +50,11 @@
 							</div>
 							<div id="spec-list">
 								<ul class="list-h">
-									<volist name = "goods" id = "vo">
-									<li><img src="__ROOT__/{goods.goods_thumb}"> </li>
-									</volist>									
+									
+									<volist name="goodsThumbs" id="goodsThumb">
+									<li><img src="__ROOT__{$goodsThumb.thumb_img}"> </li>
+									</volist>
+																		
 								</ul>
 							</div>
 							<div class=control id="spec-right">

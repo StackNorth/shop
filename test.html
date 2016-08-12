@@ -1,62 +1,161 @@
+<script type="text/javascript" src="Public/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	//向客户端ajax发送数据
-	$("#verify:text").blur(function(){
-		var verify = $('#verify').val();
-		var data = 'verify=' +verify;
-		  $.ajax({  
-			  type: "post", 
-			  datatype:"json",  
-			  url: "__URL__/verify",
-			  data: data, 
-			             success: function(data){
-			            	if(data=='false'){
-			            		$("form").submit(function(e){
-			            		    e.preventDefault();
-			            		  });
-			            	}else{
-			            		GetMoreSource()
-			            		//document.getElementById('submit').submit()="false";
-			            	}
-		          	 },
-			             error: function() { alert("error"); } , 
-			      });  
-	 });
-});
 
-function GetMoreSource() { 
-	data=$('.calculate').serialize();
-	  $.ajax({  
-	  type: "post", 
-	  datatype:"json",  
-	  url: "__URL__/matchAdviserList",
-	  data: data, 
-	             success: function(data){
-	            	$("#divok").html(data);
-        	 },
-	             error: function() { alert("error"); } , 
-	          });  
+    //限制文件数
+
+    var mflFileMaxCount = 5;
+
+    var mflFileCount = 0;
+
+    //限制文件类型
+
+    var mflCouldUserTypes = "|.jpeg|.jpg|.gif|.png|.bmp|";
+
+   
+
+    function AddFile(obj) {
+
+        var fileName = obj.value;
+
+        if (mflFileCount >= mflFileMaxCount) {
+
+            window.alert("信息提示：系统设置，最多只能同时上传[" + mflFileMaxCount + "]个文件.");
+
+            return;
+
+        }
+
+       
+
+        if ($.trim(fileName) == "") {
+
+            //用户没有选择文件
+
+            return;
+
+        }
+
+       
+
+        if($("#hdFileName").attr("value").length>1)
+
+        {
+
+            var arr = $("#hdFileName").attr("value").split(",");
+
+            for(var i=0; i<arr.length;i++)
+
+            {
+
+                if(arr[i]==fileName){
+
+                   window.alert("该文件已经存在任务列表中！");
+
+                   return;
+
 }
 
+            }
+
+        }
+
+        $("#hdFileName").val($("#hdFileName").attr("value")+","+fileName);
+
+       
+
+        var type = fileName.substring(fileName.lastIndexOf("."));
+
+        type = type.toLowerCase();  //将字符串换成小写
+
+        var sFileName = fileName.substring(fileName.lastIndexOf("\\"));
+
+        var newFileLoadTmp = "<input type='file' name='mflFileUpload" + (mflFileCount + 1) + "' id='mflFileUpload" + (mflFileCount + 1) + "' onchange='AddFile(this)' class='mflFileUploadCss' />"
+
+        var newLiFile = "<li><span class='FileNameStyle'>" + sFileName + "</span>&nbsp;<img src='http://blog.163.com/thylx133@126/blog/../images/ac_02.jpg' onclick='mflRemoveFile(this)' /></li>";       
+
+        if ($.trim(type) == "" || $.trim(sFileName) == "") {
+
+            //用户没有选择文件
+
+            return;
+
+        }
+
+        if (mflCouldUserTypes.indexOf("|" + type + "|") != -1) {
+
+            $(obj).css("display","none");
+
+            $(".mflLeft_FileUpload").append(newFileLoadTmp);
+
+            $(".mflRightOlFiles").append(newLiFile);
+
+            mflFileCount += 1;
+
+            $(".mflFileCountMsg").html("已选文件数："+mflFileCount);
+
+        }
+
+        else {
+
+            window.alert("信息提示：文件类型不正确。");
+
+        }
+
+    }
+
+ 
+
+    function mflRemoveFile(obj) {
+
+        if (confirm("信息提示：确定移除该文件？")) {
+
+            var innerHtml = $(obj).parent().html();
+
+            var itemIndex = 0;
+
+            for (itemIndex = 0; itemIndex < $(".mflRightOlFiles li").length; itemIndex++) {
+
+                if ($(".mflRightOlFiles li").eq(itemIndex).html() == innerHtml) {
+
+                    break;
+
+                }
+
+            }
+
+ 
+
+            $(".mflRightOlFiles li").eq(itemIndex).remove();
+
+            $(".mflLeft_FileUpload input").eq(itemIndex).remove();
+
+            mflFileCount -= 1;
+
+            $(".mflFileCountMsg").html("已选文件数：" + mflFileCount);
+
+        }
+
+    }
+
 </script>
-<body>
-<form action="" method="post" id="submitForAjax" >
-<select name="webtype" class="calculate">
-	<option value="" selected></option>
-	
-</select><br/>
-bbb :<input type="text" name="dayPv" class="calculate"><br>
-ccc:<input type="text" name="indexPage" class="calculate"><br>
-ddd:<input type="text" name="dataCon" class="calculate"><br>
-eee:<input type="text" name="verify"  nullmsg="请输入验证码" id="verify"><span id="result"></span>
-<a href="#"><img id="im"  src="__APP__/User/Login/verify" onclick="this.src='__APP__/User/Login/verify/?id='+Math.random()*5;" /></a>
-<i><a href="#" title="换一张"  onclick="document.getElementById('im').src='__APP__/User/Login/verify/?id='+Math.random()*5;">换一张</a></i>
-</form>
-<input type="submit" value="按钮" id="submit" >
+<style type="text/css">
+	.mflFileUploadCss { width:83px; filter:alpha(opacity=0); opacity:0; }
+
+	.mflLeft_FileUpload{ background-image:url("../images/btn_look.jpg"); width:83px; overflow:hidden; }
+
+	.mflLeft_AddFileUpload { background-image:url("../images/btn_addPic.jpg"); }
+
+	.mflRightOlFiles{ padding-left:5px;}
+</style>
 
 
-<div id="divok">
-</div>
 
+<div class="mflLeft_FileUpload" style="float:left;">
 
-</body>
+<asp:FileUpload ID="FileUpload1" onchange="AddFile(this)" CssClass="mflFileUploadCss" runat="server" /> </div>&nbsp;&nbsp;(文件类型：jpeg ; jpg ; gif ; png:bmp)
+
+<ul class="mflRightOlFiles">
+
+</ul>
+
+<span class="mflFileCountMsg"></span>

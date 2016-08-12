@@ -203,7 +203,9 @@
 							</div>
 							<div id="spec-list">
 								<ul class="list-h">
-									<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><img src="/shop/{goods.goods_thumb}"> </li><?php endforeach; endif; else: echo "" ;endif; ?>									
+									
+									<?php if(is_array($goodsThumbs)): $i = 0; $__LIST__ = $goodsThumbs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goodsThumb): $mod = ($i % 2 );++$i;?><li><img src="/shop<?php echo ($goodsThumb["thumb_img"]); ?>"> </li><?php endforeach; endif; else: echo "" ;endif; ?>
+																		
 								</ul>
 							</div>
 							<div class=control id="spec-right">

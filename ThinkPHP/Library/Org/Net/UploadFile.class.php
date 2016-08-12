@@ -192,6 +192,7 @@ class UploadFile
         // 获取上传的文件信息
         // 对$_FILES数组信息处理
         $files = $this->dealFiles($key, $_FILES);
+        
         foreach ($files as $k => $file) {
             //过滤无效的上传
             if (!empty($file['name'])) {

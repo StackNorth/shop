@@ -366,15 +366,7 @@
 	<!-- Footer End -->
 	
 </body>
-<script type="text/javascript">
-	 function replaceParam(key){
-		var href = window.location.href;
-		alert(href.substr(href.indexOf('/id/')));
-		//href += '/key/'+key+'/order/'+'desc';
-		//window.location.href = href;
-	}
-http://localhost/shop/index.php/Home/Category/index/id/4
-</script>
+
 </html>
 
 <!--
