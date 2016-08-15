@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-15 10:28:53
+Date: 2016-08-15 17:58:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,11 +32,13 @@ CREATE TABLE `cz_address` (
   `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '移动电话',
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_address
 -- ----------------------------
+INSERT INTO `cz_address` VALUES ('1', '5', 'admin', '0', '0', '0', '回龙观东大街', '2013192', '7689234511', '12345678901');
+INSERT INTO `cz_address` VALUES ('2', '5', 'admin', '4', '5', '6', '正大街', '201412', '32145876', '13245678912');
 
 -- ----------------------------
 -- Table structure for cz_admin
@@ -410,11 +412,18 @@ CREATE TABLE `cz_region` (
   `region_name` varchar(30) NOT NULL DEFAULT '' COMMENT '地区名称',
   `region_type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT '地区类型 1 省份 2 市 3 区(县)',
   PRIMARY KEY (`region_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_region
 -- ----------------------------
+INSERT INTO `cz_region` VALUES ('1', '0', '北京', '1');
+INSERT INTO `cz_region` VALUES ('2', '8', '丰台', '3');
+INSERT INTO `cz_region` VALUES ('3', '8', '朝阳', '3');
+INSERT INTO `cz_region` VALUES ('4', '0', '河南', '1');
+INSERT INTO `cz_region` VALUES ('5', '4', '信阳', '2');
+INSERT INTO `cz_region` VALUES ('6', '5', '光山', '3');
+INSERT INTO `cz_region` VALUES ('8', '1', '北京', '2');
 
 -- ----------------------------
 -- Table structure for cz_shipping

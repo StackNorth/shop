@@ -71,7 +71,7 @@
 	</div>
 	
 	<div class="footer clear wrap1000">
-		<p> <a href="">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于ShopCZ</a> | <a href="">联系我们</a></p>
+		<p> <a href="">首页</a> | <a href="">招聘英才</a> | <a href="">广告合作</a> | <a href="">关于我们</a> | <a href="">联系我们</a></p>
 		<p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
 	</div>
 	
@@ -88,11 +88,10 @@
 				url : "/shop/index.php/Home/Login/checkCaptcha",//路径，此控制器下的模型attribute的getAttrs方法方法
 				data : "captcha="+captcha,//传输的数据
 				dataType : 'html',//传输类型
-				//成功后加载id为tbody-goodsAttr的框架中
 				success : function(msg){
 					
 	        		$("#error").html(msg); 
-	        		$("#actForm").preventDefault();
+	        		
 				},
 				 error : function(){alert('出错');}
 				})

@@ -38,12 +38,11 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/Address/index/" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
 									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
-									<li><a title="我的好友" target="_top" href="#">我的好友</a></li>
 								</ul>
 							</div>
 						</div>
@@ -51,20 +50,20 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
+							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i>123</i></a>
 							<div class="topNav_menu_bd" style="display:none;">
-								<!--
+								
 					            <ul>
-					              <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
-					              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
+					              <li><img src="#"  target="_top" href="#">商品1</a></li>
+					              <li><img src="#" target="_top" href="#">商品2</a></li>
 					            </ul>
-					        -->
+					        
 					        <p>还没有商品，赶快去挑选！</p>
 					    </div>
 					</div>
 				</li>
 
-				<li>
+				<!-- <li>
 					<div class="topNav_menu">
 						<a href="#" class="topNavHover">我的收藏<i></i></a>
 						<div class="topNav_menu_bd" style="display:none;">
@@ -74,13 +73,13 @@
 							</ul>
 						</div>
 					</div>
-				</li>
+				</li> -->
 
-				<li>
+				<!-- <li>
 					<div class="topNav_menu">
 						<a href="#">站内消息</a>
 					</div>
-				</li>
+				</li> -->
 
 			</ul>
 		</div>
@@ -439,14 +438,14 @@
                 <!-- 品牌展示 -->
                 <div class="shop_bd_home_block_bottom">
                     <ul class="">
-                        <li><a href=""><img src="/shop/Public/images//354b80528d2fbeefbab33c563532517e.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//1d2dfbead590510046a6522551db8139.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
-                        <li><a href=""><img src="/shop/Public/images//209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/354b80528d2fbeefbab33c563532517e.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/1d2dfbead590510046a6522551db8139.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/26247430b09daa1b441b46008bfb6e6e.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public//a0ac8c6d2d3dc1470d5876923182a8e2.gif" /></a></li
+                        <li><a href=""><img src="/shop/Public/images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/b175883eba95e793affb1b1ebbbf85a5.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/6e61a1c953e5bc8c5f1ffdac36862245.gif" /></a></li>
+                        <li><a href=""><img src="/shop/Public/images/209abd835cd2ce2208f2dc42ba10efb4.gif" /></a></li>
                     </ul>
                 </div>
                 <!-- 品牌展示 End -->

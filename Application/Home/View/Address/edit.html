@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>编辑收货地址</title>
+	<link rel="stylesheet" href="__PUBLIC__/css/base.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_common.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_header.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_manager.css" type="text/css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/shop_form.css" type="text/css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.js" ></script>
+    <script type="text/javascript" src="__PUBLIC__/js/topNav.js" ></script>
+</head>
+	<include file="Public/header"/>
+	<div class="clear"></div>
+	<!-- 面包屑 注意首页没有 -->
+	<div class="shop_hd_breadcrumb">
+		<strong>当前位置：</strong>
+		<span>
+			<a href="">首页</a>&nbsp;›&nbsp;
+			<a href="">我的商城</a>&nbsp;›&nbsp;
+			<a href="">编辑收货地址</a>
+		</span>
+	</div>
+	<div class="clear"></div>
+	<!-- 面包屑 End -->
+
+	<!-- Header End -->	
+
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
+			
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="__PUBLIC__/images/avatar.png" /></a>
+			</div>
+			<div class="clear"></div>
+
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="">已购买商品</a></span></dd>
+				<dd><span><a href="">我的收藏</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
+
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="">收货地址</a></span></dd>
+			</dl>
+
+		</div>
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
+		<div class="shop_member_bd_right clearfix">
+			
+			<div class="shop_meber_bd_good_lists clearfix">
+				<div class="title"><h3>编辑收货地址</h3></div>
+				<div class="clear"></div>
+				<dic class="shop_home_form">
+					<form athion="" name="" class="shop_form" method="post">
+					<input type="hidden" name="hidden" value="1"/>
+						<ul>
+								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" name="consignee" value="{$address[0].consignee}"/></li>
+								<li><label for=""><span>*</span>所在地址：</label>
+									<select id="province" name="province">
+										<option value="-1" selected>请选择</option>
+										<volist name="province" id="pro">
+											<option value="{$pro.region_id}">{$pro.region_name}</option>
+										</volist>
+									</select>省/市
+									<select id="city" name="city">
+										<option value="-1">请选择</option>
+									</select>市
+									<select id="district" name="district">
+										<option value="-1">请选择</option>
+									</select>县/区
+								</li>
+								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" name="street" value="{$address[0].street}" /></li>
+								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" name="zipcode" value="{$address[0].zipcode}"/></li>
+								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" name="telephone"  value="{$address[0].telephone}" /></li>
+								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" name="mobile" value="{$address[0].mobile}" /></li>
+								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
+							</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 右边购物列表 End -->
+
+	</div>
+	<!-- 我的个人中心 End -->
+
+	<!-- Footer - wll - 2013/3/24 -->
+	<div class="clear"></div>
+	<div class="shop_footer">
+            <div class="shop_footer_link">
+                <p>
+                    <a href="">首页</a>|
+                    <a href="">招聘英才</a>|
+                    <a href="">广告合作</a>|
+                    <a href="">关于ShopCZ</a>|
+                    <a href="">关于我们</a>
+                </p>
+            </div>
+            <div class="shop_footer_copy">
+               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+            </div>
+        </div>
+	<!-- Footer End -->
+</body>
+
+<script type="text/javascript">
+	
+	$('#province').change(function(){
+		var province = this.value;
+		$.ajax({
+			type     : 'GET',
+			url      : '__CONTROLLER__/choose',
+			data     : "parent_id="+province,
+			dataType : 'html',
+			success  : function (msg) {
+
+				$('#city').html(msg);
+				
+			} ,
+			error    : function() {
+				alert("出错");
+			}
+
+		})
+	});
+	$('#city').change(function(){
+		var city = this.value;
+		
+		$.ajax({
+			type     :  'get',
+			url      :   '__CONTROLLER__/choose',
+			data     :  "parent_id="+city,
+			dataType :  'html',
+			success  : function (msg) {
+
+				$('#district').html(msg);
+				
+			},
+			error    : function () {
+				alert("Ajax出错");
+			}
+
+		})
+	});
+	
+	
+	</script>
+</html>

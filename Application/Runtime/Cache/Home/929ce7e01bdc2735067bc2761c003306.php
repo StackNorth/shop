@@ -1,17 +1,18 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>商品列表页</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>管理收货地址</title>
 	<link rel="stylesheet" href="/shop/Public/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_header.css" type="text/css" />
-    <link rel="stylesheet" href="/shop/Public/css/shop_list.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_manager.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_shdz_835.css" type="text/css" />
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
-    <script type="text/javascript" src="/shop/Public/js/shop_list.js" ></script>
 </head>
 <body>
+		<!-- Header  -wll-2013/03/24 -->
 	<!-- Header  -wll-2013/03/24 -->
 <div class="shop_hd">
 	<!-- Header TopNav -->
@@ -19,11 +20,11 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Goods/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Address/index">XXXX商城</a></b>
 					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
 						<?php else: ?>
 						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
-						[<a href="/shop/index.php/Home/Goods/logout">退出</a>]<?php endif; ?>
+						[<a href="/shop/index.php/Home/Address/logout">退出</a>]<?php endif; ?>
 
 				</p>
 
@@ -36,7 +37,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index/" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -167,83 +168,101 @@
 </div>
 <div class="clear"></div>
 <!-- Header End -->
+		
+
+	
+	<div class="clear"></div>
 	<!-- 面包屑 注意首页没有 -->
+	<div class="shop_hd_breadcrumb">
+		<strong>当前位置：</strong>
+		<span>
+			<a href="/shop/index.php/Home/Index/index">首页</a>&nbsp;›&nbsp;
+			<a href="">我的商城</a>&nbsp;›&nbsp;
+			<a href="">我的地址</a>
+		</span>
+	</div>
 	<div class="clear"></div>
 	<!-- 面包屑 End -->
 
-	<!-- Header End -->
-	<div class="shop_bd clearfix">
+	<!-- Header End -->	
 
-	<!-- List Body 2013/03/27 -->
-	
-	<div class="shop_bd_list_left clearfix">
-			<!-- 左边商品分类 -->
-			<div class="shop_bd_list_bk clearfix">
-				<div class="title">商品分类</div>
-				<?php if(is_array($leftMenu)): $i = 0; $__LIST__ = $leftMenu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo["level"] == 1): ?><div class="contents clearfix">
-								<dl class="shop_bd_list_type_links clearfix">
-									<dt><strong><?php echo ($vo["cat_name"]); ?></strong></dt>
-									<?php if(is_array($leftMenu)): $i = 0; $__LIST__ = $leftMenu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo1): $mod = ($i % 2 );++$i; if($vo1["level"] == 2 AND $vo["cat_id"] == $vo1["parent_id"] ): ?><dd><span><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo1["cat_id"]); ?>"><?php echo ($vo1["cat_name"]); ?></a></span></dd><?php endif; endforeach; endif; else: echo "" ;endif; ?>
-								</dl>
-							</div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+	<!-- 我的个人中心 -->
+	<div class="shop_member_bd clearfix">
+		<!-- 左边导航 -->
+		<div class="shop_member_bd_left clearfix">
+			
+			<div class="shop_member_bd_left_pic">
+				<a href="javascript:void(0);"><img src="/shop/Public/images/avatar.png" /></a>
 			</div>
-			<!-- 左边商品分类 End -->
+			<div class="clear"></div>
 
-			<!-- 热卖推荐商品 -->
-			<div class="shop_bd_list_bk clearfix">
-				<div class="title">热卖推荐商品</div>
-				<div class="contents clearfix">
-					<ul class="clearfix">
-						<?php if(is_array($hotGoods)): $i = 0; $__LIST__ = $hotGoods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$hotGood): $mod = ($i % 2 );++$i;?><li class="clearfix">
-							<div class="goods_name"><a href=""><?php echo ($hotGood["goods_name"]); ?>|<?php echo ($hotGood["goods_sn"]); ?>|原价<?php echo ($hotGood["shop_price"]); ?>元</a></div>
-							<div class="goods_pic"><span class="goods_price"><?php echo ($hotGood["promote_price"]); ?> </span><a href=""><img src="/shop/<?php echo ($hotGood["goods_img"]); ?>" /></a></div>
-							<div class="goods_xiaoliang">
-								<span class="goods_xiaoliang_link"><a href="/shop/index.php/Home/Goods/index/id/{hotGood.goods_id}">去看看</a></span>
-							<!-- 	<span class="goods_xiaoliang_nums">已销售<strong>99</strong>笔</span> -->
-							</div>
-						</li><?php endforeach; endif; else: echo "" ;endif; ?>
-						
+			<dl>
+				<dt>我的交易</dt>
+				<dd><span><a href="">已购买商品</a></span></dd>
+				<dd><span><a href="">我的收藏</a></span></dd>
+				<dd><span><a href="">评价管理</a></span></dd>
+			</dl>
 
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/Password/edit">密码修改</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
+			</dl>
+
+		</div>
+		<!-- 左边导航 End -->
+		
+		<!-- 右边购物列表 -->
+		<div class="shop_member_bd_right clearfix">
+			
+			<div class="shop_meber_bd_good_lists clearfix">
+				<div class="title"><h3>管理收货地址<a style="float:right;" href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a></h3></div>
+				<div class="clear"></div>
+			<!-- 收货人地址 Title End -->
+			<div class="shop_bd_shdz clearfix">
+				<div class="shop_bd_shdz_lists clearfix">
+					<ul>
+						<?php if(is_array($address)): $i = 0; $__LIST__ = $address;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><label><span><input type="radio" name="shdz" /></span></label><em><?php echo ($vo["province"]); ?></em><em><?php echo ($vo["city"]); ?></em><em><?php echo ($vo["district"]); ?></em><em><?php echo ($vo["street"]); ?></em><em><?php echo ($vo["consignee"]); ?>(收)</em><em><?php echo ($vo["mobile"]); ?></em><span class="admin_shdz_btn"><a href="/shop/index.php/Home/Address/edit/address_id/<?php echo ($vo["address_id"]); ?>">编辑</a><a href="/shop/index.php/Home/Address/delete/address_id/<?php echo ($vo["address_id"]); ?>" onclick="javascript:alert('是否删除');">删除</a></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
 					</ul>
 				</div>
+				<!-- 新增收货地址 -->
+				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
+					<div class="title">新增收货地址</div>
+					<div class="shdz_new_form">
+						<form action="/shop/index.php/Home/Address/add" method="post">
+							<ul>
+								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" name="consignee"/></li>
+								<li><label for=""><span>*</span>所在地址：</label>
+									<select id="province" name="province">
+										<option value="-1" selected>请选择</option>
+										<?php if(is_array($province)): $i = 0; $__LIST__ = $province;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pro): $mod = ($i % 2 );++$i;?><option value="<?php echo ($pro["region_id"]); ?>"><?php echo ($pro["region_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+									</select>省/市
+									<select id="city" name="city">
+										<option value="-1">请选择</option>
+									</select>市
+									<select id="district" name="district">
+										<option value="-1">请选择</option>
+									</select>县/区
+								</li>
+								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" name="street"/></li>
+								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" name="zipcode"/></li>
+								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" name="telephone"/></li>
+								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" name="mobile" /></li>
+								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+				<!-- 新增收货地址 End -->
 			</div>
-			<!-- 热卖推荐商品 -->
 			<div class="clear"></div>
-
-			
-
-		</div>
-		
-		
-	<div class="shop_bd_list_right clearfix">
-
-
-			<!-- 商品列表 -->
-			<div class="shop_bd_list_content clearfix">
-				<ul>
-				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$good): $mod = ($i % 2 );++$i;?><li>
-						<dl>
-							<dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><img src="/shop/<?php echo ($good["goods_img"]); ?>" /></a></dt>
-							<dd class="title"><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><?php echo ($good["goods_brief"]); ?></a></dd>
-							<dd class="content">
-								<span class="goods_jiage">￥<strong><?php echo ($good["shop_price"]); ?></strong></span>
-							</dd>
-						</dl>
-					</li><?php endforeach; endif; else: echo "" ;endif; ?>
-				</ul>
 			</div>
-			<div class="clear"></div>
-			<div class="pagination" > 
-				<ul >
-					<li><span class="currentpage"><?php echo ($page); ?></span></li>
-				</ul> 
-			</div>
-			<!-- 商品列表 End -->
-
-
 		</div>
+		<!-- 右边购物列表 End -->
+
 	</div>
-	<!-- List Body End -->
+	<!-- 我的个人中心 End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
@@ -262,7 +281,53 @@
             </div>
         </div>
 	<!-- Footer End -->
-	
-</body>
+	<script type="text/javascript">
+	$(function(){
+		$("#new_add_shdz_btn").toggle(function(){
+			$("#new_add_shdz_contents").show(500);
+		},function(){
+			$("#new_add_shdz_contents").hide(500);
+		});
+	});
+	$('#province').change(function(){
+		var province = this.value;
+		$.ajax({
+			type     : 'GET',
+			url      : '/shop/index.php/Home/Address/choose',
+			data     : "parent_id="+province,
+			dataType : 'html',
+			success  : function (msg) {
 
+				$('#city').html(msg);
+				
+			} ,
+			error    : function() {
+				alert("出错");
+			}
+
+		})
+	});
+	$('#city').change(function(){
+		var city = this.value;
+		
+		$.ajax({
+			type     :  'get',
+			url      :   '/shop/index.php/Home/Address/choose',
+			data     :  "parent_id="+city,
+			dataType :  'html',
+			success  : function (msg) {
+
+				$('#district').html(msg);
+				
+			},
+			error    : function () {
+				alert("Ajax出错");
+			}
+
+		})
+	});
+	
+	
+	</script>
+</body>
 </html>

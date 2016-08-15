@@ -198,13 +198,13 @@ class GoodsController extends BaseController {
 					$goodsThumbModel = M('goods_thumb');
 					$goodsThumbModel->where('goods_sn = '.$data['goods_sn'])->delete();
 					foreach ($thumbs as $thumb) {
-							$arr['thumb_img'] = $thumb['savepath'].$thumb['savename'];
-							$arr['goods_sn'] = $data['goods_sn'];
-							$arr['thumb_time'] = time();
-							if (!M('goods_thumb')->add($arr)) {
-								$this->error('添加失败，写入地址失败');
-							}
+						$arr['thumb_img'] = $thumb['savepath'].$thumb['savename'];
+						$arr['goods_sn'] = $data['goods_sn'];
+						$arr['thumb_time'] = time();
+						if (!M('goods_thumb')->add($arr)) {
+							$this->error('添加失败，写入地址失败');
 						}
+					}
 				}
 			}			
 			
@@ -254,7 +254,7 @@ class GoodsController extends BaseController {
 		$this->assign('brands',$brands);
 		$this->assign('types',$types);
 		//载入编辑页面
-		$this->display();
+		$this->display(); 
 	}
 
 	//删除商品
