@@ -8,7 +8,7 @@ return array(
 	'DB_PWD'      =>  '',    // 密码
 	'DB_PORT'     =>  '3306',      // 端口
 	'DB_PREFIX'   =>  'cz_',    // 数据库表前缀
-
+	'TMPL_ACTION_ERROR' =>'Public:error',
 	//开启调试
 	'SHOW_PAGE_TRACE' => true,
 );

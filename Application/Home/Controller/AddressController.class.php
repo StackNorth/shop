@@ -64,7 +64,8 @@ class AddressController extends BaseController {
 					$this->redirect('Address/index');
 				} else {
 					//更新失败
-					$this->error('更新失败',U('index'),2);
+					$massage ="更新失败";
+					$this->error('$massage',U('index'),2);
 				}
 			} else {
 				//插入数据
