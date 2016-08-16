@@ -2,30 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>管理收货地址</title>
+	<title>修改密码</title>
 	<link rel="stylesheet" href="/shop/Public/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_header.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_manager.css" type="text/css" />
-	<link rel="stylesheet" href="/shop/Public/css/shop_shdz_835.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
-    
 </head>
 <body>
-		<!-- Header  -wll-2013/03/24 -->
-	<!-- Header  -wll-2013/03/24 -->
+<!-- Header  -wll-2013/03/24 -->
 <div class="shop_hd">
 	<!-- Header TopNav -->
 	<div class="shop_hd_topNav">
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Address/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/User/index">XXXX商城</a></b>
 					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
 						<?php else: ?>
 						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
-						[<a href="/shop/index.php/Home/Address/logout">退出</a>]<?php endif; ?>
+						[<a href="/shop/index.php/Home/User/logout">退出</a>]<?php endif; ?>
 
 				</p>
 
@@ -169,17 +167,14 @@
 </div>
 <div class="clear"></div>
 <!-- Header End -->
-		
-
-	
 	<div class="clear"></div>
 	<!-- 面包屑 注意首页没有 -->
 	<div class="shop_hd_breadcrumb">
 		<strong>当前位置：</strong>
 		<span>
-			<a href="/shop/index.php/Home/Index/index">首页</a>&nbsp;›&nbsp;
+			<a href="">首页</a>&nbsp;›&nbsp;
 			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">我的地址</a>
+			<a href="">已买到商品</a>
 		</span>
 	</div>
 	<div class="clear"></div>
@@ -220,46 +215,18 @@
 		<div class="shop_member_bd_right clearfix">
 			
 			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>管理收货地址<a style="float:right;" href="javasrcipt:void(0);" id="new_add_shdz_btn">新增收货地址</a></h3></div>
+				<div class="title"><h3>修改密码</h3></div>
 				<div class="clear"></div>
-			<!-- 收货人地址 Title End -->
-			<div class="shop_bd_shdz clearfix">
-				<div class="shop_bd_shdz_lists clearfix">
-					<ul>
-						<?php if(is_array($address)): $i = 0; $__LIST__ = $address;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><label><span><input type="radio" name="shdz" /></span></label><em><?php echo ($vo["province"]); ?></em><em><?php echo ($vo["city"]); ?></em><em><?php echo ($vo["district"]); ?></em><em><?php echo ($vo["street"]); ?></em><em><?php echo ($vo["consignee"]); ?>(收)</em><em><?php echo ($vo["mobile"]); ?></em><span class="admin_shdz_btn"><a href="/shop/index.php/Home/Address/edit/address_id/<?php echo ($vo["address_id"]); ?>">编辑</a><a href="/shop/index.php/Home/Address/delete/address_id/<?php echo ($vo["address_id"]); ?>" onclick="javascript:alert('是否删除');">删除</a></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
-					</ul>
+				<dic class="shop_home_form">
+					<form athion="" name="" class="shop_form" method="post">
+						<ul>
+							<li class="bn"><label>原密码：</label><input type="password" class="truename form-text" name="password" id="password" /></li>
+							<li class="bn"><label>新密码：</label><input type="password" class="truename form-text" name="newPassword" id="newPassword"/></li>
+							<li class="bn"><label>重复新密码：</label><input type="password" class="truename form-text" id="confirmPassword" name="confirmPassword"/></li>
+							<li class="bn"><label>&nbsp;</label><input type="submit" id="submit" class="form-submit" value="保存修改" /></li>
+						</ul>
+					</form>
 				</div>
-				<!-- 新增收货地址 -->
-				<div id="new_add_shdz_contents" style="display:none;" class="shop_bd_shdz_new clearfix">
-					<div class="title">新增收货地址</div>
-					<div class="shdz_new_form">
-						<form action="/shop/index.php/Home/Address/add" method="post">
-							<ul>
-								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" name="consignee" id="consignee" /></li>
-								<li><label for=""><span>*</span>所在地址：</label>
-									<select id="province" name="province">
-										<option value="-1" selected>请选择</option>
-										<?php if(is_array($province)): $i = 0; $__LIST__ = $province;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pro): $mod = ($i % 2 );++$i;?><option value="<?php echo ($pro["region_id"]); ?>"><?php echo ($pro["region_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-									</select>省/市
-									<select id="city" name="city">
-										<option value="-1">请选择</option>
-									</select>市
-									<select id="district" name="district">
-										<option value="-1">请选择</option>
-									</select>县/区
-								</li>
-								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" name="street" id="street" /></li>
-								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" name="zipcode"/></li>
-								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" name="telephone"/></li>
-								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" name="mobile" /></li>
-								<li><label for="">&nbsp;</label><input type="submit" id="submit" value="增加收货地址" /></li>
-							</ul>
-						</form>
-					</div>
-				</div>
-				<!-- 新增收货地址 End -->
-			</div>
-			<div class="clear"></div>
 			</div>
 		</div>
 		<!-- 右边购物列表 End -->
@@ -268,6 +235,7 @@
 	<!-- 我的个人中心 End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
+	<div class="clear"></div>
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
 	<div class="shop_footer">
@@ -285,70 +253,25 @@
         </div>
 	<!-- Footer End -->
 	<!-- Footer End -->
-	<script type="text/javascript">
-		$("#new_add_shdz_btn").toggle(function(){
-		$("#new_add_shdz_contents").show(500);
-		},function(){
-		$("#new_add_shdz_contents").hide(500);
-		});
-
-		$('#province').change(function(){
-				var province = this.value;
-				$.ajax({
-					type     : 'GET',
-					url      : '/shop/index.php/Home/Address/choose',
-					data     : "parent_id="+province,
-					dataType : 'html',
-					success  : function (msg) {
-
-						$('#city').html(msg);
-						
-					} ,
-					error    : function() {
-						alert("出错1");
-					}
-
-				})
-			});
-			$('#city').change(function(){
-				var city = this.value;
-				
-				$.ajax({
-					type     :  'get',
-					url      :   '/shop/index.php/Home/Address/choose',
-					data     :  "parent_id="+city,
-					dataType :  'html',
-					success  : function (msg) {
-
-						$('#district').html(msg);
-						
-					},
-					error    : function () {
-						alert("Ajax出错2");
-					}
-
-				})
-			});
-			$('#submit').click(function(){
-			if (document.getElementById('consignee').value == " " ) {
-				alert("请填写收货人姓名");
-				return false;
-			}
-
-			if (document.getElementById('province').value =='-1' || document.getElementById('city').value =='-1'
-				|| document.getElementById('district').value =='-1') {
-				alert("请先选择地区");
-				return false;
-			} else {
-				return  true;
-			}
-
-			if (document.getElementById('street').value == " ") {
-				alert("请填写地址的详细信息");
-				return  false;
-			}
-		});
-	
-	</script>
 </body>
+<script type="text/javascript">
+	$('#submit').click(function(){
+		
+		if (document.getElementById('password').value == "" || document.getElementById('newPassword').value == "" || document.getElementById('confirmPassword').value == "") {
+			alert("请先输入密码");
+			return false;
+		}
+		if (document.getElementById('newPassword').value != document.getElementById('confirmPassword').value) {
+			alert("两次输入密码不一致");
+			return false;
+		}
+		
+		return true;
+	});
+
+
+
+
+
+</script>
 </html>

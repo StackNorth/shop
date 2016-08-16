@@ -24,5 +24,22 @@ class UserModel extends Model {
 		return false;
 
 	}
+	
+	public function checkPassword($data) {
+		$condition['user_name'] = $data['user_name'];
+		$condition['password'] = md5($data['password']);	
+		if ($this->where($condition)->find()) {
+			$condition['password'] = md5($data['newPassword']);
+			$condition['user_id'] = $data['user_id'];
+			
+			
+			if ($this->where('user_id='.$condition['user_id'])->save($condition)){
+				$_SESSION['user']['password'] = $condition['password'];
+				return true;
+			}
+			
+		}
+		return false;
+	}
 
 }

@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="/shop/Public/css/shop_form.css" type="text/css" />
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
+    
+
 </head>
 	<!-- Header  -wll-2013/03/24 -->
 <div class="shop_hd">
@@ -200,9 +202,9 @@
 
 			<dl>
 				<dt>我的账户</dt>
-				<dd><span><a href="">个人资料</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/User/index">个人资料</a></span></dd>
 				<dd><span><a href="">密码修改</a></span></dd>
-				<dd><span><a href="">收货地址</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
 			</dl>
 
 		</div>
@@ -218,7 +220,7 @@
 					<form athion="" name="" class="shop_form" method="post">
 					<input type="hidden" name="hidden" value="1"/>
 						<ul>
-								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" name="consignee" value="<?php echo ($address[0]["consignee"]); ?>"/></li>
+								<li><label for=""><span>*</span>收货人姓名：</label><input type="text" class="name" name="consignee" id="consignee" value="<?php echo ($address[0]["consignee"]); ?>"/></li>
 								<li><label for=""><span>*</span>所在地址：</label>
 									<select id="province" name="province">
 										<option value="-1" selected>请选择</option>
@@ -231,11 +233,11 @@
 										<option value="-1">请选择</option>
 									</select>县/区
 								</li>
-								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" name="street" value="<?php echo ($address[0]["street"]); ?>" /></li>
+								<li><label for=""><span>*</span>详细地址：</label><input type="text" class="xiangxi" name="street" id ="street" value="<?php echo ($address[0]["street"]); ?>" /></li>
 								<li><label for=""><span></span>邮政编码：</label><input type="text" class="youbian" name="zipcode" value="<?php echo ($address[0]["zipcode"]); ?>"/></li>
 								<li><label for=""><span></span>电话：</label><input type="text" class="dianhua" name="telephone"  value="<?php echo ($address[0]["telephone"]); ?>" /></li>
-								<li><label for=""><span></span>手机号：</label><input type="text" class="shouji" name="mobile" value="<?php echo ($address[0]["mobile"]); ?>" /></li>
-								<li><label for="">&nbsp;</label><input type="submit" value="增加收货地址" /></li>
+								<li><label for=""><span>*</span>手机号：</label><input type="text" class="shouji" name="mobile" id="mobile" value="<?php echo ($address[0]["mobile"]); ?>" /></li>
+								<li><label for="">&nbsp;</label><input type="submit" id="submit" value="增加收货地址" /></li>
 							</ul>
 					</form>
 				</div>
@@ -251,60 +253,86 @@
 	<div class="shop_footer">
             <div class="shop_footer_link">
                 <p>
-                    <a href="">首页</a>|
+                    <a href="/shop/index.php/Home/Index/index">首页</a>|
                     <a href="">招聘英才</a>|
                     <a href="">广告合作</a>|
-                    <a href="">关于ShopCZ</a>|
                     <a href="">关于我们</a>
                 </p>
             </div>
             <div class="shop_footer_copy">
-               <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+               <p>Copyright MyShop,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
 </body>
-
 <script type="text/javascript">
 	
+	
 	$('#province').change(function(){
-		var province = this.value;
-		$.ajax({
-			type     : 'GET',
-			url      : '/shop/index.php/Home/Address/choose',
-			data     : "parent_id="+province,
-			dataType : 'html',
-			success  : function (msg) {
+				var province = this.value;
+				$.ajax({
+					type     : 'GET',
+					url      : '/shop/index.php/Home/Address/choose',
+					data     : "parent_id="+province,
+					dataType : 'html',
+					success  : function (msg) {
 
-				$('#city').html(msg);
+						$('#city').html(msg);
+						
+					} ,
+					error    : function() {
+						alert("出错1");
+					}
+
+				})
+			});
+			$('#city').change(function(){
+				var city = this.value;
 				
-			} ,
-			error    : function() {
-				alert("出错");
+				$.ajax({
+					type     :  'get',
+					url      :   '/shop/index.php/Home/Address/choose',
+					data     :  "parent_id="+city,
+					dataType :  'html',
+					success  : function (msg) {
+
+						$('#district').html(msg);
+						
+					},
+					error    : function () {
+						alert("Ajax出错2");
+					}
+
+				})
+			});
+	$("#submit").click(function(){
+			
+			if (document.getElementById('consignee').value == "" ) {
+				alert("请填写收货人姓名");
+				return false;
+			}
+			if (document.getElementById('mobile').value == "" ) {
+				alert("请填写收货人联系方式");
+				return false;
 			}
 
-		})
-	});
-	$('#city').change(function(){
-		var city = this.value;
-		
-		$.ajax({
-			type     :  'get',
-			url      :   '/shop/index.php/Home/Address/choose',
-			data     :  "parent_id="+city,
-			dataType :  'html',
-			success  : function (msg) {
-
-				$('#district').html(msg);
-				
-			},
-			error    : function () {
-				alert("Ajax出错");
+			if (document.getElementById('street').value == "") {
+				alert("请填写地址的详细信息");
+				return  false;
 			}
 
-		})
-	});
-	
-	
-	</script>
+			if (document.getElementById('province').value =='-1' || document.getElementById('city').value =='-1'
+				|| document.getElementById('district').value =='-1') {
+				alert("请先选择地区");
+				return false;
+			} else {
+				return  true;
+			}
+
+			
+
+		});
+
+</script>
+
 </html>

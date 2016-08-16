@@ -63,7 +63,7 @@ class UserController extends BaseController {
 			$data['user_name'] = I('post.user_name');
 			$data['password'] = md5(I('post.password'));
 			$data['email'] = I('post.email');
-			
+			$data['sex'] = I('post.sex');
 			if ($userModel->where($data['user_id'])->save($data)) {
 				$this->success('用户更新成功',U('customer'),3);
 				return ;

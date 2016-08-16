@@ -24,11 +24,11 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Address/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/User/index">XXXX商城</a></b>
 					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
 						<?php else: ?>
 						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
-						[<a href="/shop/index.php/Home/Address/logout">退出</a>]<?php endif; ?>
+						[<a href="/shop/index.php/Home/User/logout">退出</a>]<?php endif; ?>
 
 				</p>
 
@@ -179,7 +179,9 @@
 
 	<!-- Body -->
 	<div class="shop_bd_error">
-		<p><span><? echo $error;?></span><?php echo ($massage); ?>！</p>
+		<p><span></span><?php echo($error); ?>！</p>
+		<p><b id="wait"><?php echo($waitSecond); ?></b> 秒后页面将自动跳转</p>
+		<p><a id="href" id="btn-now" href="<?php echo($jumpUrl); ?>">立即跳转</a> </p>
 	</div>
 	<!-- Body End -->
 
@@ -201,4 +203,21 @@
         </div>
 	<!-- Footer End -->
 </body>
+
+<script type="text/javascript">
+(function(){
+ var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+ var interval = setInterval(function(){
+     	var time = --wait.innerHTML;
+     	if(time <= 0) {
+     		location.href = href;
+     		clearInterval(interval);
+     	};
+     }, 1000);
+  window.stop = function (){
+         console.log(111);
+            clearInterval(interval);
+ }
+ })();
+</script>
 </html>

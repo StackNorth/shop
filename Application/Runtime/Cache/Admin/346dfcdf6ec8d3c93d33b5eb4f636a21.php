@@ -277,6 +277,7 @@
 			dataType : 'html',//传输类型
 			//成功后加载id为tbody-goodsAttr的框架中
 			success : function(msg){
+          
         		$("#tbody-goodsAttr").html(msg); 
 			},
 			 error : function(){alert('出错');}

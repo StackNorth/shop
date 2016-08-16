@@ -38,7 +38,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index/" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -882,21 +882,22 @@
 	<!-- Body End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
+	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
 	<div class="shop_footer">
             <div class="shop_footer_link">
                 <p>
-                    <a href="">首页</a>|
+                    <a href="/shop/index.php/Home/Index/index">首页</a>|
                     <a href="">招聘英才</a>|
                     <a href="">广告合作</a>|
-                    <a href="">关于ShopCZ</a>|
                     <a href="">关于我们</a>
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+               <p>Copyright MyShop,All rights reserved.</p>
             </div>
         </div>
+	<!-- Footer End -->
 	<!-- Footer End -->
 </body>
 </html>

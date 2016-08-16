@@ -14,7 +14,7 @@ class BaseController extends Controller {
 		//通过session来验证
 		if (!$_SESSION['admin']) {
 			//没有登录
-			$this->error('请先登录吧',U('Login/login'));
+			$this->error('请先登录吧',U('Login/login'),1);
 		}
 	}
     /**

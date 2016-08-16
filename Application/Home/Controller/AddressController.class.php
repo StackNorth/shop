@@ -6,7 +6,9 @@ class AddressController extends BaseController {
 	public function __construct() {
 		parent::__construct();
 		$this->getProvince();
-
+		if (empty(session('user'))) {
+			$this->redirect('Login/index');
+		}
 	}
 
 	public function index() {
@@ -64,17 +66,17 @@ class AddressController extends BaseController {
 					$this->redirect('Address/index');
 				} else {
 					//更新失败
-					$massage ="更新失败";
-					$this->error('$massage',U('index'),2);
+					$message ="更新失败";
+					$this->error($message);
 				}
 			} else {
 				//插入数据
-				if ($addressMdel->data($data)->add()) {
+				if ($addressModel->data($data)->add()) {
 					//添加成功
-					$this->success('插入成功',U('index'),2);
+					$this->success('插入成功',U('Address/index'),2);
 				} else {
 					//添加失败
-					$this->error('插入失败',U('index'),2);
+					$this->error('插入失败');
 				}
 				
 			}
@@ -103,7 +105,7 @@ class AddressController extends BaseController {
 
 				$output .= "<option value='".$value['region_id']."'>".$value['region_name']."</option>";
 		}
-	
+		
 		$this->ajaxReturn($output,'eval');
 
 	}

@@ -30,6 +30,6 @@ class BaseController extends Controller {
 	}
 	public function logout() {
 		session('[destroy]'); // 销毁session
-		$this->success("",U('index/index'),1);
+		$this->redirect('Login/index');
 	}
 }
