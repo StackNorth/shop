@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-15 17:58:07
+Date: 2016-08-17 17:08:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,14 @@ CREATE TABLE `cz_address` (
   `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '移动电话',
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_address
 -- ----------------------------
-INSERT INTO `cz_address` VALUES ('1', '5', 'admin', '0', '0', '0', '回龙观东大街', '2013192', '7689234511', '12345678901');
-INSERT INTO `cz_address` VALUES ('2', '5', 'admin', '4', '5', '6', '正大街', '201412', '32145876', '13245678912');
+INSERT INTO `cz_address` VALUES ('1', '5', '地方', '1', '8', '3', '回龙观东大街', '2013192', '7689234511', '123456789011');
+INSERT INTO `cz_address` VALUES ('2', '5', 'admin', '1', '8', '2', '正大街', '201412', '32145876', '13245678912');
+INSERT INTO `cz_address` VALUES ('3', '5', 'admin', '1', '8', '2', '京深海鲜', '', '', '13412341324');
 
 -- ----------------------------
 -- Table structure for cz_admin
@@ -452,13 +453,14 @@ CREATE TABLE `cz_user` (
   `email` varchar(50) NOT NULL DEFAULT '' COMMENT '电子邮箱',
   `password` char(32) NOT NULL DEFAULT '' COMMENT '用户密码,md5加密',
   `reg_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户注册时间',
+  `sex` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_user
 -- ----------------------------
-INSERT INTO `cz_user` VALUES ('2', 'north', '1340652578@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060');
-INSERT INTO `cz_user` VALUES ('3', 'dt', '123213@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060');
-INSERT INTO `cz_user` VALUES ('4', 'stack', '21423423412@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060');
-INSERT INTO `cz_user` VALUES ('5', 'admin', '1340652578@qq.com', 'e10adc3949ba59abbe56e057f20f883e', '1470820874');
+INSERT INTO `cz_user` VALUES ('2', 'north', '1340652578@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '男');
+INSERT INTO `cz_user` VALUES ('3', 'dt', '123213@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '男');
+INSERT INTO `cz_user` VALUES ('4', 'stack', '21423423412@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '女');
+INSERT INTO `cz_user` VALUES ('5', 'admin', '1340652578@qq.com', '827ccb0eea8a706c4c34a16891f84e7b', '1470820874', '女');

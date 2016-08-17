@@ -37,7 +37,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -203,7 +203,7 @@
 			<dl>
 				<dt>我的账户</dt>
 				<dd><span><a href="/shop/index.php/Home/User/index">个人资料</a></span></dd>
-				<dd><span><a href="">密码修改</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/User/password">密码修改</a></span></dd>
 				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
 			</dl>
 
@@ -312,7 +312,7 @@
 				return false;
 			}
 			if (document.getElementById('mobile').value == "" ) {
-				alert("请填写收货人联系方式");
+				alert("请填写收货人联系方式	");
 				return false;
 			}
 

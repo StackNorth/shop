@@ -50,7 +50,7 @@
 				<div class="shop_bd_shdz_lists clearfix">
 					<ul>
 						<volist name="address" id="vo">
-							<li><label><span><input type="radio" name="shdz" /></span></label><em>{$vo.province}</em><em>{$vo.city}</em><em>{$vo.district}</em><em>{$vo.street}</em><em>{$vo.consignee}(收)</em><em>{$vo.mobile}</em><span class="admin_shdz_btn"><a href="__CONTROLLER__/edit/address_id/{$vo.address_id}">编辑</a><a href="__CONTROLLER__/delete/address_id/{$vo.address_id}" onclick="javascript:alert('是否删除');">删除</a></span></li>
+							<li><label><span><input type="radio" name="shdz" /></span></label><em>{$vo.province}</em><em>{$vo.city}</em><em>{$vo.district}</em><em>{$vo.street}</em><em>{$vo.consignee}(收)</em><em>{$vo.mobile}</em><span class="admin_shdz_btn"><a href="__CONTROLLER__/edit/address_id/{$vo.address_id}">编辑</a><a href="__CONTROLLER__/delete/address_id/{$vo.address_id}"  onclick="javaScript:return confirm('您确定要删除吗？');">删除</a></span></li>
 						</volist>
 					</ul>
 				</div>
@@ -104,7 +104,7 @@
 		$("#new_add_shdz_contents").hide(500);
 		});
 
-		$('#province').change(function(){
+		$("#province").change(function(){
 				var province = this.value;
 				$.ajax({
 					type     : 'GET',
@@ -141,9 +141,8 @@
 
 				})
 			});
-			$('#submit').click(function(){
-				alert("123");
-				return false;
+			$("#submit").click(function(){
+				
 			if (document.getElementById('consignee').value == " " ) {
 				alert("请填写收货人姓名");
 				return false;

@@ -1,0 +1,80 @@
+body {
+    padding-top: 60px;
+    background-color: rgb(48,57,74);
+}
+
+.main-container {
+    /*border: 1px solid #000;*/
+    padding: 0;
+    margin: 0;
+    min-height: 760px;
+}
+
+/*左导航*/
+.container-sidebar {
+    width: 225px;
+    min-height: 850px;
+    float: left;
+}
+
+.container-sidebar .menu {
+    font-size: 18px;
+    color: #fff;
+    padding-left: 10px;
+}
+
+.container-sidebar h4 {
+    color: #fff;
+}
+
+.panel-group{
+    background-color: rgb(70,77,96);
+    /*border: 2px solid #fff;*/
+}
+
+.panel-default {
+    background-color: rgb(48,57,75);
+    border: 0;
+}
+
+.panel-default .panel-heading {
+    background-color: rgb(48,57,75);
+    /*border-bottom: 1px solid rgb(92,92,92);*/
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+    background-color: rgb(70,77,96);
+    border: 0;
+}
+
+.panel-body ul {
+    padding: 0;
+    margin: 0;
+}
+
+.panel-body ul li {
+    border: 0;
+    padding: 5px 0 5px 20px;
+}
+
+.list-group-item {
+    background-color: rgb(70,77,96);
+}
+
+.list-group-item a {
+    color: rgb(189,189,189);
+}
+
+/*内容*/
+.main-content {
+    border: 1px solid #000;
+    background-color: #fff;
+    margin-left: 225px;
+    margin-top: 0;
+}
+
+.footer {
+    text-align: center;
+    color: rgb(153,153,153);
+    padding-top: 20px;
+}

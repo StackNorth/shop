@@ -36,7 +36,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>

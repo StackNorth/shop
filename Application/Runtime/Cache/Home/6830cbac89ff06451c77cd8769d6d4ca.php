@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
 </head>
+
 <body>
 	<!-- Header  -wll-2013/03/24 -->
 <div class="shop_hd">
@@ -36,7 +37,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -224,11 +225,10 @@
 							<li><label>电子邮件：</label><input type="text" value="<?php echo ($userInfo[0]["email"]); ?>" name="email" class="truename form-text" /></li>
 							<!-- <li><label>真实姓名：</label><input type="text" value="<?php echo ($userInfo[""]); ?>" class="truename form-text" /></li> -->
 							<li><label>性别:</label>
-								<input type="radio" class="mr5" name="sex" value="保密" />保密
-								<input type="radio" class="ml10 mr5" name="sex" value="男" />男
-								<input type="radio" class="ml10 mr5" name="sex" value="女" />女
+								<input type="radio" class="ml10 mr5" name="sex"  value="男" />男
+								<input type="radio" class="ml10 mr5" name="sex"  value="女" />女
 							</li>
-							<li class="bn"><label>&nbsp;</label><input type="submit" class="form-submit" value="保存修改" /></li>
+							<li class="bn"><label>&nbsp;</label><input type="submit" id="submit" class="form-submit" value="保存修改" /></li>
 						</ul>
 					</form>
 				</div>
@@ -258,4 +258,15 @@
 	<!-- Footer End -->
 	<!-- Footer End -->
 </body>
+<script type="text/javascript">
+	var sex = "<?php echo ($userInfo[0]["sex"]); ?>";
+	var rObj = document.getElementsByName("sex");
+	for(var i = 0;i < rObj.length;i++){
+
+	    if(rObj[i].value == sex){
+	        rObj[i].checked =  'checked';
+	    }
+	}
+
+</script>
 </html>

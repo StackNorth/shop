@@ -38,7 +38,7 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -226,7 +226,7 @@
 			<div class="shop_bd_shdz clearfix">
 				<div class="shop_bd_shdz_lists clearfix">
 					<ul>
-						<?php if(is_array($address)): $i = 0; $__LIST__ = $address;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><label><span><input type="radio" name="shdz" /></span></label><em><?php echo ($vo["province"]); ?></em><em><?php echo ($vo["city"]); ?></em><em><?php echo ($vo["district"]); ?></em><em><?php echo ($vo["street"]); ?></em><em><?php echo ($vo["consignee"]); ?>(收)</em><em><?php echo ($vo["mobile"]); ?></em><span class="admin_shdz_btn"><a href="/shop/index.php/Home/Address/edit/address_id/<?php echo ($vo["address_id"]); ?>">编辑</a><a href="/shop/index.php/Home/Address/delete/address_id/<?php echo ($vo["address_id"]); ?>" onclick="javascript:alert('是否删除');">删除</a></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
+						<?php if(is_array($address)): $i = 0; $__LIST__ = $address;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><label><span><input type="radio" name="shdz" /></span></label><em><?php echo ($vo["province"]); ?></em><em><?php echo ($vo["city"]); ?></em><em><?php echo ($vo["district"]); ?></em><em><?php echo ($vo["street"]); ?></em><em><?php echo ($vo["consignee"]); ?>(收)</em><em><?php echo ($vo["mobile"]); ?></em><span class="admin_shdz_btn"><a href="/shop/index.php/Home/Address/edit/address_id/<?php echo ($vo["address_id"]); ?>">编辑</a><a href="/shop/index.php/Home/Address/delete/address_id/<?php echo ($vo["address_id"]); ?>"  onclick="javaScript:return confirm('您确定要删除吗？');">删除</a></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
 					</ul>
 				</div>
 				<!-- 新增收货地址 -->
@@ -292,7 +292,7 @@
 		$("#new_add_shdz_contents").hide(500);
 		});
 
-		$('#province').change(function(){
+		$("#province").change(function(){
 				var province = this.value;
 				$.ajax({
 					type     : 'GET',
@@ -329,7 +329,8 @@
 
 				})
 			});
-			$('#submit').click(function(){
+			$("#submit").click(function(){
+				
 			if (document.getElementById('consignee').value == " " ) {
 				alert("请填写收货人姓名");
 				return false;

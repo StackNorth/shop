@@ -66,8 +66,8 @@ class AddressController extends BaseController {
 					$this->redirect('Address/index');
 				} else {
 					//更新失败
-					$message ="更新失败";
-					$this->error($message);
+					
+					$this->error("更新失败");
 				}
 			} else {
 				//插入数据
@@ -89,7 +89,16 @@ class AddressController extends BaseController {
 		$this->edit();
 	}
 
-
+	public function delete() {
+		$data['address_id'] = I('address_id');
+		
+		if (M('address')->where($data)->delete()) {
+			$this->redirect('Address/index');
+		} else {
+			
+			$this->error('删除失败');
+		}
+	}
 
 
 	/**
@@ -97,17 +106,18 @@ class AddressController extends BaseController {
 	 * @return [type] [description]
 	 */
 	public function choose() {
-		$data['parent_id'] = I('parent_id');
-		$output = '';
-		$data = M('region')->where($data)->select();
-		$output .= "<option value='-1'>请选择</option>";
-		foreach ($data as $value) {
+		if (IS_AJAX){
+			$data['parent_id'] = I('parent_id');
+			$output = '';
+			$data = M('region')->where($data)->select();
+			$output .= "<option value='-1'>请选择</option>";
+			foreach ($data as $value) {
 
-				$output .= "<option value='".$value['region_id']."'>".$value['region_name']."</option>";
+					$output .= "<option value='".$value['region_id']."'>".$value['region_name']."</option>";
+			}
+			
+			$this->ajaxReturn($output,'eval');
 		}
-		
-		$this->ajaxReturn($output,'eval');
-
 	}
 
 

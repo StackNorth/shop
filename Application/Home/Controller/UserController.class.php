@@ -8,7 +8,7 @@ class UserController extends BaseController {
 		$this->assign('userInfo',$userInfo);
 		if (IS_POST) {
 			$data['email'] = I('email');
-			$data['sex'] = I('sex','男');
+			$data['sex'] = I('sex','男','string');
 			if (M('user')->where('user_id = '.$data['user_id'])->save($data)) {
 				$this->redirect('User/index');
 
