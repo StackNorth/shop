@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-17 17:08:54
+Date: 2016-08-18 18:09:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,9 +37,9 @@ CREATE TABLE `cz_address` (
 -- ----------------------------
 -- Records of cz_address
 -- ----------------------------
-INSERT INTO `cz_address` VALUES ('1', '5', '地方', '1', '8', '3', '回龙观东大街', '2013192', '7689234511', '123456789011');
+INSERT INTO `cz_address` VALUES ('1', '5', '地方', '1', '8', '2', '回龙观东大街', '2013192', '7689234511', '123456789011');
 INSERT INTO `cz_address` VALUES ('2', '5', 'admin', '1', '8', '2', '正大街', '201412', '32145876', '13245678912');
-INSERT INTO `cz_address` VALUES ('3', '5', 'admin', '1', '8', '2', '京深海鲜', '', '', '13412341324');
+INSERT INTO `cz_address` VALUES ('3', '5', 'admin1', '1', '8', '2', '京深海鲜1', '2014123', '12312312312', '13412341324');
 
 -- ----------------------------
 -- Table structure for cz_admin

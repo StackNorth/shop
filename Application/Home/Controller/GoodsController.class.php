@@ -15,7 +15,7 @@ class GoodsController extends BaseController {
 		$this->display();
 	}
 
-	 public function search() {
+	public function search() {
 	 	
     	$search_content = I('search_content');
     	$goodsModel = M('goods');
@@ -37,5 +37,4 @@ class GoodsController extends BaseController {
     	$this->display();
     	
     }
-
 }

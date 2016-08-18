@@ -38,27 +38,30 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/Address/index" class="topNavHover">我的商城<i></i></a>
-							<div class="topNav_menu_bd" style="display:none;" >
+							<a href="/shop/index.php/Home/User/index" class="">个人主页</a>
+							<a href="/shop/index.php/Home/User/index" class="">已买到的商品</a>
+							<!-- <div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
-									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
+									<li><a title="个人主页" target="_top" href="/shop/index.php/Home/User/index">个人主页</a></li>
 								</ul>
-							</div>
+							</div> -->
 						</div>
 					</li>
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i>123</i></a>
+							<a href="#" class="topNavHover">购物车<b><?php  if ($_SESSION['user']['shopNumber'] == null){ echo "0"; } else { echo ($_SESSION['user']['shopNumber']); } ; ?></b>种商品<i>123</i></a>
 							<div class="topNav_menu_bd" style="display:none;">
 								
 					            <ul>
-					              <li><img src="#"  target="_top" href="#">商品1</a></li>
-					              <li><img src="#" target="_top" href="#">商品2</a></li>
+					             <!-- <li><a href="<?php echo U('Goods/index/goods_id/');?> ><img src='#'  target='_top' ">商品1</a></li> --> 
+					              <?php
+ foreach($_SESSION['user']['shoppingCat'] as $value){ $output = "<li><a href='/shop/index.php/Home/Goods/index/id/".$value['goods_id']."' ><img src='/shop".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>"; echo $output; $total += $value['shop_price']; $flag = 1; } ?>
 					            </ul>
+					        <?php
+ if ($flag != 1) { echo "<p>还没有商品，赶快去挑选！</p>"; } else { echo '总共'.$total.'元'; echo "<p><a href='#'>去结算</a></p>"; } ?>
 					        
-					        <p>还没有商品，赶快去挑选！</p>
 					    </div>
 					</div>
 				</li>
@@ -279,7 +282,7 @@
                     <div class="tuijian_content">
                         <div id="tuijian_content_1" class="tuijian_shangpin" style="display: block;">
                             <ul>
-                            <?php if(is_array($best)): $i = 0; $__LIST__ = array_slice($best,1,4,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                            <?php if(is_array($best)): $i = 0; $__LIST__ = array_slice($best,0,4,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
                                     <dl>
                                         <dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><img src="/shop/<?php echo ($vo["goods_img"]); ?>" style="width:100%;height: auto;"/></a></dt>
                                         <dd><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($vo["goods_id"]); ?>"><?php echo ($vo["goods_name"]); ?></a></dd>
@@ -411,7 +414,7 @@
                     <div class="title"><h3>商品排行</h3></div>
                     <ol class="saletop-list">
 
-                        <?php if(is_array($right)): $k = 0; $__LIST__ = array_slice($right,1,7,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$right): $mod = ($k % 2 );++$k; if($k < 4): ?><li class="top clearfix">
+                        <?php if(is_array($right)): $k = 0; $__LIST__ = array_slice($right,0,7,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$right): $mod = ($k % 2 );++$k; if($k < 4): ?><li class="top clearfix">
                                     <dl>
                                         <dt class="goods-name">
                                         <a href="/shop/index.php/Home/Goods/index/id/<?php echo ($right["goods_id"]); ?>"><?php echo ($right["goods_name"]); ?></a>

@@ -77,72 +77,69 @@
 </body>
 <script type="text/javascript">
 	
-	
 	$('#province').change(function(){
-				var province = this.value;
-				$.ajax({
-					type     : 'GET',
-					url      : '__MODULE__/Address/choose',
-					data     : "parent_id="+province,
-					dataType : 'html',
-					success  : function (msg) {
+		var province = this.value;
+		$.ajax({
+			type     : 'GET',
+			url      : '__MODULE__/Address/choose',
+			data     : "parent_id="+province,
+			dataType : 'html',
+			success  : function (msg) {
+				$('#city').html(msg);
+			} ,
+			error    : function() {
+				alert("出错1");
+			}
+		})
+	});
+	$('#city').change(function(){
+		var city = this.value;
+		
+		$.ajax({
+			type     :  'get',
+			url      :   '__MODULE__/Address/choose',
+			data     :  "parent_id="+city,
+			dataType :  'html',
+			success  : function (msg) {
 
-						$('#city').html(msg);
-						
-					} ,
-					error    : function() {
-						alert("出错1");
-					}
-
-				})
-			});
-			$('#city').change(function(){
-				var city = this.value;
+				$('#district').html(msg);
 				
-				$.ajax({
-					type     :  'get',
-					url      :   '__MODULE__/Address/choose',
-					data     :  "parent_id="+city,
-					dataType :  'html',
-					success  : function (msg) {
+			},
+			error    : function () {
+				alert("Ajax出错2");
+			}
 
-						$('#district').html(msg);
-						
-					},
-					error    : function () {
-						alert("Ajax出错2");
-					}
-
-				})
-			});
+		})
+	});
 	$("#submit").click(function(){
 			
-			if (document.getElementById('consignee').value == "" ) {
-				alert("请填写收货人姓名");
-				return false;
-			}
-			if (document.getElementById('mobile').value == "" ) {
-				alert("请填写收货人联系方式	");
-				return false;
-			}
+		if (document.getElementById('consignee').value == "" ) {
+			alert("请填写收货人姓名");
+			return false;
+		}
+		if (document.getElementById('mobile').value == "" ) {
+			alert("请填写收货人联系方式	");
+			return false;
+		}
 
-			if (document.getElementById('street').value == "") {
-				alert("请填写地址的详细信息");
-				return  false;
-			}
+		if (document.getElementById('street').value == "") {
+			alert("请填写地址的详细信息");
+			return  false;
+		}
 
-			if (document.getElementById('province').value =='-1' || document.getElementById('city').value =='-1'
-				|| document.getElementById('district').value =='-1') {
-				alert("请先选择地区");
-				return false;
-			} else {
-				return  true;
-			}
+		if (document.getElementById('province').value =='-1' || document.getElementById('city').value =='-1'
+			|| document.getElementById('district').value =='-1') {
+			alert("请先选择地区");
+			return false;
+		} else {
+			return  true;
+		}
 
-			
+		
 
-		});
+	});
 
 </script>
 
 </html>
+

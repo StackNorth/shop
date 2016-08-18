@@ -37,27 +37,30 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
-							<div class="topNav_menu_bd" style="display:none;" >
+							<a href="/shop/index.php/Home/User/index" class="">个人主页</a>
+							<a href="/shop/index.php/Home/User/index" class="">已买到的商品</a>
+							<!-- <div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
-									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
+									<li><a title="个人主页" target="_top" href="/shop/index.php/Home/User/index">个人主页</a></li>
 								</ul>
-							</div>
+							</div> -->
 						</div>
 					</li>
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i>123</i></a>
+							<a href="#" class="topNavHover">购物车<b><?php  if ($_SESSION['user']['shopNumber'] == null){ echo "0"; } else { echo ($_SESSION['user']['shopNumber']); } ; ?></b>种商品<i>123</i></a>
 							<div class="topNav_menu_bd" style="display:none;">
 								
 					            <ul>
-					              <li><img src="#"  target="_top" href="#">商品1</a></li>
-					              <li><img src="#" target="_top" href="#">商品2</a></li>
+					             <!-- <li><a href="<?php echo U('Goods/index/goods_id/');?> ><img src='#'  target='_top' ">商品1</a></li> --> 
+					              <?php
+ foreach($_SESSION['user']['shoppingCat'] as $value){ $output = "<li><a href='/shop/index.php/Home/Goods/index/id/".$value['goods_id']."' ><img src='/shop".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>"; echo $output; $total += $value['shop_price']; $flag = 1; } ?>
 					            </ul>
+					        <?php
+ if ($flag != 1) { echo "<p>还没有商品，赶快去挑选！</p>"; } else { echo '总共'.$total.'元'; echo "<p><a href='#'>去结算</a></p>"; } ?>
 					        
-					        <p>还没有商品，赶快去挑选！</p>
 					    </div>
 					</div>
 				</li>
@@ -193,7 +196,12 @@
 				<a href="javascript:void(0);"><img src="/shop/Public/images/avatar.png" /></a>
 			</div>
 			<div class="clear"></div>
-
+			<dl>
+				<dt>我的账户</dt>
+				<dd><span><a href="/shop/index.php/Home/User/index">个人资料</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/User/password">密码修改</a></span></dd>
+				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
+			</dl>
 			<dl>
 				<dt>我的交易</dt>
 				<dd><span><a href="">已购买商品</a></span></dd>
@@ -201,12 +209,7 @@
 				<dd><span><a href="">评价管理</a></span></dd>
 			</dl>
 
-			<dl>
-				<dt>我的账户</dt>
-				<dd><span><a href="/shop/index.php/Home/User/index">个人资料</a></span></dd>
-				<dd><span><a href="/shop/index.php/Home/User/password">密码修改</a></span></dd>
-				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
-			</dl>
+			
 
 		</div>
 		<!-- 左边导航 End -->

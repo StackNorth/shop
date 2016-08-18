@@ -106,40 +106,47 @@
 					<!-- 京东商品展示 End -->
 
 			</div>
-			<div class="shop_goods_show_right">
-				<ul>
-					
-					<li>
-						<strong style="font-size:14px; font-weight:bold;">{$goods.goods_name}</strong>
-					</li>
-					<li>
-	 					<label>价格：</label>
-						<span><strong>{$goods.shop_price}</strong>元</span>
-					</li>
-					<li>
-						<label>运费：</label>
-						<span>卖家承担运费</span>
-					</li>
-					<li>
-						<label>累计售出：</label>
-						<span>{$goods.goods_number}</span>
-					</li>
-					<li>
-						<label>评价：</label>
-						<span>0条评论</span>
-					</li>
-					<li class="goods_num">
-						<label>购买数量：</label>
-						<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存0件)</span>
-					</li>
-					<li style="padding:20px 0;">
-						<label>&nbsp;</label>
-						<span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
-					</li>
-				</ul>
+			<form action="{:U('User/shoppingCat')}" method="post" id="form">
+				<input type="hidden" name="goods_id" value="{$goods.goods_id}">
+				<input type="hidden" name="goods_img" value="{$goods.goods_img}">
+				<div class="shop_goods_show_right">
+					<ul>
+						
+						<li><label>
+							<strong style="font-size:14px; font-weight:bold;">{$goods.goods_name}</strong></label>
+							<input type="hidden" name="goods_name" value="{$goods.goods_name}">
+						</li>
+						<li>
+		 					<label>价格：</label>
+							<span><strong>{$goods.shop_price}</strong>元</span>
+							<input type="hidden" name="shop_price" value="{$goods.shop_price}">
+						</li>
+						<li>
+							<label>运费：</label>
+							<span>卖家承担运费</span>
+						</li>
+						<!-- <li>
+							<label>累计售出：</label>
+							<span>{$goods.goods_number}</span>
+						</li>-->
+						<li>
+							<label>付款方式：</label>
+							<span>货到付款</span>
+						</li> 
+						<li class="goods_num">
+							<label>购买数量：</label>
+							<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" name="goods_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存{$goods.goods_number}件)</span>
+						</li>
+						<li style="padding:20px 0;">
+							<label>&nbsp;</label>
+							<span><input type="submit" value="加入购物车" class="goods_sub goods_sub_gou" ></span>
+						</li>
+					</ul>
 
-			</div>
+				</div>
+			</form>
 		</div>
+
 		<!-- 商品展示 End -->
 
 		<div class="clear mt15"></div>
@@ -179,4 +186,8 @@
 	<!-- Footer End -->
 
 </body>
+<script type="text/javascript">
+
+
+</script>
 </html>

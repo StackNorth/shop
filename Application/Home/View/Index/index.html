@@ -125,7 +125,7 @@
                     <div class="tuijian_content">
                         <div id="tuijian_content_1" class="tuijian_shangpin" style="display: block;">
                             <ul>
-                            <volist name="best" id="vo" offset="1" length='4'>
+                            <volist name="best" id="vo" offset="0" length='4'>
                                 <li>
                                     <dl>
                                         <dt><a href="__MODULE__/Goods/index/id/{$vo.goods_id}"><img src="__ROOT__/{$vo.goods_img}" style="width:100%;height: auto;"/></a></dt>
@@ -273,7 +273,7 @@
                     <div class="title"><h3>商品排行</h3></div>
                     <ol class="saletop-list">
 
-                        <volist name="right" id="right" key="k" offset="1" length='7'>
+                        <volist name="right" id="right" key="k" offset="0" length='7'>
 
                             <if condition="$k lt 4">
                                 <li class="top clearfix">

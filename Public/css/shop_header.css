@@ -19,7 +19,7 @@
 .topNav_menu{position:relative;}
 .topNav_menu_bd{position: absolute; z-index:997; padding:5px 4px; top:19px; border:1px solid #CCCCCC;background-color:#FFF;}
 
-.topNav_menu_bd ul li{clear: both; width:100px;}
+.topNav_menu_bd ul li{clear: both; width:100px; height:50px;}
 .topNav_menu_bd ul li a{padding:0 13px 0 7px;}
 
 /* logo & search */

@@ -24,27 +24,53 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="__MODULE__/User/index" class="topNavHover">我的商城<i></i></a>
-							<div class="topNav_menu_bd" style="display:none;" >
+							<a href="__MODULE__/User/index" class="">个人主页</a>
+							<a href="__MODULE__/User/index" class="">已买到的商品</a>
+							<!-- <div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
-									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
+									<li><a title="个人主页" target="_top" href="__MODULE__/User/index">个人主页</a></li>
 								</ul>
-							</div>
+							</div> -->
 						</div>
 					</li>
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i>123</i></a>
+							<a href="#" class="topNavHover">购物车<b><?php  if ($_SESSION['user']['shopNumber'] == null){
+							echo "0";
+							} else {
+							echo ($_SESSION['user']['shopNumber']);
+							}
+
+
+							 ; ?></b>种商品<i>123</i></a>
 							<div class="topNav_menu_bd" style="display:none;">
 								
 					            <ul>
-					              <li><img src="#"  target="_top" href="#">商品1</a></li>
-					              <li><img src="#" target="_top" href="#">商品2</a></li>
+					             <!-- <li><a href="{:U('Goods/index/goods_id/')} ><img src='#'  target='_top' ">商品1</a></li> --> 
+					              <?php
+					              	foreach($_SESSION['user']['shoppingCat'] as $value){
+										
+
+										$output = "<li><a href='__MODULE__/Goods/index/id/".$value['goods_id']."' ><img src='__ROOT__".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>";
+										echo $output;
+										$total += $value['shop_price'];
+
+
+										$flag = 1;
+									}
+					              ?>
 					            </ul>
+					        <?php
+					        	if ($flag != 1) {
+					        		echo "<p>还没有商品，赶快去挑选！</p>";
+					        	} else {
+					        		echo  '总共'.$total.'元';
+					        		echo "<p><a href='#'>去结算</a></p>";	
+					        	}
+					        ?>
 					        
-					        <p>还没有商品，赶快去挑选！</p>
 					    </div>
 					</div>
 				</li>

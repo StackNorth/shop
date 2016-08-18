@@ -37,12 +37,11 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">我的商城<i></i></a>
+							<a href="/shop/index.php/Home/User/index" class="topNavHover">我的商城<i></i></a>
 							<div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
 									<li><a title="个人主页" target="_top" href="#">个人主页</a></li>
-									<li><a title="我的好友" target="_top" href="#">我的好友</a></li>
 								</ul>
 							</div>
 						</div>
@@ -50,20 +49,22 @@
 
 					<li>
 						<div class="topNav_menu">
-							<a href="#" class="topNavHover">购物车<b>0</b>种商品<i></i></a>
+							<a href="#" class="topNavHover">购物车<b><?php  if ($_SESSION['user']['shopNumber'] == null){ echo "0"; } else { echo ($_SESSION['user']['shopNumber']); } ; ?></b>种商品<i>123</i></a>
 							<div class="topNav_menu_bd" style="display:none;">
-								<!--
+								
 					            <ul>
-					              <li><a title="已售出的商品" target="_top" href="#">已售出的商品</a></li>
-					              <li><a title="销售中的商品" target="_top" href="#">销售中的商品</a></li>
+					             <!-- <li><a href="<?php echo U('Goods/index/goods_id/');?> ><img src='#'  target='_top' ">商品1</a></li> --> 
+					              <?php
+ foreach($_SESSION['user']['shoppingCat'] as $value){ $output = "<li><a href='/shop/index.php/Home/Goods/index/id/".$value['goods_id']."' ><img src='/shop".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>"; echo $output; $flag = 1; } ?>
 					            </ul>
-					        -->
-					        <p>还没有商品，赶快去挑选！</p>
+					        <?php
+ if ($flag != 1) { echo "<p>还没有商品，赶快去挑选！</p>"; } else { echo "<p><a href='#'>去结算</a></p>"; } ?>
+					        
 					    </div>
 					</div>
 				</li>
 
-				<li>
+				<!-- <li>
 					<div class="topNav_menu">
 						<a href="#" class="topNavHover">我的收藏<i></i></a>
 						<div class="topNav_menu_bd" style="display:none;">
@@ -73,13 +74,13 @@
 							</ul>
 						</div>
 					</div>
-				</li>
+				</li> -->
 
-				<li>
+				<!-- <li>
 					<div class="topNav_menu">
 						<a href="#">站内消息</a>
 					</div>
-				</li>
+				</li> -->
 
 			</ul>
 		</div>
@@ -257,40 +258,47 @@
 					<!-- 京东商品展示 End -->
 
 			</div>
-			<div class="shop_goods_show_right">
-				<ul>
-					
-					<li>
-						<strong style="font-size:14px; font-weight:bold;"><?php echo ($goods["goods_name"]); ?></strong>
-					</li>
-					<li>
-	 					<label>价格：</label>
-						<span><strong><?php echo ($goods["shop_price"]); ?></strong>元</span>
-					</li>
-					<li>
-						<label>运费：</label>
-						<span>卖家承担运费</span>
-					</li>
-					<li>
-						<label>累计售出：</label>
-						<span><?php echo ($goods["goods_number"]); ?></span>
-					</li>
-					<li>
-						<label>评价：</label>
-						<span>0条评论</span>
-					</li>
-					<li class="goods_num">
-						<label>购买数量：</label>
-						<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存0件)</span>
-					</li>
-					<li style="padding:20px 0;">
-						<label>&nbsp;</label>
-						<span><a href="" class="goods_sub goods_sub_gou" >加入购物车</a></span>
-					</li>
-				</ul>
+			<form action="<?php echo U('User/shoppingCat');?>" method="post" id="form">
+				<input type="hidden" name="goods_id" value="<?php echo ($goods["goods_id"]); ?>">
+				<input type="hidden" name="goods_img" value="<?php echo ($goods["goods_img"]); ?>">
+				<div class="shop_goods_show_right">
+					<ul>
+						
+						<li><label>
+							<strong style="font-size:14px; font-weight:bold;"><?php echo ($goods["goods_name"]); ?></strong></label>
+							<input type="hidden" name="goods_name" value="<?php echo ($goods["goods_name"]); ?>">
+						</li>
+						<li>
+		 					<label>价格：</label>
+							<span><strong><?php echo ($goods["shop_price"]); ?></strong>元</span>
+							<input type="hidden" name="shop_price" value="<?php echo ($goods["shop_price"]); ?>">
+						</li>
+						<li>
+							<label>运费：</label>
+							<span>卖家承担运费</span>
+						</li>
+						<!-- <li>
+							<label>累计售出：</label>
+							<span><?php echo ($goods["goods_number"]); ?></span>
+						</li>-->
+						<li>
+							<label>付款方式：</label>
+							<span>货到付款</span>
+						</li> 
+						<li class="goods_num">
+							<label>购买数量：</label>
+							<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" name="goods_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存<?php echo ($goods["goods_number"]); ?>件)</span>
+						</li>
+						<li style="padding:20px 0;">
+							<label>&nbsp;</label>
+							<span><input type="submit" value="加入购物车" class="goods_sub goods_sub_gou" ></span>
+						</li>
+					</ul>
 
-			</div>
+				</div>
+			</form>
 		</div>
+
 		<!-- 商品展示 End -->
 
 		<div class="clear mt15"></div>
@@ -363,22 +371,27 @@
 	<!-- Goods Body End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
+	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
 	<div class="shop_footer">
             <div class="shop_footer_link">
                 <p>
-                    <a href="">首页</a>|
+                    <a href="/shop/index.php/Home/Index/index">首页</a>|
                     <a href="">招聘英才</a>|
                     <a href="">广告合作</a>|
-                    <a href="">关于ShopCZ</a>|
                     <a href="">关于我们</a>
                 </p>
             </div>
             <div class="shop_footer_copy">
-                <p>Copyright 2004-2013 itcast Inc.,All rights reserved.</p>
+               <p>Copyright MyShop,All rights reserved.</p>
             </div>
         </div>
 	<!-- Footer End -->
+	<!-- Footer End -->
 
 </body>
+<script type="text/javascript">
+
+
+</script>
 </html>

@@ -47,18 +47,27 @@ class AddressController extends BaseController {
 		$address_id = I('get.address_id');
 		$addressModel = M('address');
 		$address = $addressModel->where('address_id = '.$address_id)->select();
-		$hidden = I('hidden')?'edit':'add';
+		$hidden = '';
 		//编辑或添加数据
 		if (IS_POST) {
-			$data['street']    = I('street');
+			$data['user_id']   = $_SESSION['user']['user_id'];
+			foreach ($_POST as $key => $value) {
+				if ($key == 'hidden') {
+					$hidden = $value?'edit':'add';
+				} else {
+					$data[$key] = $value;
+				}
+			}
+			
+			/*$data['street']    = I('street');
 			$data['consignee'] = I('consignee');
 			$data['province']  = I('province');
 			$data['city']      = I('city');
 			$data['district']  = I('district');
 			$data['zipcode']   = I('zipcode');
-			$data['user_id']   = $_SESSION['user']['user_id'];
+			
 			$data['telephone'] = I('telephone');
-			$data['mobile']    = I('mobile');	
+			$data['mobile']    = I('mobile');	*/
 			if ($hidden == "edit") {
 				//更新数据
 				if ($addressModel->where('address_id = '.$address_id)->save($data)) {
@@ -66,7 +75,6 @@ class AddressController extends BaseController {
 					$this->redirect('Address/index');
 				} else {
 					//更新失败
-					
 					$this->error("更新失败");
 				}
 			} else {
