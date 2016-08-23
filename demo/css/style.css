@@ -1,10 +1,57 @@
+@font-face {font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot'); /* IE9*/
+    src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:18px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     padding-top: 60px;
-    background-color: rgb(48,57,74);
+    background-color: rgb(244,244,236);
+}
+
+.head {
+    background-color: rgb(242,142,152);
+    border: 0;
+}
+
+.navbar-header a:link {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #43341b;
+}
+
+
+.navbar-inverse .navbar-toggle:visited {
+    background-color: #d0104c;
+}
+
+.navbar-inverse .navbar-toggle:hover {
+    background-color: #d0104c;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #d0104c;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #43341b;
 }
 
 .main-container {
-    /*border: 1px solid #000;*/
     padding: 0;
     margin: 0;
     min-height: 760px;
@@ -12,15 +59,20 @@ body {
 
 /*左导航*/
 .container-sidebar {
-    width: 225px;
-    min-height: 850px;
+    width: 15%;
+    min-height: 760px;
     float: left;
 }
 
 .container-sidebar .menu {
-    font-size: 18px;
-    color: #fff;
-    padding-left: 10px;
+    font-size: 20px;
+    padding: 4px 0 4px 10px;
+    color: #82663A;
+}
+
+#type i{
+    color: #82663A;
+    float: right;
 }
 
 .container-sidebar h4 {
@@ -28,22 +80,43 @@ body {
 }
 
 .panel-group{
-    background-color: rgb(70,77,96);
-    /*border: 2px solid #fff;*/
+    background-color: rgb(247,144,129);
 }
 
 .panel-default {
-    background-color: rgb(48,57,75);
     border: 0;
 }
 
 .panel-default .panel-heading {
-    background-color: rgb(48,57,75);
-    /*border-bottom: 1px solid rgb(92,92,92);*/
+    background-color: rgb(247,144,129);
+}
+
+.panel-title {
+    font-size: 18px;
+    padding: 5px 0;
+}
+
+.panel-title a {
+    color: #fff;
+}
+
+.panel-title a:link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.panel-title a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.panel-title a:hover {
+    text-decoration: none;
+    color: #734338;;
 }
 
 .panel-default>.panel-heading+.panel-collapse>.panel-body {
-    background-color: rgb(70,77,96);
+    background-color: rgb(199,108,87);
     border: 0;
 }
 
@@ -54,27 +127,65 @@ body {
 
 .panel-body ul li {
     border: 0;
-    padding: 5px 0 5px 20px;
+    padding: 10px 0 5px 20px;
 }
 
 .list-group-item {
-    background-color: rgb(70,77,96);
+    background-color: rgb(248,247,242);
 }
 
-.list-group-item a {
+.list-group a {
     color: rgb(189,189,189);
+}
+
+.list-group a:link,a:visited {
+    color: rgb(189,189,189);
+    text-decoration: none;
+}
+
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 5px;
 }
 
 /*内容*/
 .main-content {
-    border: 1px solid #000;
     background-color: #fff;
-    margin-left: 225px;
+    margin-left: 15%;
     margin-top: 0;
+}
+
+#type {
+    color: #fff;
+    float: right;
+    width: 10%;
+}
+
+
+.modal-title {
+    margin: 1%;
+}
+
+.breadcrumb {
+    /*background-color: rgb(250,165,145);*/
+    background-color: rgb(240,240,230);
+
+}
+
+.breadcrumb li a {
+    color: #000;
 }
 
 .footer {
     text-align: center;
-    color: rgb(153,153,153);
+    color: #000;
     padding-top: 20px;
 }

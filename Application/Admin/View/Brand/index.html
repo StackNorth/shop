@@ -1,73 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
 <head>
-<title>SHOP 管理中心 - 品牌管理 </title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="{$Think.const.ADMIN_PUBLIC}/styles/general.css" rel="stylesheet" type="text/css" />
-<link href="{$Think.const.ADMIN_PUBLIC}/styles/main.css" rel="stylesheet" type="text/css" />
+    <include file="Public/header"/>
 </head>
 <body>
+    <!-- top start-->
+  <include file="Public/top"/>
+<!--    content-->
 
-<h1>
-<span class="action-span"><a href="__CONTROLLER__/add">添加品牌</a></span>
-<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品品牌 </span>
-<div style="clear:both"></div>
-</h1>
+    <div class="main-container">
+        
+        <!-- left Menu  start -->
+        <include file="Public/leftMenu"/>
+        <!-- end -->
 
-<div class="form-div">
-  <form action="javascript:search_brand()" name="searchForm">
-    <img src="{$Think.const.ADMIN_PUBLIC}/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH">
-     <input type="text" name="brand_name" size="15">
-    <input type="submit" value=" 搜索 " class="button">
-  </form>
-</div>
+        <div class="main-content">
 
-<form method="post" action="" name="listForm">
-<!-- start brand list -->
-<div class="list-div" id="listDiv">
+            <div class="container-fluid">
 
-  <table cellpadding="3" cellspacing="1">
-    <tbody>
-		<tr>
-			<th>品牌名称</th>
-			<th>品牌网址</th>
-			<th>品牌描述</th>
-			<th>排序</th>
-			<th>是否显示</th>
-			<th>操作</th>
-		</tr>
-      <volist name="brands" id="vo">
-        <tr>
-      <td class="first-cell"><span style="float:right"><a href="../data/brandlogo/1240803062307572427.gif" target="_brank"><img src="{$Think.const.ADMIN_PUBLIC}/images/picflag.gif" width="16" height="16" border="0" alt="品牌LOGO"></a></span>
-      <span onclick="javascript:listTable.edit(this, 'edit_brand_name', 1)" title="点击修改内容" style="">{$vo.brand_name}</span>
-      </td>
-      <td><a href="http://{$vo.url}/" target="_brank">{$vo.url}</a></td>
-      <td align="left" >{$vo.brand_desc}</td>
-      <td align="right"><span onclick="javascript:listTable.edit(this, 'edit_sort_order', 1)">{$vo.sort_order}</span></td>
-      <td align="center"><img src='
-      <if condition= "$vo.is_show eq 1"> 
-      {$Think.const.ADMIN_PUBLIC}/images/yes.gif
-      <else />
-      {$Think.const.ADMIN_PUBLIC}/images/no.gif
-      </if>
-      '></td>
-      <td align="center">
-        <a href="__CONTROLLER__/edit/id/{$vo.brand_id}" title="编辑">编辑</a> |
-        <a href="__CONTROLLER__/delete/id/{$vo.brand_id}" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
-      </td>
-    </tr>
-    </volist>
-    <include file="Public/page"/>
-  </tbody></table>
+               <div class="row-fluid">
+                    <div class="content" style="margin-left: 0;">
+                        <div class="row-fluid">
+                          <!-- start -->
+                            <div class="modal-title">
+                                后台管理
+                            </div>
+                            <!--面包屑 导航栏 -->
+                            <div class="navbar-default">
+                                <ul class="breadcrumb">
+                                    <li>
+                                        <a href="#"><i class="iconfont">&#xe604;</i>首页</a>
+                                    </li>
+                                     <li>
+                                        <span class="divider"></span>
+                                        <a href="#">品牌管理</a>
+                                    </li> 
+                                    <li style="float: right">
+                                        <span class="divider"></span>
+                                        <a href="__CONTROLLER__/add">添加品牌</a>
+                                    </li>
+                                </ul>
+                            </div>
+              <!-- end -->
 
-<!-- end brand list -->
-</div>
-</form>
+                            <!-- list start -->
+                            <form method="post" action="" name="listForm">
+                              <!-- start brand list -->
+                              <div class="container-fluid">
+
+                                <table class="table table-bordered table-hover">
+                                  <tbody>
+                                    <tr>
+                                      <th>品牌名称</th>
+                                      <th>品牌网址</th>
+                                      <th>品牌描述</th>
+                                      <th>排序</th>
+                                      <th>是否显示</th>
+                                      <th>操作</th>
+                                    </tr>
+                                    <volist name="brands" id="vo">
+                                      <tr>
+                                        <td class="first-cell"><span style="float:right"><a href="../data/brandlogo/1240803062307572427.gif" target="_brank"><img src="{$Think.const.ADMIN_PUBLIC}/images/picflag.gif" width="16" height="16" border="0" alt="品牌LOGO"></a></span>
+                                          <span onclick="javascript:listTable.edit(this, 'edit_brand_name', 1)" title="点击修改内容" style="">{$vo.brand_name}</span>
+                                        </td>
+                                        <td><a href="http://{$vo.url}/" target="_brank">{$vo.url}</a></td>
+                                        <td align="left" >{$vo.brand_desc}</td>
+                                        <td align="right"><span onclick="javascript:listTable.edit(this, 'edit_sort_order', 1)">{$vo.sort_order}</span></td>
+                                        <td align="center"><img src='
+                                          <if condition= "$vo.is_show eq 1"> 
+                                            {$Think.const.ADMIN_PUBLIC}/images/yes.gif
+                                            <else />
+                                            {$Think.const.ADMIN_PUBLIC}/images/no.gif
+                                          </if>
+                                          '></td>
+                                          <td align="center">
+                                            <a href="__CONTROLLER__/edit/id/{$vo.brand_id}" title="编辑">编辑</a> |
+                                            <a href="__CONTROLLER__/delete/id/{$vo.brand_id}" onclick="javascript:return confirm('你确认要删除吗？')" title="编辑">移除</a> 
+                                          </td>
+                                        </tr>
+                                      </volist>
+                                      <include file="Public/page"/>
+                                    </tbody></table>
+
+                                    <!-- end brand list -->
+                                  </div>
+                                </form>
+                            <!-- end -->
+                        </div>
+                    </div>
+               </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
-<div id="footer">
-	版权所有 &copy; 翻版必究 </div>
-</div>
+
+    <!-- footer start -->
+    <include file="Public/footer"/>
+  <!-- end -->
 
 </body>
 </html>
+
+
+

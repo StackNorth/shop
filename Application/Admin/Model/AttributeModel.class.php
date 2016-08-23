@@ -25,11 +25,11 @@ class AttributeModel extends RelationModel  {
 		$condition['type_id'] = $type_id;
 		$attrs = $this->where($condition)->select();
 		//拼接字符串操作
-		$res = "<table width='100%' id='attrTable'>";
+		$res = "<table class='table table-bordered table-hover'>";
 		$res .="<tbody>";
 		foreach ($attrs as $data) {
 			$res .= "<tr>";
-			$res .= "<td class='label'>{$data['attr_name']}</td>";
+			$res .= "<td >{$data['attr_name']}</td>";
 			$res .= "<td>";
 			$res .= "<input type='hidden' name='attr_id_list[]' value='{$data['attr_id']}'>";
 			switch ($data['attr_input_type']) {

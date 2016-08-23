@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-18 18:09:09
+Date: 2016-08-22 18:24:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -73,13 +73,13 @@ CREATE TABLE `cz_attribute` (
   `sort_order` tinyint(4) NOT NULL DEFAULT '50' COMMENT '属性排序依据',
   PRIMARY KEY (`attr_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_attribute
 -- ----------------------------
-INSERT INTO `cz_attribute` VALUES ('1', '型号', '2', '1', '1', 'L\r\nXL\r\nXXL\r\nXXXL', '50');
-INSERT INTO `cz_attribute` VALUES ('2', '风格', '2', '0', '1', '休闲\r\n性格\r\n韩风', '50');
+INSERT INTO `cz_attribute` VALUES ('7', '颜色', '2', '0', '1', '红色\r\n蓝色\r\n黑色', '50');
+INSERT INTO `cz_attribute` VALUES ('6', '类型', '2', '0', '1', 'x\r\nXL\r\nXXL', '50');
 
 -- ----------------------------
 -- Table structure for cz_brand
@@ -299,12 +299,34 @@ CREATE TABLE `cz_goods_type` (
   `type_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '商品类型ID',
   `type_name` varchar(50) NOT NULL DEFAULT '' COMMENT '商品类型名称',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_goods_type
 -- ----------------------------
 INSERT INTO `cz_goods_type` VALUES ('2', '服装');
+
+-- ----------------------------
+-- Table structure for cz_homemenu
+-- ----------------------------
+DROP TABLE IF EXISTS `cz_homemenu`;
+CREATE TABLE `cz_homemenu` (
+  `menu_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `menu_name` varchar(255) DEFAULT NULL,
+  `menu_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cz_homemenu
+-- ----------------------------
+INSERT INTO `cz_homemenu` VALUES ('1', '首页', '/index/index');
+INSERT INTO `cz_homemenu` VALUES ('2', '团购', null);
+INSERT INTO `cz_homemenu` VALUES ('3', '品牌', null);
+INSERT INTO `cz_homemenu` VALUES ('4', '优惠卷', null);
+INSERT INTO `cz_homemenu` VALUES ('5', '积分中心', null);
+INSERT INTO `cz_homemenu` VALUES ('6', '运动专场', null);
+INSERT INTO `cz_homemenu` VALUES ('7', '微商城', null);
 
 -- ----------------------------
 -- Table structure for cz_menu
@@ -318,25 +340,25 @@ CREATE TABLE `cz_menu` (
   `menu_action` varchar(255) DEFAULT NULL COMMENT '方法',
   `menu_controller` varchar(255) DEFAULT NULL COMMENT '控制器',
   `menu_class` varchar(255) DEFAULT NULL COMMENT 'css选择器',
-  `menu_url` varchar(255) DEFAULT NULL,
+  `menu_icon` varchar(255) DEFAULT NULL COMMENT '图标',
   PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_menu
 -- ----------------------------
-INSERT INTO `cz_menu` VALUES ('1', '0', '商品管理', '', null, null, 'explode', null);
-INSERT INTO `cz_menu` VALUES ('2', '0', '订单管理', null, null, null, 'explode', null);
-INSERT INTO `cz_menu` VALUES ('3', '0', '用户列表', null, null, null, 'explode', null);
-INSERT INTO `cz_menu` VALUES ('4', '1', '商品类型', '/shop/index.php/Admin', 'index', 'Type', 'menu-item', '');
-INSERT INTO `cz_menu` VALUES ('5', '1', '添加新商品', '/shop/index.php/Admin', 'add', 'Goods', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('6', '1', '商品列表', '/shop/index.php/Admin', 'index', 'Goods', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('7', '1', '商品分类', '/shop/index.php/Admin', 'index', 'Category', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('8', '2', '订单列表', '/shop/index.php/Admin', 'index', 'Order', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('9', '2', '添加订单', '/shop/index.php/Admin', 'add', 'Order', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('10', '1', '商品品牌', '/shop/index.php/Admin', 'index', 'Brand', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('11', '3', '管理员列表', '/shop/index.php/Admin', 'index', 'User', 'menu-item', null);
-INSERT INTO `cz_menu` VALUES ('12', '3', '客户列表', '/shop/index.php/Admin', 'customer', 'User', 'menu-item', null);
+INSERT INTO `cz_menu` VALUES ('1', '0', '商品管理', '', null, null, 'collapseOne', '&#xe612;');
+INSERT INTO `cz_menu` VALUES ('2', '0', '订单管理', null, null, null, 'collapseTwo', '&#xe6e5;');
+INSERT INTO `cz_menu` VALUES ('3', '0', '用户列表', null, null, null, 'collapseThree', '&#xe666;');
+INSERT INTO `cz_menu` VALUES ('4', '1', '商品类型', '/shop/index.php/Admin', 'index', 'Type', 'list-group-item', '');
+INSERT INTO `cz_menu` VALUES ('5', '1', '添加新商品', '/shop/index.php/Admin', 'add', 'Goods', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('6', '1', '商品列表', '/shop/index.php/Admin', 'index', 'Goods', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('7', '1', '商品分类', '/shop/index.php/Admin', 'index', 'Category', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('8', '2', '订单列表', '/shop/index.php/Admin', 'index', 'Order', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('9', '2', '添加订单', '/shop/index.php/Admin', 'add', 'Order', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('10', '1', '商品品牌', '/shop/index.php/Admin', 'index', 'Brand', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('11', '3', '管理员列表', '/shop/index.php/Admin', 'index', 'User', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('12', '3', '客户列表', '/shop/index.php/Admin', 'customer', 'User', 'list-group-item', null);
 
 -- ----------------------------
 -- Table structure for cz_order

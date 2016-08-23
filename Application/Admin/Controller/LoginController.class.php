@@ -5,17 +5,20 @@ use Think\Controller;
 class LoginController extends Controller {
 	//显示登录页面并验证
 	public function login(){
+
 		if (IS_POST) {
+			
 			//获取验证码、用户名和密码
 			$username = I('username');
 			$password = I('password');
-			$captcha = I('captcha');
+			
+			//$captcha = I('captcha');
 			//验证,注意顺序
 			//先检查验证码
-			$verify = new \Think\Verify();
+			/*$verify = new \Think\Verify();
 			if (!$verify->check($captcha)){
 				$this->error('验证码错误','login',2);
-			}
+			}*/
 			
 			//再来检查用户名和密码,调用模型来完成
 			if (D('admin')->checkUser($username,$password)) {

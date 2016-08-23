@@ -1,0 +1,39 @@
+<div class="container-sidebar navbar-collapse">
+            <div class="menu">
+                <strong>菜单&nbsp;<i class="iconfont">&#x343c;</i></strong>
+                <div id="type" data-type="off">
+                    <strong > <i class="iconfont">&#xe66b;</i> </strong>
+                </div>
+            </div>
+
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <foreach name="menu" item="vo">
+                        <!-- for start -->
+                        <if condition="$vo.level eq 0">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#{$vo.menu_class}">
+                                        <span>{$vo.menu_name}&nbsp;</span><i class="iconfont">{$vo.menu_icon}</i>
+                                    </a>
+                                </h4>
+                            </div>
+                            
+                          
+                            <div id="{$vo.menu_class}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                    <foreach name="menu" item="vo1" >
+                                        <if condition="($vo.menu_id eq $vo1.menu_parent_id ) AND ($vo1.level eq 1) ">
+                                        <a href="{$vo1.menu_url}"><li class="{$vo1.menu_class}">{$vo1.menu_name}</li></a>
+                                        </if>
+                                    </foreach>
+                                    </ul>
+                                </div>
+                            </div>              
+                       </if>    
+                    </foreach>
+                    <!-- end -->
+                </div>
+            </div>
+</div>

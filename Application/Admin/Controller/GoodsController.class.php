@@ -261,14 +261,25 @@ class GoodsController extends BaseController {
 	public function delete(){
 		$data['goods_id'] = I('get.goods_id');
 		$goodsModel = M('goods');
+		$goods = $goodsModel->where($data)->select();
+
 		if ($goodsModel->where($data)->delete()) {
-			$goods = $goodsModel->where($data)->select();
-			if (M('goods_thumb')->where('goods_sn ='.$goods['goods_sn'])->delete())
-				$this->success('删除成功',U('index'),3);
+			if (M('goods_thumb')->where('goods_sn ='.$goods['goods_sn'])->delete()){
+				$this->success('删除成功',U('Goods/index'),3);
+			} else {
+				$this->error('该商品没有缩略图',U('index'),2);
+			}
 		} else {
 			$this->error('删除失败',U('index'),3);
 		}
 		
+	}
+
+	public function search(){
+		$this->assign('goods',parent::search(M('goods'),'goods'));
+		
+		$this->display('index');
+
 	}
 }
 

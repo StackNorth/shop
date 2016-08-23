@@ -1,0 +1,40 @@
+<div class="block" style="border: 1px solid #d3d3d3;">
+    <div class="block-content collapse in">
+        <div class="search" style="margin: 1% 1%;">
+            
+        </div>
+        <div class="container-fluid">
+            <table class="table table-bordered table-hover">
+                <thead>
+                       <th>编号</th>
+                       <th>属性名称</th>
+                       <th>商品类型</th>
+                       <th>属性值的录入方式</th>
+                       <th>可选值列表</th>
+                       <th>排序</a></th>
+                       <th>操作</th>
+                </thead>
+                <tbody>
+                <volist name="attrs" id="vo">
+                      <tr>
+                    <td nowrap="true" valign="top"><span><input value="1" name="checkboxes[]" type="checkbox">{$vo.attr_id}</span></td>
+                    <td class="first-cell" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_attr_name', 1)">{$vo.attr_name}</span></td>
+                    <td nowrap="true" valign="top"><span>{$vo.type_name}</span></td>
+                    <td nowrap="true" valign="top"><span>{$vo.attr_input_type}</span></td>
+                    <td valign="top"><span>{$vo.attr_value}</span></td>
+                    <td align="right" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_sort_order', 1)">{$vo.sort_order}</span></td>
+                    <td align="center" nowrap="true" valign="top">
+                      <a href="?act=edit&amp;attr_id=1" title="编辑"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_edit.gif" border="0" height="16" width="16"></a>
+                      <a href="javascript:;" onclick="removeRow(1)" title="移除"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_drop.gif" border="0" height="16" width="16"></a>
+                    </td>
+                  </tr>
+                </volist>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- page -->
+        <include file="Public/Page"/>
+
+    </div>
+</div>

@@ -1,87 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html>
 <head>
-<title>SHOP 管理中心 - 属性管理 </title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="{$Think.const.ADMIN_PUBLIC}/styles/general.css" rel="stylesheet" type="text/css" />
-<link href="{$Think.const.ADMIN_PUBLIC}/styles/main.css" rel="stylesheet" type="text/css" />
+    <include file="Public/header"/>
 </head>
 <body>
+    <!-- top start-->
+  <include file="Public/top"/>
+<!--    content-->
 
-<h1>
-<span class="action-span"><a href="__CONTROLLER__/add">添加属性</a></span>
-<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品属性 </span>
-<div style="clear:both"></div>
-</h1>
-
-<div class="form-div">
-  <form action="" name="searchForm">
-    <img src="{$Think.const.ADMIN_PUBLIC}/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH">
-    按商品类型显示：
-    <select name="goods_type" onchange="searchAttr(this.value)">
-      <volist name="types" id="vo">
-        <option value="{$vo.type_id}"
-        <if condition="$vo['type_id'] == $type_id"> selected='selected'</if>
-        >{$vo.type_name}</option>
-      </volist>
-    </select>
-  </form>
-</div>
-
-<form method="post" action="attribute.php?act=batch" name="listForm">
-<div class="list-div" id="listDiv">
-
-  <table cellpadding="3" cellspacing="1">
-    <tbody>
-		<tr>
-			<th><input onclick="listTable.selectAll(this, &quot;checkboxes[]&quot;)" type="checkbox">编号 </th>
-			<th>属性名称</th>
-			<th>商品类型</th>
-			<th>属性值的录入方式</th>
-			<th>可选值列表</th>
-			<th>排序</a></th>
-			<th>操作</th>
-		</tr>
-      <volist name="attrs" id="vo">
-        <tr>
-			<td nowrap="true" valign="top"><span><input value="1" name="checkboxes[]" type="checkbox">{$vo.attr_id}</span></td>
-			<td class="first-cell" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_attr_name', 1)">{$vo.attr_name}</span></td>
-			<td nowrap="true" valign="top"><span>{$vo.type_name}</span></td>
-			<td nowrap="true" valign="top"><span>{$vo.attr_input_type}</span></td>
-			<td valign="top"><span>{$vo.attr_value}</span></td>
-			<td align="right" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_sort_order', 1)">{$vo.sort_order}</span></td>
-			<td align="center" nowrap="true" valign="top">
-				<a href="?act=edit&amp;attr_id=1" title="编辑"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_edit.gif" border="0" height="16" width="16"></a>
-				<a href="javascript:;" onclick="removeRow(1)" title="移除"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_drop.gif" border="0" height="16" width="16"></a>
-			</td>
-		</tr>
-  </volist>
-
+    <div class="main-container">
         
-      </tbody></table>
+        <!-- left Menu  start -->
+        <include file="Public/leftMenu"/>
+        <!-- end -->
 
-  <table cellpadding="4" cellspacing="0">
-    <tbody><tr>
-      <td style="background-color: rgb(255, 255, 255);"><input type="submit" id="btnSubmit" value="删除" class="button" disabled="true"></td>
-      <td align="right" style="background-color: rgb(255, 255, 255);">     
-            <div id="turn-page">
-            {$page}
-       
-      </div>
-</td>
-    </tr>
-  </tbody></table>
-</div>
+        <div class="main-content">
 
-</form>
+            <div class="container-fluid">
 
-<div id="footer">
-	版权所有 &copy; 翻版必究 </div>
-</div>
-  <script type='text/javascript'>
-      function searchAttr(type_id) {
-        window.location.href = "__SLEF__/id/"+type_id;
-      }
-  </script>
+               <div class="row-fluid">
+                    <div class="content" style="margin-left: 0;">
+                        <div class="row-fluid">
+                          <!-- start -->
+                            <div class="modal-title">
+                                后台管理
+                            </div>
+                            <!--面包屑 导航栏 -->
+                            <div class="navbar-default">
+                                <ul class="breadcrumb">
+                                    <li>
+                                        <a href="#"><i class="iconfont">&#xe604;</i>首页</a>
+                                    </li>
+                                     <li>
+                                        <span class="divider"></span>
+                                        <a href="#">属性列表</a>
+                                    </li> 
+                                    <li style="float: right">
+                                        <span class="divider"></span>
+                                        <a href="__CONTROLLER__/add">添加属性</a>
+                                    </li> 
+                                </ul>
+                            </div>
+              <!-- end -->
+
+                              <!-- list start -->
+                              <div class="block" style="border: 1px solid #d3d3d3;">
+                                <div class="block-content collapse in">
+                                  <div class="search" style="margin: 1% 1%;">
+
+                                  </div>
+                                  <div class="container-fluid">
+                                    <table class="table table-bordered table-hover">
+                                      <thead>
+                                       <th>编号</th>
+                                       <th>属性名称</th>
+                                       <th>商品类型</th>
+                                       <th>属性值的录入方式</th>
+                                       <th>可选值列表</th>
+                                       <th>排序</a></th>
+                                       <th>操作</th>
+                                     </thead>
+                                     <tbody>
+                                      <volist name="attrs" id="vo">
+                                        <tr>
+                                          <td nowrap="true" valign="top"><span><input value="1" name="checkboxes[]" type="checkbox">{$vo.attr_id}</span></td>
+                                          <td class="first-cell" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_attr_name', 1)">{$vo.attr_name}</span></td>
+                                          <td nowrap="true" valign="top"><span>{$vo.type_name}</span></td>
+                                          <td nowrap="true" valign="top"><span>{$vo.attr_input_type}</span></td>
+                                          <td valign="top"><span>{$vo.attr_value}</span></td>
+                                          <td align="right" nowrap="true" valign="top"><span onclick="listTable.edit(this, 'edit_sort_order', 1)">{$vo.sort_order}</span></td>
+                                          <td align="center" nowrap="true" valign="top">
+                                            <a href="__CONTROLLER__/edit/id/{$vo.attr_id}" title="编辑"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_edit.gif" border="0" height="16" width="16"></a>
+                                            <a href="__CONTROLLER__/delete/id/{$vo.attr_id}" onclick="javascript:return confirm('确定要删除吗?');" title="移除"><img src="{$Think.const.ADMIN_PUBLIC}/images/icon_drop.gif" border="0" height="16" width="16"></a>
+                                          </td>
+                                        </tr>
+                                      </volist>
+
+                                    </tbody>
+                                  </table>
+                                  <!-- page -->
+                                 <include file="Public/page"/>
+                                 
+                                  
+                                </div>
+                                
+                                 
+                              </div>
+                            </div>
+                            <!-- end -->
+                        </div>
+                    </div>
+               </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- footer start -->
+    <include file="Public/footer"/>
+  <!-- end -->
+
 </body>
 </html>
+

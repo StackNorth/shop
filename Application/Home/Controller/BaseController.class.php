@@ -7,10 +7,16 @@ class BaseController extends Controller {
 		parent::__construct();
 	   $cats = D('Category')->frontCats();
 	   $this->init_leftMenu();
+	   $this->init_upMenu();
        $this->assign("cats",$cats);
        $this->assign('index',false);
 	}
 
+	public function init_upMenu() {
+		$upMenu = M('homeMenu')->select();
+		$this->assign('upMenu',$upMenu);
+		
+	}
 	public function init_leftMenu() {
      
         $hotGoods =  D('goods')->getLeftHotGoods();

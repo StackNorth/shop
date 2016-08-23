@@ -7,34 +7,17 @@ class IndexController extends BaseController {
     	$this->display();
     }
 
-    public function top(){
-    	$this->display();
-    }
 
-    public function menu(){
-    	$menu = D('menu');
-        $datas = $menu->menuTree();
-        $this->assign('menu',$datas);
-        $this->display();
-    }
-
-    public function drag(){
-    	$this->display();
-    }
-
-    public function main(){
-    
-        $this->display();
-    }
+   
     public function clearCache() {
         $result = 0;
 
         if (is_dir(RUNTIME_PATH) && $this->rmdirr(RUNTIME_PATH)) {
             $result = 1;
-            $this->success('缓存清除成功',U('Index/main'),1);
+            $this->success('缓存清除成功',U('Index/index'),1);
             return ;
         }
-        $this->error('缓存清除失败',U('Index/main'),1);
+        $this->error('缓存清除失败',U('Index/index'),1);
         return;
 
     }

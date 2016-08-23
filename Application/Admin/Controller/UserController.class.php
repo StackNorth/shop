@@ -3,13 +3,13 @@ namespace Admin\Controller;
 class UserController extends BaseController {
 	public function index() {
 		$adminModel = M('Admin');	
-		$this->search($adminModel,'admin');
+		$this->assign('admins',parent::search($adminModel,'admin'));
 		$this->display('index');
 	}
 	
 	public function customer() {
 		$userModel = M('user');
-		$this->search($userModel,'user');	
+		$this->assign('admins',parent::search($userModel,'user'));	
 		$this->assign('user','1');
 		$this->display('index');
 	}
@@ -75,28 +75,29 @@ class UserController extends BaseController {
 		$this->display('editUser');
 	}
 
-	protected function search($objModel,$obj) {
-		$count = $objModel->count();
-		$page = new \Think\Page($count,5);
-		$page->setConfig("prev","上一页");
-		$page->setConfig("next","下一页");
-		if (I('keyword') == NULL) {
-			$objs = $objModel->limit($page->firstRow.','.$page->listRows)->select();		
-		} else {
-			$keyWord = I('keyword');
-			
-			$where = "{$obj}_id like '%{$keyWord}%' or {$obj}_name like '%{$keyWord}%' or email like '%{$keyWord}%' ";	
-			$objs = $objModel->where($where)->limit($page->firstRow.','.$page->listRows)->select();
-			
-		if ($objs == NULL) {
-			$error  = "alert('未找到搜索信息，请重新搜索'); ";
-			$error .= "window.location.href = '1'";
-			$this->assign('error',$error);
+	public function search(){
+		$model = trim(strrchr($_SERVER['HTTP_REFERER'],"/"),'/');
+		echo $model;
+		if($model == 'index') {
+			$this->assign('admins', $flag = parent::search(M('Admin'),'admin'));
+			if (!$flag) {
+				$this->index();
+				return ;
+			}		
+		} else if($model == 'user'){
+			$this->assign('admins', $flag = parent::search(M('user'),'user'));	
+			$this->assign('user','1');
+			if (!$flag) {
+				$this->customer();
+				return ;
+			}
 		}
-			
-		}
-		$this->assign('page',$page->show());
-		$this->assign('admins',$objs);
+
 		
+		
+		
+		$this->display('index');
+
 	}
+	
 }

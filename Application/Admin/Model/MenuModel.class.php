@@ -5,11 +5,7 @@ class MenuModel extends Model {
 	
 	public function menuTree() {
 		$menus = $this->select();
-		
 		return  $this->genTree($menus);
-		
-		
-
 	}
 
 	public function genTree($menus, $pid = 0 ,$level = 0) {

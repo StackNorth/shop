@@ -3,7 +3,6 @@
 namespace Admin\Controller;
 use Think\Controller;
 class TypeController extends BaseController {
-
 	//显示类型
 	public function index(){
 		$typeModel = M('goods_type');
@@ -13,6 +12,7 @@ class TypeController extends BaseController {
 		$Page->setConfig('next',"下一页");
 		$show    = $Page->show();// 分页显示输出
 		$types = $typeModel->order('type_id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		
 		$this->assign('types',$types);
 		$this->assign('page',$show);
 		$this->display();

@@ -9,6 +9,7 @@ return array(
 	'DB_PORT'     =>  '3306',      // 端口
 	'DB_PREFIX'   =>  'cz_',    // 数据库表前缀
 	'TMPL_ACTION_ERROR' =>'Public:error',
+	'TMPL_ACTION_SUCCESS' =>'Public:success',
 	//开启调试
 	'SHOW_PAGE_TRACE' => true,
 );
