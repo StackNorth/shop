@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-22 18:24:29
+Date: 2016-08-23 17:31:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -73,7 +73,7 @@ CREATE TABLE `cz_attribute` (
   `sort_order` tinyint(4) NOT NULL DEFAULT '50' COMMENT '属性排序依据',
   PRIMARY KEY (`attr_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_attribute
@@ -94,12 +94,13 @@ CREATE TABLE `cz_brand` (
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '50' COMMENT '商品品牌排序依据',
   `is_show` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否显示，默认显示',
   PRIMARY KEY (`brand_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_brand
 -- ----------------------------
-INSERT INTO `cz_brand` VALUES ('1', '耐克', 'nike男鞋', 'www.nike.cn', './Public/Uploads/2016-04-10/570a13c2d0622.gif', '50', '1');
+INSERT INTO `cz_brand` VALUES ('1', '耐克', 'nike男鞋', 'www.nike.cn', './Public/Uploads/2016-04-10/570a13c2d0622.gif', '255', '1');
+INSERT INTO `cz_brand` VALUES ('2', '安踏', '安踏，永不止步', 'www.anta.com', './Public/Uploads/2016-08-23/57bbc15a66ca6.jpg', '50', '1');
 
 -- ----------------------------
 -- Table structure for cz_cart
@@ -137,7 +138,7 @@ CREATE TABLE `cz_category` (
   `is_show` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否显示，默认显示',
   PRIMARY KEY (`cat_id`),
   KEY `pid` (`parent_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_category
@@ -222,7 +223,7 @@ CREATE TABLE `cz_goods` (
   KEY `cat_id` (`cat_id`),
   KEY `brand_id` (`brand_id`),
   KEY `type_id` (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_goods
@@ -230,11 +231,7 @@ CREATE TABLE `cz_goods` (
 INSERT INTO `cz_goods` VALUES ('3', '123456', '衬衫1', '', '', '0', '0', '3612.00', '3010.00', '1000.00', '2009', '2014', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '4', '0', '0', '0', '1', '1', '1', '1', '1470987409');
 INSERT INTO `cz_goods` VALUES ('4', '156645', '短袖', '', '', '0', '0', '3612.00', '3010.00', '1000.00', '2009', '2014', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '4', '0', '0', '0', '1', '1', '1', '1', '1470987442');
 INSERT INTO `cz_goods` VALUES ('5', '156644', '心里大师', '心灵的震撼', '', '8', '1', '3612.00', '3010.00', '1000.00', '0', '0', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '4', '0', '0', '0', '1', '1', '1', '1', '1470291541');
-INSERT INTO `cz_goods` VALUES ('8', '585925', '电脑', '超震撼炫酷笔记本', '', '5', '1', '3612.00', '3010.00', '1000.00', '2009', '2014', './Public/Uploads/2016-08-09/57a94a4c3da59.jpg', '4', '0', '0', '0', '1', '1', '1', '1', '1470712396');
-INSERT INTO `cz_goods` VALUES ('9', '1234561', '衬衫1', '', '', '0', '0', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '4', '0', '0', '0', '1', '1', '1', '1', '1470986850');
-INSERT INTO `cz_goods` VALUES ('10', '123456', '衬衫2', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
 INSERT INTO `cz_goods` VALUES ('11', '123456', '衬衫3', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
-INSERT INTO `cz_goods` VALUES ('12', '123456', '衬衫4', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
 INSERT INTO `cz_goods` VALUES ('13', '123456', '衬衫', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
 INSERT INTO `cz_goods` VALUES ('133', '123456', '衬衫', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
 INSERT INTO `cz_goods` VALUES ('134', '123456', '衬衫', 'OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417', '&lt;p&gt;&amp;nbsp;士大夫阿三阿斯蒂芬&lt;/p&gt;', '4', '1', '3612.00', '3010.00', '0.00', '2009', '2014', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '100', '0', '0', '0', '1', '1', '1', '1', '1460281468');
@@ -274,7 +271,7 @@ CREATE TABLE `cz_goods_thumb` (
   `thumb_time` int(10) NOT NULL COMMENT '创建时间',
   `goods_sn` int(11) NOT NULL,
   PRIMARY KEY (`thumb_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_goods_thumb
@@ -290,6 +287,8 @@ INSERT INTO `cz_goods_thumb` VALUES ('58', './Public/Uploads/thumb/2016/08/12/15
 INSERT INTO `cz_goods_thumb` VALUES ('59', './Public/Uploads/thumb/2016/08/12/15/37/22/57ad7cb2571bc.png', '1470987442', '156645');
 INSERT INTO `cz_goods_thumb` VALUES ('60', './Public/Uploads/thumb/2016/08/12/15/37/22/57ad7cb2575e6.png', '1470987442', '156645');
 INSERT INTO `cz_goods_thumb` VALUES ('61', './Public/Uploads/thumb/2016/08/12/15/37/22/57ad7cb257c59.png', '1470987442', '156645');
+INSERT INTO `cz_goods_thumb` VALUES ('62', './Public/Uploads/thumb/2016/08/23/16/40/00/57bc0be03ba0e.jpg', '1471941600', '1785278');
+INSERT INTO `cz_goods_thumb` VALUES ('63', './Public/Uploads/thumb/2016/08/23/16/40/00/57bc0be0407c1.jpg', '1471941600', '1785278');
 
 -- ----------------------------
 -- Table structure for cz_goods_type
@@ -299,7 +298,7 @@ CREATE TABLE `cz_goods_type` (
   `type_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '商品类型ID',
   `type_name` varchar(50) NOT NULL DEFAULT '' COMMENT '商品类型名称',
   PRIMARY KEY (`type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_goods_type
@@ -351,7 +350,6 @@ INSERT INTO `cz_menu` VALUES ('1', '0', '商品管理', '', null, null, 'collaps
 INSERT INTO `cz_menu` VALUES ('2', '0', '订单管理', null, null, null, 'collapseTwo', '&#xe6e5;');
 INSERT INTO `cz_menu` VALUES ('3', '0', '用户列表', null, null, null, 'collapseThree', '&#xe666;');
 INSERT INTO `cz_menu` VALUES ('4', '1', '商品类型', '/shop/index.php/Admin', 'index', 'Type', 'list-group-item', '');
-INSERT INTO `cz_menu` VALUES ('5', '1', '添加新商品', '/shop/index.php/Admin', 'add', 'Goods', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('6', '1', '商品列表', '/shop/index.php/Admin', 'index', 'Goods', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('7', '1', '商品分类', '/shop/index.php/Admin', 'index', 'Category', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('8', '2', '订单列表', '/shop/index.php/Admin', 'index', 'Order', 'list-group-item', null);
