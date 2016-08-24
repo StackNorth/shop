@@ -26,7 +26,7 @@
 </head>
 <body>
     <!-- top start-->
-      <div class="navbar navbar-inverse navbar-fixed-top head" role="navigation" >
+	    <div class="navbar navbar-inverse navbar-fixed-top head" role="navigation" >
         <div class="navbar-header">
             　<!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -36,13 +36,13 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
-            <a href="##" class="navbar-brand">mys<i class="iconfont" style="#000;font-size: 24px;">&#xe601;</i>op</a>
+            <a href="/shop/index.php/Admin/Index/index" class="navbar-brand">mys<i class="iconfont" style="#000;font-size: 24px;">&#xe601;</i>op</a>
         </div>
         <!-- 屏幕宽度小于768px时，div.navbar-responsive-collapse容器里的内容都会隐藏，显示icon-bar图标，当点击icon-bar图标时，再展开。屏幕大于768px时，默认显示。 -->
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav pull-right">
-                <li ><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()">刷新&nbsp;<i class="iconfont">&#xe665;</i></a></li>
-                <li><a href="#">管理员&nbsp;<i class="iconfont">&#xf003f;</i></a></li>
+                <li ><a href="javascript:window.document.location.reload()">刷新&nbsp;<i class="iconfont">&#xe665;</i></a></li>
+                <li><a href="/shop/index.php/Admin/User/index">管理员&nbsp;<i class="iconfont">&#xf003f;</i></a></li>
                 <li><a href="#">帮助&nbsp;<i class="iconfont">&#xf0012;</i></a></li>
                 <li><a href="/shop/index.php/Admin/Index/clearCache" target="main-frame" class="fix-submenu">清除缓存</a></li>
             </ul>
@@ -94,7 +94,7 @@
                <div class="row-fluid">
                     <div class="content" style="margin-left: 0;">
                         <div class="row-fluid">
-                          <!-- start -->
+                        	<!-- start -->
                             <div class="modal-title">
                                 后台管理
                             </div>
@@ -106,40 +106,49 @@
                                     </li>
                                      <li>
                                         <span class="divider"></span>
-                                        <a href="#">新建商品类型</a>
+                                        <?php if($user == 1): ?>用户列表<?php else: ?>管理员列表<?php endif; ?>
                                     </li> 
+                                    <li style="float: right">
+                                    	<?php if($user == 1): ?><a href="/shop/index.php/Admin/User/addUser"> 添加用户<?php else: ?><a href="/shop/index.php/Admin/User/addAdmin">添加管理员<?php endif; ?></a>
+                                    </li>
                                 </ul>
                             </div>
-                          <!-- end -->
-                      
-                          <!-- form start -->
+								  <!-- start goods list -->
+							<!-- <form action="search"  method="post" class="form-search">
+    <label class="control-label" for=""></label>
+    <input type="text" name="keyword" class="input-medium search-query">
+    <button type="submit" class="btn btn-sm btn-danger">查询</button>
+</form>
 
-                          <form action="" method="post" name="theForm">
-                            <table align="center">
-
-                              <tbody>
-                          
-                                <tr>
-                                  <td>商品类型名称:</td>
-                                  <td><input type="text" name="type_name" value="<?php echo ($type["type_name"]); ?>" size="40"></td> 
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><input type="submit" value=" 确定 " class="button">
-                                        <input type="reset"  value=" 重置 " class="button">
-                                        <input type="hidden" name="type_id" value="<?php echo ($type["type_id"]); ?>" size="40">
-                                    </td>
-                                </tr>
-                              </tbody>
-                            </table>  
-
-
-
-                           
-                          </form>                           
-
-
-                          <!-- end -->
+ -->
+							<div class="container-fluid">
+								<table class="table table-bordered table-hover">
+									<tbody>
+										<tr>
+											<th>编号</th>
+											<th>用户名</th>
+											<th>邮箱</th>
+											<th>操作</th>
+										</tr>
+										<tr></tr>
+										<?php if(is_array($admins)): $i = 0; $__LIST__ = $admins;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+											<td align="center"><?php if($user == 1): echo ($vo["user_id"]); else: echo ($vo["admin_id"]); endif; ?></td>
+											<td class="first-cell" align="center"><span><?php if($user == 1): echo ($vo["user_name"]); else: echo ($vo["admin_name"]); endif; ?></span></td>
+											<td align="center"><span ><?php echo ($vo["email"]); ?></span></td>
+											<td align="center">
+												<a href="
+												<?php if($user != 1): ?>/shop/index.php/Admin/User/editAdmin/admin_id/<?php echo ($vo["admin_id"]); else: ?>
+												/shop/index.php/Admin/User/editUser/user_id/<?php echo ($vo["user_id"]); endif; ?>
+												" title="编辑"><img src="<?php echo (ADMIN_PUBLIC); ?>/images/icon_edit.gif" width="16" height="16" border="0"></a>
+												<a href="/shop/index.php/Admin/User/delete/admin_id/<?php echo ($vo["admin_id"]); ?>" onclick="javascript:return confirm('你确认要删除吗？')" title="删除"><img src="<?php echo (ADMIN_PUBLIC); ?>/images/icon_trash.gif" width="16" height="16" border="0"></a> 
+												      
+											</td>
+											
+										</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+										
+								</tbody>
+							</table>
+							<!-- end -->
                         </div>
                     </div>
                </div>
@@ -158,7 +167,10 @@
             Copyright © 2016 imooc.com All Rights Reserved | 京ICP备 13046642号-2
         </div>
     </div>
-  <!-- end -->
+	<!-- end -->
 
 </body>
+<script type="text/javascript">
+	<?php echo ($error); ?>
+</script>
 </html>

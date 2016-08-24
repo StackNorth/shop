@@ -36,13 +36,13 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
-            <a href="##" class="navbar-brand">mys<i class="iconfont" style="#000;font-size: 24px;">&#xe601;</i>op</a>
+            <a href="/shop/index.php/Admin/Index/index" class="navbar-brand">mys<i class="iconfont" style="#000;font-size: 24px;">&#xe601;</i>op</a>
         </div>
         <!-- 屏幕宽度小于768px时，div.navbar-responsive-collapse容器里的内容都会隐藏，显示icon-bar图标，当点击icon-bar图标时，再展开。屏幕大于768px时，默认显示。 -->
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav pull-right">
-                <li ><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()">刷新&nbsp;<i class="iconfont">&#xe665;</i></a></li>
-                <li><a href="#">管理员&nbsp;<i class="iconfont">&#xf003f;</i></a></li>
+                <li ><a href="javascript:window.document.location.reload()">刷新&nbsp;<i class="iconfont">&#xe665;</i></a></li>
+                <li><a href="/shop/index.php/Admin/User/index">管理员&nbsp;<i class="iconfont">&#xf003f;</i></a></li>
                 <li><a href="#">帮助&nbsp;<i class="iconfont">&#xf0012;</i></a></li>
                 <li><a href="/shop/index.php/Admin/Index/clearCache" target="main-frame" class="fix-submenu">清除缓存</a></li>
             </ul>

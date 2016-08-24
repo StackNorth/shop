@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class BaseController extends Controller {
+class BaseController extends EmptyController {
 	//构造方法
 	public function __construct(){
 		parent::__construct(); //一定要调用父类的构造方法
@@ -9,6 +9,8 @@ class BaseController extends Controller {
 		$this->_initMenu();
 
 	}
+
+
 	public function _initMenu() {
         $datas = D('menu')->menuTree();
        

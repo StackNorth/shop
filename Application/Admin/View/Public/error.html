@@ -9,11 +9,11 @@
 <body style="background-color: rgb(101,108,116);">
 <div class="container-fluid text-center">
     <div style="min-height: 760px;">
-        <img src="{$Think.const.ADMIN_PUBLIC}/images/error.jpg" class="img-responsive center-block" style="margin-top: 8%;">
-        <div style="margin-top: 2%;">
+        <img src="{$Think.const.ADMIN_PUBLIC}/images/error.jpg" class="img-responsive center-block" style="margin-top: 8%;margin-left: 40%">
+        <div style="margin-top: 2%;margin-left:40%">
             <span style="font-size: 24px;font-weight: bold;color: rgb(178,178,178);"> <?php echo($error); ?>！</span>
         </div>
-        <div style="font-size: 20px;padding-top: 2%;color: rgb(178,178,178);">
+        <div style="font-size: 20px;padding-top: 2%;padding-left: 40%;color: rgb(178,178,178);">
             <p><b id="wait"><?php echo($waitSecond); ?></b> 秒后页面将自动跳转</p>
             <p><a id="href" id="btn-now" href="<?php echo($jumpUrl); ?>">立即跳转</a> </p>
         </div>
