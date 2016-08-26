@@ -87,7 +87,6 @@ class AttributeController extends BaseController {
 	//删除属性
 	public function delete(){
 		$id = I('id',0,'int');
-
 		if (M('attribute')->where('attr_id = '.$id)->delete()){
 			$this->success('属性删除成功',U('Type/index'),2);
 			return ;

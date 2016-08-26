@@ -91,11 +91,7 @@ class UserController extends BaseController {
 				$this->customer();
 				return ;
 			}
-		}
-
-		
-		
-		
+		}	
 		$this->display('index');
 
 	}

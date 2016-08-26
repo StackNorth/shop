@@ -7,6 +7,7 @@ class LoginController extends Controller {
 	public function login(){
 
 		if (IS_POST) {
+			$rememberMe = I('post.rememberMe');
 			
 			//获取验证码、用户名和密码
 			$username = I('username');
@@ -22,7 +23,8 @@ class LoginController extends Controller {
 			
 			//再来检查用户名和密码,调用模型来完成
 			if (D('admin')->checkUser($username,$password)) {
-				if (I('post.remember') == 1) {
+				//记住账号密码
+				if ($rememberMe == 'on') {
 					cookie('username',I('post.username'),3600 * 24 * 7);
 					cookie('password',I('post.password'),3600 * 24 * 7);
 				} 	

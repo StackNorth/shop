@@ -44,6 +44,7 @@
 .shop_gwc_bd_contents table tfoot td div.gwc_foot_links a.go{font-size: 14px;font-weight: 600;line-height: 24px;color: #555;background: #FBFBFB;display: inline-block;height: 24px;padding: 4px 12px;border: solid 1px #E7E7E7;border-radius: 5px;}
 .shop_gwc_bd_contents table tfoot td div.gwc_foot_links a.op:hover{text-decoration: none; background-color:#FF6600;}
 .shop_gwc_bd_contents table tfoot td div.gwc_foot_links a.go:hover{text-decoration: none; background-color:#F1F1F1;}
+.shop_gwc_bd_contents table tfoot td div.gwc_foot_links form.op{ background: none repeat scroll 0 0 #FE8502; border: 1px solid #FF6633; border-radius: 5px 5px 5px 5px; color: #FFFFFF !important; display: inline-block; font-size: 14px; font-weight: 600; height: 24px; line-height: 24px; padding: 4px 12px;}
 
 /*补充- 购物车为空 的css */
 .empty_cart{width:998px; height:98px; border:1px solid #ddd;border-radius:4px;}

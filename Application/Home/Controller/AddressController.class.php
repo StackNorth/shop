@@ -16,30 +16,10 @@ class AddressController extends BaseController {
 		$user_id = $_SESSION['user']['user_id'];
 		$address = M('address')->where('user_id = '.$user_id)->select();
 		//加载用户的收货地址
-		$region = M('region');
-		foreach($address as $k =>$v) {
-			foreach ($v as $key => $value) {
-				switch($key) {
-					case 'province':
-						$address[$k]['province'] = $region->where("region_id = '$value'")->getField('region_name');break;
-
-					case 'city':
-						$address[$k]['city'] = $region->where("region_id = '$value'")->getField('region_name');
-					break;
-
-					case 'district':
-						$address[$k]['district'] = $region->where("region_id = '$value'")->getField('region_name');
-					break;
-				}
-			}
-			
-		}
+		$address = $this->getAddress($address);
 		//获取省
 		
 		$this->assign('address',$address);
-		
-		
-
 		$this->display();
 	}
 
@@ -128,15 +108,7 @@ class AddressController extends BaseController {
 		}
 	}
 
+	
 
-
-	/**
-	 * 获取地区三级联动信息
-	 * @return [type] [description]
-	 */
-	public function getProvince(){
-		$region = M('region');
-		$province = $region->where('parent_id = 0')->select();
-		$this->assign('province',$province);	
-	}
+	
 }

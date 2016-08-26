@@ -20,7 +20,7 @@
 	 * Demo：
 	 * jQuery(".shop_good_delete").goodDelete({zid:'good_zongjia',xclass:'good_xiaojis'});
 	 */
-	jQuery.fn.goodDelete = function(options){
+	/*jQuery.fn.goodDelete = function(options){
 		var defaults = {
 			Event : "click",
 			zid : 'goods_zongjia',
@@ -32,11 +32,15 @@
 		obj.live(options.Event,function(e){
 			if(confirm('确认删除该商品吗？')){
 				jQuery(this).closest('tr').hide('1000').remove();
+				alert(document.getElementById('goods_id').value);
+				return false;
+				location.href = "	delete/id/"+document.getElementById('goods_id').value;
 				goods_zongjia(options.zid,options.xclass);
+
 			}
 			
 		});
-	};
+	};*/
 	
 	/**
 	 * 购物车数量加减
@@ -144,12 +148,12 @@
 	* 
 	* Demo: goods_zongjia(options.zid,options.xclass);
 	*/
-	function goods_zongjia(zid,xclass){
+	/*function goods_zongjia(zid,xclass){
 		var zongjia = 0.00;
 		jQuery('.'+xclass).each(function(){
 			zongjia += parseFloat(jQuery(this).text());
 		});
 		jQuery('#'+zid).text(zongjia.toFixed(2));
 	}
-	 
+	 */
  });

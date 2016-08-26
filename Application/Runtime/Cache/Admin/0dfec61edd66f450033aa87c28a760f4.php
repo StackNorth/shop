@@ -1,13 +1,13 @@
-
+<?php if (!defined('THINK_PATH')) exit();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>myshop</title>
-    <link rel="stylesheet" href="{$Think.const.ADMIN_PUBLIC}/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="{$Think.const.ADMIN_PUBLIC}/styles/swiper.min.css">
-    <link rel="stylesheet" href="{$Think.const.ADMIN_PUBLIC}/styles/login.css">
+    <link rel="stylesheet" href="<?php echo (ADMIN_PUBLIC); ?>/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo (ADMIN_PUBLIC); ?>/styles/swiper.min.css">
+    <link rel="stylesheet" href="<?php echo (ADMIN_PUBLIC); ?>/styles/login.css">
 </head>
 
 <body>
@@ -20,10 +20,10 @@
         <div class="col-sm-7 col-md-7 col-lg-7">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image:url({$Think.const.ADMIN_PUBLIC}/images/img1.jpg)"></div>
-                    <div class="swiper-slide" style="background-image:url({$Think.const.ADMIN_PUBLIC}/images/img2.png)"></div>
-                    <div class="swiper-slide" style="background-image:url({$Think.const.ADMIN_PUBLIC}/images/img3.jpg"></div>
-                    <div class="swiper-slide" style="background-image:url({$Think.const.ADMIN_PUBLIC}/images/img4.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(<?php echo (ADMIN_PUBLIC); ?>/images/img1.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(<?php echo (ADMIN_PUBLIC); ?>/images/img2.png)"></div>
+                    <div class="swiper-slide" style="background-image:url(<?php echo (ADMIN_PUBLIC); ?>/images/img3.jpg"></div>
+                    <div class="swiper-slide" style="background-image:url(<?php echo (ADMIN_PUBLIC); ?>/images/img4.jpg)"></div>
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -85,8 +85,8 @@
 
 
 
-<script src="{$Think.const.ADMIN_PUBLIC}/js/swiper.min.js"></script>
-<script src="{$Think.const.ADMIN_PUBLIC}/js/login.js"></script>
+<script src="<?php echo (ADMIN_PUBLIC); ?>/js/swiper.min.js"></script>
+<script src="<?php echo (ADMIN_PUBLIC); ?>/js/login.js"></script>
 
 </body>
 </html>

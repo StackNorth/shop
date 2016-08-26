@@ -2,15 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>商品详细页面</title>
+	<title>商品列表页</title>
 	<link rel="stylesheet" href="/shop/Public/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="/shop/Public/css/shop_list.css" type="text/css" />
-    <link rel="stylesheet" href="/shop/Public/css/shop_goods.css" type="text/css" />
+    <link rel="stylesheet" href="/shop/Public/css/shop_list.css" type="text/css" />
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
-    <script type="text/javascript" src="/shop/Public/js/shop_goods.js" ></script>
+    <script type="text/javascript" src="/shop/Public/js/shop_list.js" ></script>
 </head>
 <body>
 	<!-- Header  -wll-2013/03/24 -->
@@ -20,11 +19,11 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Goods/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="/shop/index.php/Home/Category/index">XXXX商城</a></b>
 					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
 						<?php else: ?>
 						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
-						[<a href="/shop/index.php/Home/Goods/logout">退出</a>]<?php endif; ?>
+						[<a href="/shop/index.php/Home/Category/logout">退出</a>]<?php endif; ?>
 
 				</p>
 
@@ -176,135 +175,20 @@
 		<strong>当前位置：</strong>
 		<span>
 			<a href="/shop/index.php/Home/Index/index">首页</a>&nbsp;›&nbsp;
-			<?php if(is_array($parentCats)): $i = 0; $__LIST__ = $parentCats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo["cat_id"]); ?>">
-					<?php echo ($vo["cat_name"]); ?></a> <?php if($i != count($parentCats)): ?>&nbsp;›&nbsp;<?php endif; endforeach; endif; else: echo "" ;endif; ?>
+			<?php if(is_array($parentCats)): $i = 0; $__LIST__ = $parentCats;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><!-- <a href="/shop/index.php/Home/Category/index/id/<?php echo ($vo["cat_id"]); ?>"> -->
+					<?php echo ($vo["cat_name"]); ?></a> <?php if($i != count($parentCats)): ?>&nbsp;›&nbsp;<?php endif; ?>
+				</if><?php endforeach; endif; else: echo "" ;endif; ?>
 		</span>
 	</div>
 	<div class="clear"></div>
 	<!-- 面包屑 End -->
 
 	<!-- Header End -->
+	<div class="shop_bd clearfix">
+
+	<!-- List Body 2013/03/27 -->
 	
-	<!-- Goods Body -->
-	<div class="shop_goods_bd clear">
-
-		<!-- 商品展示 -->
-		<div class="shop_goods_show">
-			<div class="shop_goods_show_left">
-				<!-- 京东商品展示 -->
-				<link rel="stylesheet" href="/shop/Public/css/shop_goodPic.css" type="text/css" />
-				<script type="text/javascript" src="/shop/Public/js/shop_goodPic_base.js"></script>
-				<script type="text/javascript" src="/shop/Public/js/lib.js"></script>
-				<script type="text/javascript" src="/shop/Public/js/163css.js"></script>
-				<div id="preview">
-					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="/shop/<?php echo ($goods["goods_img"]); ?>" jqimg="/shop/<?php echo ($goods["goods_img"]); ?>" width="350">
-						</div>
-						<div id="spec-n5">
-							<div class=control id="spec-left">
-								<img src="/shop/Public/images/left.gif" />
-							</div>
-							<div id="spec-list">
-								<ul class="list-h">
-									
-									<?php if(is_array($goodsThumbs)): $i = 0; $__LIST__ = $goodsThumbs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$goodsThumb): $mod = ($i % 2 );++$i;?><li><img src="/shop<?php echo ($goodsThumb["thumb_img"]); ?>"> </li><?php endforeach; endif; else: echo "" ;endif; ?>
-																		
-								</ul>
-							</div>
-							<div class=control id="spec-right">
-								<img src="/shop/Public/images/right.gif" />
-							</div>
-							
-					    </div>
-					</div>
-
-					<SCRIPT type=text/javascript>
-						$(function(){			
-						   $(".jqzoom").jqueryzoom({
-								xzoom:400,
-								yzoom:400,
-								offset:10,
-								position:"right",
-								preload:1,
-								lens:1
-							});
-							$("#spec-list").jdMarquee({
-								deriction:"left",
-								width:350,
-								height:56,
-								step:2,
-								speed:4,
-								delay:10,
-								control:true,
-								_front:"#spec-right",
-								_back:"#spec-left"
-							});
-							$("#spec-list img").bind("mouseover",function(){
-								var src=$(this).attr("src");
-								$("#spec-n1 img").eq(0).attr({
-									src:src.replace("\/n5\/","\/n1\/"),
-									jqimg:src.replace("\/n5\/","\/n0\/")
-								});
-								$(this).css({
-									"border":"2px solid #ff6600",
-									"padding":"1px"
-								});
-							}).bind("mouseout",function(){
-								$(this).css({
-									"border":"1px solid #ccc",
-									"padding":"2px"
-								});
-							});				
-						})
-						</SCRIPT>
-					<!-- 京东商品展示 End -->
-
-			</div>
-			<form action="<?php echo U('User/shoppingCat');?>" method="post" id="form">
-				<input type="hidden" name="goods_id" value="<?php echo ($goods["goods_id"]); ?>">
-				<input type="hidden" name="goods_img" value="<?php echo ($goods["goods_img"]); ?>">
-				<div class="shop_goods_show_right">
-					<ul>
-						
-						<li><label>
-							<strong style="font-size:14px; font-weight:bold;"><?php echo ($goods["goods_name"]); ?></strong></label>
-							<input type="hidden" name="goods_name" value="<?php echo ($goods["goods_name"]); ?>">
-						</li>
-						<li>
-		 					<label>价格：</label>
-							<span><strong><?php echo ($goods["shop_price"]); ?></strong>元</span>
-							<input type="hidden" name="shop_price" value="<?php echo ($goods["shop_price"]); ?>">
-						</li>
-						<li>
-							<label>运费：</label>
-							<span>卖家承担运费</span>
-						</li>
-						<!-- <li>
-							<label>累计售出：</label>
-							<span><?php echo ($goods["goods_number"]); ?></span>
-						</li>-->
-						<li>
-							<label>付款方式：</label>
-							<span>货到付款</span>
-						</li> 
-						<li class="goods_num">
-							<label>购买数量：</label>
-							<span><a class="good_num_jian" id="good_num_jian" href="javascript:void(0);"></a><input type="text" value="1" id="good_nums" name="goods_nums" class="good_nums" /><a href="javascript:void(0);" id="good_num_jia" class="good_num_jia"></a>(当前库存<?php echo ($goods["goods_number"]); ?>件)</span>
-						</li>
-						<li style="padding:20px 0;">
-							<label>&nbsp;</label>
-							<span><input type="submit" value="加入购物车" class="goods_sub goods_sub_gou" ></span>
-						</li>
-					</ul>
-
-				</div>
-			</form>
-		</div>
-
-		<!-- 商品展示 End -->
-
-		<div class="clear mt15"></div>
-		<!-- Goods Left -->
-		<div class="shop_bd_list_left clearfix">
+	<div class="shop_bd_list_left clearfix">
 			<!-- 左边商品分类 -->
 			<div class="shop_bd_list_bk clearfix">
 				<div class="title">商品分类</div>
@@ -342,34 +226,128 @@
 
 		</div>
 		
+		
+	<div class="shop_bd_list_right clearfix">
+			<!-- 条件筛选框 -->
+			<!-- <div class="module_filter">
+				<div class="module_filter_line">
+					<dl>
+						<dt>尺码：</dt>
+						<dd>
+							<span><a href="">XXS</a></span>
+							<span><a href="">XS</a></span>
+							<span><a href="">S</a></span>
+							<span><a href="">M</a></span>
+							<span><a href="">L</a></span>
+							<span><a href="">XL</a></span>
+							<span><a href="">XXL</a></span>
+							<span><a href="">XXXL</a></span>
+							<span><a href="">加大XXXL</a></span>
+							<span><a href="">均码</a></span>
+						</dd>
+					</dl>
+			
+					<dl>
+						<dt>品牌：</dt>
+						<dd>
+							<span><a href="">彪马</a></span>
+							<span><a href="">安踏</a></span>
+							<span><a href="">阿迪达斯</a></span>
+							<span><a href="">李宁</a></span>
+							<span><a href="">匡威</a></span>
+							<span><a href="">耐克</a></span>
+							<span><a href="">卡帕</a></span>
+							<span><a href="">鸿星尔克</a></span>
+							<span><a href="">沃特</a></span>
+							<span><a href="">垃圾</a></span>
+						</dd>
+					</dl>
+			
+					<dl>
+						<dt>款式：</dt>
+						<dd>
+							<span><a href="">长袖</a></span>
+							<span><a href="">短袖</a></span>
+							<span><a href="">无袖</a></span>
+							<span><a href="">两件套</a></span>
+							<span><a href="">宽松</a></span>
+							
+						</dd>
+					</dl>
+			
+					<dl>
+						<dt>材质：</dt>
+						<dd>
+							<span><a href="">纯棉</a></span>
+							<span><a href="">真丝</a></span>
+							<span><a href="">聚酯</a></span>
+							<span><a href="">棉+氨纶</a></span>
+							<span><a href="">卡莱</a></span>
+							<span><a href="">人造棉</a></span>
+							<span><a href="">其它</a></span>
+						</dd>
+					</dl>
+			
+			
+				</div>
+				<div class="bottom"></div>
+			</div> -->
+			<!-- 条件筛选框 -->
 
-		<!-- 商品详情 -->
-		<script type="text/javascript" src="/shop/Public/js/shop_goods_tab.js"></script>
-		<div class="shop_goods_bd_xiangqing clearfix">
-			<div class="shop_goods_bd_xiangqing_tab">
+			<!-- 显示菜单 -->
+			<!-- <div class="sort-bar">
+				<div class="bar-l"> 
+					            查看方式S
+					            <div class="switch"><span class="selected"><a title="以方格显示" ecvalue="squares" nc_type="display_mode" class="pm" href="javascript:void(0)">大图</a></span><span style="border-left:none;"><a title="以列表显示" ecvalue="list" nc_type="display_mode" class="lm" href="javascript:void(0)">列表</a></span></div>
+					            查看方式E 
+					            排序方式S
+					            <ul class="array">
+					              <li class="selected"><a title="默认排序" class="nobg" href="javascript:void(0)">默认</a></li>
+					              <li><a title="点击按销量从高到低排序" onclick="javascript:replaceParam('sale');" href="javascript:void(0)">销量</a></li>
+					              <li><a title="点击按人气从高到低排序" onclick="javascript:replaceParam('click');" href="javascript:void(0)">人气</a></li>
+					              <li><a title="点击按信用从高到低排序" onclick="javascript:replaceParam('credit');" href="javascript:void(0)">信用</a></li>
+					              <li><a title="点击按价格从高到低排序" onclick="replaceParam('price');" href="javascript:void(0)">价格</a></li>
+					            </ul>
+					            排序方式E 
+					            价格段S
+					            <div class="prices"> <em>¥</em>
+					              <input type="text" value="" class="w30">
+					              <em>-</em>
+					              <input type="text" value="" class="w30">
+					              <input type="submit" value="确认" id="search_by_price">
+					            </div>
+					            价格段E 
+					          </div>
+			</div>
+			<div class="clear"></div>
+			显示菜单 End -->
+
+			<!-- 商品列表 -->
+			<div class="shop_bd_list_content clearfix">
 				<ul>
-					<li id="xiangqing_tab_1" onmouseover="shop_goods_easytabs('1', '1');" onfocus="shop_goods_easytabs('1', '1');" onclick="return false;"><a href=""><span>商品详情</span></a></li>
-					<li id="xiangqing_tab_2" onmouseover="shop_goods_easytabs('1', '2');" onfocus="shop_goods_easytabs('1', '2');" onclick="return false;"><a href=""><span>商品评论</span></a></li>
-					<li id="xiangqing_tab_3" onmouseover="shop_goods_easytabs('1', '3');" onfocus="shop_goods_easytabs('1', '3');" onclick="return false;"><a href=""><span>商品咨询</span></a></li>
+				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$good): $mod = ($i % 2 );++$i;?><li>
+						<dl>
+							<dt><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><img src="/shop/<?php echo ($good["goods_img"]); ?>" /></a></dt>
+							<dd class="title"><a href="/shop/index.php/Home/Goods/index/id/<?php echo ($good["goods_id"]); ?>"><?php echo ($good["goods_brief"]); ?></a></dd>
+							<dd class="content">
+								<span class="goods_jiage">￥<strong><?php echo ($good["shop_price"]); ?></strong></span>
+							</dd>
+						</dl>
+					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
-			<div class="shop_goods_bd_xiangqing_content clearfix">
-				<div id="xiangqing_content_1" class="xiangqing_contents clearfix">
-					<p><?php echo ($goods["goods_desc"]); ?></p>
-				</div>
-				<div id="xiangqing_content_2" class="xiangqing_contents clearfix">
-					<p>商品评论----22222</p>
-				</div>
-
-				<div id="xiangqing_content_3" class="xiangqing_contents clearfix">
-					<p>商品自诩---3333</p>
-				</div>
+			<div class="clear"></div>
+			<div class="pagination" > 
+				<ul >
+					<li><span class="currentpage"><?php echo ($page); ?></span></li>
+				</ul> 
 			</div>
-		</div>
-		<!-- 商品详情 End -->
+			<!-- 商品列表 End -->
 
+
+		</div>
 	</div>
-	<!-- Goods Body End -->
+	<!-- List Body End -->
 
 	<!-- Footer - wll - 2013/3/24 -->
 	<!-- Footer - wll - 2013/3/24 -->
@@ -389,10 +367,22 @@
         </div>
 	<!-- Footer End -->
 	<!-- Footer End -->
-
+	
 </body>
-<script type="text/javascript">
 
-
-</script>
 </html>
+
+<!--
+					<li>
+						<dl>
+							<dt><a href=""><img src="/shop/Public/images/21151da3bdefc6d9a7120c991fe59800.jpg_small.jpg" /></a></dt>
+							<dd class="title"><a href="">OCIAIZO春装水洗做旧短外套复古磨白短款牛仔外套春01C1417</a></dd>
+							<dd class="content">
+								<span class="goods_jiage">￥<strong>249.00</strong></span>
+								<span class="goods_chengjiao">最近成交5笔</span>
+							</dd>
+						</dl>
+					</li>
+
+				
+-->
