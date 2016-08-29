@@ -5,7 +5,7 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="__CONTROLLER__/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="__MODULE__/Index/index">XXXX商城</a></b>
 					<if condition="$Think.session.user eq null">
 						[<a href="__MODULE__/Login/index">登录</a>][<a href="__MODULE__/Register/index">注册</a>]
 						<else />
@@ -104,7 +104,7 @@
 
 <!-- TopHeader Center -->
 <div class="shop_hd_header">
-	<div class="shop_hd_header_logo"><h1 class="logo"><a href="/"><img src="__PUBLIC__/images//logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
+	<div class="shop_hd_header_logo"><h1 class="logo"><a href="{:U(Index/index)}"><img src="__PUBLIC__/images//logo.png" alt="ShopCZ" /></a><span>ShopCZ</span></h1></div>
 	<div class="shop_hd_header_search">
 		<ul class="shop_hd_header_search_tab">
 			<li id="search" class="current">商品</li>

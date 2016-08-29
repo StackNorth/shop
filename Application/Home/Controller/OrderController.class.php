@@ -14,7 +14,7 @@ class OrderController extends BaseController {
 		$address = M('address')->where('user_id = '.$user_id)->select();
 		//加载用户的收货地址
 		$address = $this->getAddress($address);
-
+		
 		$this->goodsNum();
 		
 		//获取省
@@ -54,22 +54,55 @@ class OrderController extends BaseController {
 	 * @return [type] [description]
 	 */
 	public function checkout(){
-		dump(I('post.'));
-		dump($_SESSION['user']['shoppingCat']);
-		$data['order_sn']  =  rand(0,999999999999);
-		$data['user_id'] = $_SESSION['user']['user_id'];
+		
+		$data['order_sn']  =  rand(1000000000,9999999999);//订单id
+		$data['user_id'] = $_SESSION['user']['user_id'];//用户id
+		$data['address_id'] = I('address');//收获地址id
+		$data['order_status'] = '待付款';//订单状态 代发货
 
+		$data['postscripts'] = '空运';
+		$data['shipping'] = '韵达';//送货方式
+		$data['pay'] = '货到付款';//支付方式
+		$data['order_amount'] = I('totalAll');//订单总金额
+		$data['order_time'] = date("Y-m-d H:i:s");//下单时间
 		$orderModel = D('order');
+
 		// 订单号重复
 		while(!$orderModel->create($data)) {
-			$data['order_sn']  =  rand(0,999999999999);
-		}
+			$data['order_sn']  =  rand(1000000000,9999999999);
+	
+		} 
+
 		//创建成功，添加数据
 		if ($orderModel->add()) {
+			//循环读取session中的商品信息，存储到order_goods表中
+			
+			$order_id = $orderModel->where('order_sn = '.$data['order_sn'])->getField('order_id');
+			foreach($_SESSION['user']['shoppingCat'] as $key => $value) {
+				 $goods['order_id']     = $order_id;//订单id
+				 $goods['goods_id']     = $value['goods_id'];//商品id
+				 $goods['goods_name']   = $value['goods_name'];//商品名称
+				 $goods['goods_img']    = $value['goods_img'];//商品图片url
+				 $goods['shop_price']   = $value['shop_price'];//商品价格
+				 $goods['goods_number'] = $value['goods_nums'];//商品数量
+				 $goods['subtotal']     = $value['total'];	//商品总价
+				
 
+				 if(!M('order_goods')->add($goods)) {
+				 	
+				 	$this->error('商品添加失败');
+				 	
+				 	return ;
+				 }
+			}
+			unset($_SESSION['user']['shoppingCat']);
+			$_SESSION['user']['shopNumber'] = 0;
+			$this->success('下单成功','Index/index');
+		} else {
+			$this->error('订单添加失败');
 		}
-		
 	}
+		
 
 
 	/**

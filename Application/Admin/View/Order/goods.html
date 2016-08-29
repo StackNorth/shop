@@ -47,36 +47,34 @@
                                 <table class="table table-bordered table-hover">
                                   <tbody>
                                     <tr>
+                                      <th>编号</th>
                                       <th>订单号</th>
-                                      <th>用户ID</th>
-                                      <th>地址ID</th>
-                                      <th>订单状态</th>
+                                      <th>商品号</th>
+                                      <th>商品名称</th>
                                       <!-- <th>留言</th> -->
-                                      <th>送货方式</th>
-                                      <th>支付方式</th>
-                                      <th>下单时间</th>
-                                      <th>订单总金额</th>
+                                      <th>商品价格</th>
+                                      <th>购买数量</th>
+                                      <th>商品小计</th>
                                       <th>操作</th>
                                     </tr>
-                                    <volist name="orders" id="vo">
+                                    <volist name="orderGoods" id="vo">
                                       <tr>
-                                        <td>{$vo.order_sn}</td>
-                                        <td align="left" >{$vo.user_id}</td>
-                                        <td align="right">{$vo.address_id}</td>
-                                        <td align="center">{$vo.order_status}</td>
-                                          <td>{$vo.postscripts}</td>
-                                          <td>{$vo.pay}</td>
-                                          <td>{$vo.order_time}</td>
-                                          <td>{$vo.order_amount}</td>
-                                          <td align="center">
-                                            <a href="__CONTROLLER__/edit/id/{$vo.order_id}" title="编辑">编辑</a> |
-                                            <a href="__CONTROLLER__/delete/id/{$vo.order_id}" onclick="javascript:return confirm('你确认要删除吗？')" title="移除">移除</a> 
-                                          </td>
-                                        </tr>
+                                        <td>{$vo.rec_id}</td>
+                                        <td align="left" >{$vo.order_id}</td>
+                                        <td align="right">{$vo.goods_id}</td>
+                                        <td align="center">{$vo.goods_name}</td>
+                                        <td>{$vo.shop_price}</td>
+                                        <td>{$vo.goods_number}</td>
+                                        <td>{$vo.subtotal}</td>
+                                        <td align="center">
+                                          <a href="__CONTROLLER__/goodsEdit/id/{$vo.rec_id}" title="编辑">编辑</a> |
+                                          <a href="__CONTROLLER__/goodsDelete/id/{$vo.rec_id}" onclick="javascript:return confirm('你确认要删除吗？')" title="移除">移除</a> 
+                                        </td>
+                                      </tr>
                                       </volist>
                                       
                                     </tbody></table>
-                                  <include file="Public/page" />
+                                    <include file="Public/page" />
                                     <!-- end brand list -->
                                   </div>
                                 </form>

@@ -69,10 +69,11 @@
 	<div class="shop_gwc_bd clearfix" id="checkOrder" style="display: block">
 		<!-- 在具体实现的时候，根据情况选择其中一种情况 -->
 		<!-- 购物车为空 -->
-		<if condition="$_SESSION['user']['shopNumber'] eq null">
+
+		<if condition="$_SESSION['user']['shopNumber'] eq NULL">
 			<div class="empty_cart mb10">
 				<div class="message">
-					<p>购物车内暂时没有商品，您可以<a href="index.html">去首页</a>挑选喜欢的商品</p>
+					<p>购物车内暂时没有商品，您可以<a href="__MODULE__/Index/index">去首页</a>挑选喜欢的商品</p>
 				</div>
 			</div>
 		</if>
@@ -172,7 +173,7 @@
 				<form action="__CONTROLLER__/checkout" method="post">
 					<ul>
 						<volist name="address" id="vo">
-							<li><label><span><input type="radio" name="address" value="{$vo.address_id}"/></span></label><em>{$vo.province}</em><em>{$vo.city}</em><em>{$vo.district}</em><em>{$vo.street}</em><em>{$vo.consignee}(收)</em><em>{$vo.mobile}</em></li>
+							<li><label><span><input type="radio" name="address" value="{$vo.address_id}" checked="checked" /></span></label><em>{$vo.province}</em><em>{$vo.city}</em><em>{$vo.district}</em><em>{$vo.street}</em><em>{$vo.consignee}(收)</em><em>{$vo.mobile}</em></li>
 						</volist>				
 					</ul>
 				</div>
