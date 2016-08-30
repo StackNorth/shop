@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-24 11:56:35
+Date: 2016-08-30 16:14:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -164,15 +164,70 @@ INSERT INTO `cz_category` VALUES ('14', '毛呢短裤', '3', '无', '50', '件',
 DROP TABLE IF EXISTS `cz_config`;
 CREATE TABLE `cz_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT '链接',
+  `img` varchar(255) DEFAULT NULL COMMENT '图片',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `postion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_config
 -- ----------------------------
-INSERT INTO `cz_config` VALUES ('1', 'cookie_prefix', null);
+INSERT INTO `cz_config` VALUES ('1', 'localhost/shop/', '/public/images/e2dfe57add8fff66ed0964b1effd39b9.jpg', '2011城市主题公园亲子游', 'header');
+INSERT INTO `cz_config` VALUES ('2', 'localhost/shop/', '/public/images/e50b5d398e3b890f08e14defbc71a94d.jpg', '潜入城市周边清幽之地', 'header');
+INSERT INTO `cz_config` VALUES ('3', 'localhost/shop/', '/public/images/196b173f15685a2019ab3396cd1851a4.jpg', '盘点中国最美雪山', 'header');
+INSERT INTO `cz_config` VALUES ('4', 'localhost/shop/', '/public/images/e81345cbc3d8a7e11f9a0e09df68221d.jpg', '2011西安世园会攻略', 'header');
+INSERT INTO `cz_config` VALUES ('5', null, '/public/images/354b80528d2fbeefbab33c563532517e.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('6', null, '/public/images/1d2dfbead590510046a6522551db8139.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('7', null, '/public/images/26247430b09daa1b441b46008bfb6e6e.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('8', null, '/public/images/9c5dee77a6ecdafd9e152fed8c6a4e90.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('9', null, '/public/images/b175883eba95e793affb1b1ebbbf85a5.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('10', null, '/public/images/6e61a1c953e5bc8c5f1ffdac36862245.gif', null, 'footer');
+INSERT INTO `cz_config` VALUES ('11', null, '/public/images/209abd835cd2ce2208f2dc42ba10efb4.gif', null, 'footer');
+
+-- ----------------------------
+-- Table structure for cz_footer
+-- ----------------------------
+DROP TABLE IF EXISTS `cz_footer`;
+CREATE TABLE `cz_footer` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cz_footer
+-- ----------------------------
+INSERT INTO `cz_footer` VALUES ('1', '0', '帮助中心');
+INSERT INTO `cz_footer` VALUES ('2', '0', '支付方式');
+INSERT INTO `cz_footer` VALUES ('3', '0', '售后服务');
+INSERT INTO `cz_footer` VALUES ('4', '0', '客服中心');
+INSERT INTO `cz_footer` VALUES ('5', '0', '关于我们');
+INSERT INTO `cz_footer` VALUES ('6', '1', '积分兑换说明');
+INSERT INTO `cz_footer` VALUES ('7', '1', '积分明细');
+INSERT INTO `cz_footer` VALUES ('8', '1', '查看已购买商');
+INSERT INTO `cz_footer` VALUES ('9', '1', '我要买');
+INSERT INTO `cz_footer` VALUES ('10', '1', '忘记密码');
+INSERT INTO `cz_footer` VALUES ('11', '2', '公司转账');
+INSERT INTO `cz_footer` VALUES ('12', '2', '邮局汇款');
+INSERT INTO `cz_footer` VALUES ('13', '2', '分期付款');
+INSERT INTO `cz_footer` VALUES ('14', '2', '在线支付');
+INSERT INTO `cz_footer` VALUES ('15', '2', '如何注册支付');
+INSERT INTO `cz_footer` VALUES ('16', '3', '退款申请');
+INSERT INTO `cz_footer` VALUES ('17', '3', '返修/退换货');
+INSERT INTO `cz_footer` VALUES ('18', '3', '退换货流程');
+INSERT INTO `cz_footer` VALUES ('19', '3', '退换货政策');
+INSERT INTO `cz_footer` VALUES ('20', '3', '联系卖家');
+INSERT INTO `cz_footer` VALUES ('21', '4', '修改收货地址');
+INSERT INTO `cz_footer` VALUES ('22', '4', '商品发布');
+INSERT INTO `cz_footer` VALUES ('23', '4', '会员修改个人');
+INSERT INTO `cz_footer` VALUES ('24', '4', '会员修改密码');
+INSERT INTO `cz_footer` VALUES ('25', '5', '合作及洽谈');
+INSERT INTO `cz_footer` VALUES ('26', '5', '招聘英才');
+INSERT INTO `cz_footer` VALUES ('27', '5', '联系我们');
+INSERT INTO `cz_footer` VALUES ('28', '5', '关于Shop');
 
 -- ----------------------------
 -- Table structure for cz_galary
@@ -353,7 +408,7 @@ INSERT INTO `cz_menu` VALUES ('4', '1', '商品类型', '/shop/index.php/Admin',
 INSERT INTO `cz_menu` VALUES ('6', '1', '商品列表', '/shop/index.php/Admin', 'index', 'Goods', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('7', '1', '商品分类', '/shop/index.php/Admin', 'index', 'Category', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('8', '2', '订单列表', '/shop/index.php/Admin', 'index', 'Order', 'list-group-item', null);
-INSERT INTO `cz_menu` VALUES ('9', '2', '添加订单', '/shop/index.php/Admin', 'add', 'Order', 'list-group-item', null);
+INSERT INTO `cz_menu` VALUES ('9', '2', '订单商品列表', '/shop/index.php/Admin', 'goods', 'Order', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('10', '1', '商品品牌', '/shop/index.php/Admin', 'index', 'Brand', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('11', '3', '管理员列表', '/shop/index.php/Admin', 'index', 'User', 'list-group-item', null);
 INSERT INTO `cz_menu` VALUES ('12', '3', '客户列表', '/shop/index.php/Admin', 'customer', 'User', 'list-group-item', null);
@@ -363,6 +418,35 @@ INSERT INTO `cz_menu` VALUES ('12', '3', '客户列表', '/shop/index.php/Admin'
 -- ----------------------------
 DROP TABLE IF EXISTS `cz_order`;
 CREATE TABLE `cz_order` (
+  `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单ID',
+  `order_sn` varchar(255) NOT NULL DEFAULT '' COMMENT '订单号',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `address_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '收货地址id',
+  `order_status` varchar(255) NOT NULL COMMENT '订单状态 1 待付款 2 待发货 3 已发货 4 已完成',
+  `postscripts` varchar(255) NOT NULL DEFAULT '' COMMENT '订单附言',
+  `shipping` varchar(255) NOT NULL COMMENT '送货方式ID',
+  `pay` varchar(255) NOT NULL DEFAULT '0' COMMENT '支付方式ID',
+  `order_amount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单总金额',
+  `order_time` datetime NOT NULL COMMENT '下单时间',
+  PRIMARY KEY (`order_id`),
+  KEY `user_id` (`user_id`),
+  KEY `address_id` (`address_id`),
+  KEY `pay_id` (`pay`),
+  KEY `shipping_id` (`shipping`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cz_order
+-- ----------------------------
+INSERT INTO `cz_order` VALUES ('24', '1166726728', '5', '3', '已发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 17:16:23');
+INSERT INTO `cz_order` VALUES ('25', '1163085095', '5', '3', '待发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 17:16:41');
+INSERT INTO `cz_order` VALUES ('23', '1036629072', '5', '3', '待发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 15:01:23');
+
+-- ----------------------------
+-- Table structure for cz_order.bak
+-- ----------------------------
+DROP TABLE IF EXISTS `cz_order.bak`;
+CREATE TABLE `cz_order.bak` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单ID',
   `order_sn` varchar(30) NOT NULL DEFAULT '' COMMENT '订单号',
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
@@ -382,7 +466,7 @@ CREATE TABLE `cz_order` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of cz_order
+-- Records of cz_order.bak
 -- ----------------------------
 
 -- ----------------------------
@@ -401,11 +485,17 @@ CREATE TABLE `cz_order_goods` (
   `goods_attr` varchar(255) NOT NULL DEFAULT '' COMMENT '商品属性',
   `subtotal` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品小计',
   PRIMARY KEY (`rec_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_order_goods
 -- ----------------------------
+INSERT INTO `cz_order_goods` VALUES ('10', '24', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('11', '25', '5', '心里大师', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('5', '23', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('6', '23', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('7', '25', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('8', '24', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '1', '', '3010.00');
 
 -- ----------------------------
 -- Table structure for cz_payment
@@ -483,4 +573,4 @@ CREATE TABLE `cz_user` (
 INSERT INTO `cz_user` VALUES ('2', 'north', '1340652578@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '男');
 INSERT INTO `cz_user` VALUES ('3', 'dt', '123213@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '男');
 INSERT INTO `cz_user` VALUES ('4', 'stack', '21423423412@qq.com', '202cb962ac59075b964b07152d234b70', '1462084060', '女');
-INSERT INTO `cz_user` VALUES ('5', 'admin', '1340652578@qq.com', '827ccb0eea8a706c4c34a16891f84e7b', '1470820874', '女');
+INSERT INTO `cz_user` VALUES ('5', 'admin', '1340652578@qq.com', 'e10adc3949ba59abbe56e057f20f883e', '1470820874', '女');

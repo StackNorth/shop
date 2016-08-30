@@ -8,14 +8,23 @@ class BaseController extends Controller {
 	   $cats = D('Category')->frontCats();
 	   $this->init_leftMenu();
 	   $this->init_upMenu();
+	   $this->init_config();
        $this->assign("cats",$cats);
        $this->assign('index',false);
+	}
+
+	public function init_config(){
+		 $config = M('config')->where('postion = "header" ')->select();
+		 $footer = M('config')->where('postion = "footer" ')->select();
+		 $foo = D('footer')->getFooterHtml();
+		 $this->assign('foo',$foo);
+		 $this->assign('config',$config);
+		 $this->assign('footer',$footer);
 	}
 
 	public function init_upMenu() {
 		$upMenu = M('homeMenu')->select();
 		$this->assign('upMenu',$upMenu);
-		
 	}
 	public function init_leftMenu() {
      
@@ -43,23 +52,27 @@ class BaseController extends Controller {
 	public function getAddress($address) {
 		$region = M('region');
 		foreach($address as $k =>$v) {
+			
 			foreach ($v as $key => $value) {
 				switch($key) {
 					case 'province':
-						$address[$k]['province'] = $region->where("region_id = '$value'")->getField('region_name');break;
-
+						$address[$k]['province'] = $region->where("region_id = '$value'")->getField('region_name');
+					
+						break;
 					case 'city':
-						$address[$k]['city'] = $region->where("region_id = '$value'")->getField('region_name');
-					break;
-
+						$address[$k]['city']     = $region->where("region_id = '$value'")->getField('region_name');
+						
+						break;
 					case 'district':
 						$address[$k]['district'] = $region->where("region_id = '$value'")->getField('region_name');
-					break;
+						
+						break;
 				}
+
 			}
 			
 		}
-
+		
 		return $address;
 	}
 

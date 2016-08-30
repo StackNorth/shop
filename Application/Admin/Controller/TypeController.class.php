@@ -12,12 +12,11 @@ class TypeController extends BaseController {
 		$Page->setConfig('next',"下一页");
 		$show    = $Page->show();// 分页显示输出
 		$types = $typeModel->order('type_id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
-		
 		$this->assign('types',$types);
 		$this->assign('page',$show);
 		$this->display();
 	}
-
+	
 	//添加类型
 	public function add(){
 		if (IS_POST) {

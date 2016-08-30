@@ -114,7 +114,7 @@
 						<td class="gwc_list_danjia"><span>￥<strong id="danjia_001">{$vo.shop_price}</strong></span></td>
 						<td class="gwc_list_shuliang"><span>
 							<a href="__CONTROLLER__/index/sub/{$vo.goods_id}">-</a>
-							<input type="text" value="{$vo.goods_nums}"  name="goods_nums"/>
+							<input type="text" value="{$vo.goods_number}"  name="goods_number"/>
 							<a href="__CONTROLLER__/index/add/{$vo.goods_id}" >+</a>
 						</span></td>
 
@@ -205,7 +205,7 @@
 						<td class="gwc_list_danjia"><span>￥<strong id="danjia_001">{$vo.shop_price}</strong></span></td>
 						<td class="gwc_list_shuliang"><span>
 							<a href="__CONTROLLER__/index/sub/{$vo.goods_id}">-</a>
-							<input type="text" value="{$vo.goods_nums}"  name="goods_nums"/>
+							<input type="text" value="{$vo.goods_number}"  name="goods_number"/>
 							<a href="__CONTROLLER__/index/add/{$vo.goods_id}" >+</a>
 						</span></td>
 
@@ -223,7 +223,7 @@
 								
 				</tbody>
 				<tfoot>
-				<tr>
+					<tr>
 						<td colspan="6">
 							<div class="gwc_foot_zongjia">商品总价(不含运费)<span>￥<strong >{$totalAll}</strong></span></div>
 							<div class="clear"></div>

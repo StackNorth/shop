@@ -16,12 +16,15 @@ class CategoryController extends BaseController {
 	public function add(){
 		if (IS_POST) {
 			//分类信息入库
-			$data['cat_name'] = I('cat_name');
+			/*$data['cat_name'] = I('cat_name');
 			$data['parent_id'] = I('parent_id',0,'int');
 			$data['cat_desc'] = I('cat_desc');
 			$data['unit'] = I('unit');
 			$data['is_show'] = I('is_show');
-			$data['sort_order'] = I('sort_order');
+			$data['sort_order'] = I('sort_order');*/
+			foreach(I('post.') as $key => $value) {
+				$data[$key] = $value;
+			}
 			$categoryModel = D('category');
 			if ($categoryModel->create($data)) {
 				//验证通过
@@ -51,13 +54,16 @@ class CategoryController extends BaseController {
 		$cat_id = I('id',0,'int');
 		if (IS_POST) {
 			//更新分类
-			$data['cat_name'] = I('cat_name');
-			$data['parent_id'] = I('parent_id',0,'int');
-			$data['cat_desc'] = I('cat_desc');
-			$data['unit'] = I('unit');
-			$data['is_show'] = I('is_show');
-			$data['sort_order'] = I('sort_order');
-			$data['cat_id'] = I('cat_id');
+			// $data['cat_name'] = I('cat_name');
+			// $data['parent_id'] = I('parent_id',0,'int');
+			// $data['cat_desc'] = I('cat_desc');
+			// $data['unit'] = I('unit');
+			// $data['is_show'] = I('is_show');
+			// $data['sort_order'] = I('sort_order');
+			// $data['cat_id'] = I('cat_id');
+			foreach(I('post.') as $key => $value) {
+				$data[$key] =$value;
+			}
 			$categoryModel = D('category');
 
 			$ids = $categoryModel->getSubIds($data['cat_id']);

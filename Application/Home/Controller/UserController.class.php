@@ -46,7 +46,7 @@ class UserController extends BaseController {
     	if (IS_POST) {
     		$goods_id = I('post.goods_id');
     		if ($goods_id == $_SESSION['user']['shoppingCat'][$goods_id]['goods_id']) {
-    			$_SESSION['user']['shoppingCat'][$goods_id]['goods_nums'] = I('post.goods_nums');
+    			$_SESSION['user']['shoppingCat'][$goods_id]['goods_number'] = I('post.goods_number');
     		} else {
 	    		foreach($_POST as $key => $value) {
 	    			//将添加购物车的值存入session中
@@ -57,6 +57,16 @@ class UserController extends BaseController {
     		$this->redirect('Goods/index',array('id' => $goods_id));
     	}
     	
+    }
+
+    //已购买商品
+    public function purchase() {
+    	$user_id  = $_SESSION['user']['user_id'];
+    	$order = M('order')->where('user_id = '.$user_id)->join('cz_order_goods on cz_order_goods.order_id = cz_order.order_id ')->select();
+    	/*echo M('order')->getLastSql();
+    	dump($order);*/
+    	$this->assign('order',$order);
+    	$this->display('orderInfo');
     }
 
 }

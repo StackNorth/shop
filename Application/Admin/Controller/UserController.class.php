@@ -24,8 +24,6 @@ class UserController extends BaseController {
 		$this->editUser();
 	}
 
-	
-
 	public function editAdmin() {
 
 		$data['admin_id'] = I('get.admin_id');
@@ -77,7 +75,7 @@ class UserController extends BaseController {
 
 	public function search(){
 		$model = trim(strrchr($_SERVER['HTTP_REFERER'],"/"),'/');
-		echo $model;
+		
 		if($model == 'index') {
 			$this->assign('admins', $flag = parent::search(M('Admin'),'admin'));
 			if (!$flag) {

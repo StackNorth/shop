@@ -25,7 +25,7 @@
 					<li>
 						<div class="topNav_menu">
 							<a href="__MODULE__/User/index" class="">个人主页</a>
-							<a href="__MODULE__/User/index" class="">已买到的商品</a>
+							<a href="__MODULE__/User/purchase" class="">已买到的商品</a>
 							<!-- <div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -38,9 +38,9 @@
 					<li>
 						<div class="topNav_menu">
 							<a href="#" class="topNavHover">购物车<b><?php  if ($_SESSION['user']['shopNumber'] == null){
-							echo "0";
+								echo "0";
 							} else {
-							echo ($_SESSION['user']['shopNumber']);
+								echo ($_SESSION['user']['shopNumber']);
 							}
 
 
@@ -51,13 +51,9 @@
 					             <!-- <li><a href="{:U('Goods/index/goods_id/')} ><img src='#'  target='_top' ">商品1</a></li> --> 
 					              <?php
 					              	foreach($_SESSION['user']['shoppingCat'] as $value){
-										
-
 										$output = "<li><a href='__MODULE__/Goods/index/id/".$value['goods_id']."' ><img src='__ROOT__".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>";
 										echo $output;
 										$total += $value['shop_price'];
-
-
 										$flag = 1;
 									}
 					              ?>

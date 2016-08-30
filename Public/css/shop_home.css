@@ -103,7 +103,7 @@
 .shop_bd_home_block_right .saletop-list_adv_pic{width:238px; text-align: center;}
 
 /* 区域底部品牌 */
-.shop_bd_home_block_bottom{width:760px; float:left; padding-top:10px; height:53px; border:1px solid #EEBE8E; border-right:none; position:absolute; bottom:0px; left:0px;}
+.shop_bd_home_block_bottom{width:760px; float:left; margin-left:208px;padding-top:10px; height:53px; border:1px solid #EEBE8E; border-right:none; position:absolute; bottom:0px; left:0px;}
 .shop_bd_home_block_bottom ul li{float:left;}
 .shop_bd_home_block_bottom ul li a{margin-left:6px;}
 

@@ -14,13 +14,9 @@ class OrderController extends BaseController {
 		$address = M('address')->where('user_id = '.$user_id)->select();
 		//加载用户的收货地址
 		$address = $this->getAddress($address);
-		
 		$this->goodsNum();
-		
 		//获取省
 		$this->getProvince();
-		
-		
 		$this->assign('address',$address);
 		$this->display('index');
 	}
@@ -55,11 +51,10 @@ class OrderController extends BaseController {
 	 */
 	public function checkout(){
 		
-		$data['order_sn']  =  rand(1000000000,9999999999);//订单id
+		$data['order_sn']  =  rand(10000,99999).'_'.rand(1000000000,9999999999);//订单id
 		$data['user_id'] = $_SESSION['user']['user_id'];//用户id
 		$data['address_id'] = I('address');//收获地址id
 		$data['order_status'] = '待付款';//订单状态 代发货
-
 		$data['postscripts'] = '空运';
 		$data['shipping'] = '韵达';//送货方式
 		$data['pay'] = '货到付款';//支付方式
@@ -69,31 +64,24 @@ class OrderController extends BaseController {
 
 		// 订单号重复
 		while(!$orderModel->create($data)) {
-			$data['order_sn']  =  rand(1000000000,9999999999);
+			$data['order_sn']  =  rand(10000,99999).'_'.rand(1000000000,9999999999);
 	
 		} 
 
 		//创建成功，添加数据
 		if ($orderModel->add()) {
 			//循环读取session中的商品信息，存储到order_goods表中
-			
-			$order_id = $orderModel->where('order_sn = '.$data['order_sn'])->getField('order_id');
+			$condition['order_sn'] = $data['order_sn'];
+			$order_id = $orderModel->where($condition)->getField('order_id');
 			foreach($_SESSION['user']['shoppingCat'] as $key => $value) {
-				 $goods['order_id']     = $order_id;//订单id
-				 $goods['goods_id']     = $value['goods_id'];//商品id
-				 $goods['goods_name']   = $value['goods_name'];//商品名称
-				 $goods['goods_img']    = $value['goods_img'];//商品图片url
-				 $goods['shop_price']   = $value['shop_price'];//商品价格
-				 $goods['goods_number'] = $value['goods_nums'];//商品数量
-				 $goods['subtotal']     = $value['total'];	//商品总价
-				
-
-				 if(!M('order_goods')->add($goods)) {
-				 	
+				$goods['order_id'] = $order_id;
+				foreach($value as $key => $value) {
+					$goods[$key] = $value;
+				}
+				if(!M('order_goods')->add($goods)) {
 				 	$this->error('商品添加失败');
-				 	
 				 	return ;
-				 }
+				}
 			}
 			unset($_SESSION['user']['shoppingCat']);
 			$_SESSION['user']['shopNumber'] = 0;
@@ -122,24 +110,23 @@ class OrderController extends BaseController {
 			if ($key == $goods_id_add || $key == $goods_id_sub) {
 				
 				if (!empty($goods_id_sub)) {
-					$value['goods_nums'] -= 1; 
+					$value['goods_number'] -= 1; 
 				} else if (!empty($goods_id_add)) {
-					$value['goods_nums'] += 1; 
+					$value['goods_number'] += 1; 
 				}
-				if ($value['goods_nums'] <= 0) {
-					$value['goods_nums'] = 1;
+				if ($value['goods_number'] <= 0) {
+					$value['goods_number'] = 1;
 				}
 			}
 
-			$value['total'] = $value['goods_nums']*$value['shop_price'];
+			$value['subtotal'] = $value['goods_number']*$value['shop_price'];
 			
 			$_SESSION['user']['shoppingCat'][$key] = $value;
-			$totalAll += $value['total'];
+			$totalAll += $value['subtotal'];
 		}
 		$data = $_SESSION['user']['shoppingCat'];
 		$this->assign("totalAll",$totalAll);
 		$this->assign('data',$data);
-		
 	}
 }
 

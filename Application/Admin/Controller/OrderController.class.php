@@ -19,7 +19,7 @@ class OrderController extends BaseController {
 			foreach(I('post.') as $key => $value) {
 				$data[$key] = $value;
 			}
-			if (M('order')->where('order_id = '.$order_id)->save($data)) {
+			if (M('order')->where('order_id = '.$order_id)->save($data) >= 0) {
 				$this->success('订单修改成功',U('Order/index'));
 				return ;
 			}
@@ -56,7 +56,7 @@ class OrderController extends BaseController {
 			foreach(I('post.') as $key => $value) {
 				$data[$key] = $value;
 			}
-			if (M('order_goods')->where('rec_id = '.$rec_id)->save($data)) {
+			if (M('order_goods')->where('rec_id = '.$rec_id)->save($data) >= 0) {
 				$this->success('订单修改成功',U('Order/goods'));
 				return ;
 			}
@@ -76,7 +76,6 @@ class OrderController extends BaseController {
 		}
 		$this->error('订单删除失败',U('Order/goods'));
 		return ;
-	
 	}
 
 

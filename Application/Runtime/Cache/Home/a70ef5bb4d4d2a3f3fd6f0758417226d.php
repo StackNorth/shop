@@ -2,16 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>修改个人资料</title>
+	<title>错误提示页面</title>
 	<link rel="stylesheet" href="/shop/Public/css/base.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_common.css" type="text/css" />
 	<link rel="stylesheet" href="/shop/Public/css/shop_header.css" type="text/css" />
-	<link rel="stylesheet" href="/shop/Public/css/shop_manager.css" type="text/css" />
-	<link rel="stylesheet" href="/shop/Public/css/shop_form.css" type="text/css" />
+	<link rel="stylesheet" href="/shop/Public/css/shop_list.css" type="text/css" />
+   
     <script type="text/javascript" src="/shop/Public/js/jquery.js" ></script>
     <script type="text/javascript" src="/shop/Public/js/topNav.js" ></script>
-</head>
-
+    <style type="text/css">
+		.shop_bd_error{width:1000px; height:50px; padding:100px 0; margin:10px auto 0; border:1px solid #ccc;}
+		.shop_bd_error p{height:45px; line-height:45px; width:980px; text-align: center; font-size:14px; font-weight: bold; color:#55556F;}
+		.shop_bd_error p span{display:inline-block;width:45px; height:45px; line-height:45px; overflow:hidden; text-indent: 99em; vertical-align:top; padding-right:10px; background:url('/shop/Public/images/success.jpg') no-repeat left top;}
+    </style>
+</head> 
 <body>
 	<!-- Header  -wll-2013/03/24 -->
 <div class="shop_hd">
@@ -24,7 +28,7 @@
 					<?php if($_SESSION['user']== null): ?>[<a href="/shop/index.php/Home/Login/index">登录</a>][<a href="/shop/index.php/Home/Register/index">注册</a>]
 						<?php else: ?>
 						[<a href=""><?php echo ($_SESSION['user']['user_name']); ?></a>]
-						[<a href="/shop/index.php/Home/User/logout">退出</a>]<?php endif; ?>
+						[<a href="/shop/index.php/Home/Order/logout">退出</a>]<?php endif; ?>
 
 				</p>
 
@@ -38,7 +42,7 @@
 					<li>
 						<div class="topNav_menu">
 							<a href="/shop/index.php/Home/User/index" class="">个人主页</a>
-							<a href="/shop/index.php/Home/User/index" class="">已买到的商品</a>
+							<a href="/shop/index.php/Home/User/purchase" class="">已买到的商品</a>
 							<!-- <div class="topNav_menu_bd" style="display:none;" >
 								<ul>
 									<li><a title="已买到的商品" target="_top" href="#">已买到的商品</a></li>
@@ -172,104 +176,51 @@
 <div class="clear"></div>
 <!-- Header End -->
 	<div class="clear"></div>
-	<!-- 面包屑 注意首页没有 -->
-	<div class="shop_hd_breadcrumb">
-		<strong>当前位置：</strong>
-		<span>
-			<a href="">首页</a>&nbsp;›&nbsp;
-			<a href="">我的商城</a>&nbsp;›&nbsp;
-			<a href="">已买到商品</a>
-		</span>
+	
+
+	<!-- Header End -->
+
+	<!-- Body -->
+	<div class="shop_bd_error">
+		<p><span></span><?php echo($message); ?>！</p>
+		<p><b id="wait"><?php echo($waitSecond); ?></b> 秒后页面将自动跳转</p>
+		<p><a id="href" id="btn-now" href="<?php echo($jumpUrl); ?>">立即跳转</a> </p>
 	</div>
-	<div class="clear"></div>
-	<!-- 面包屑 End -->
+	<!-- Body End -->
 
-	<!-- Header End -->	
-
-	<!-- 我的个人中心 -->
-	<div class="shop_member_bd clearfix">
-		<!-- 左边导航 -->
-		<!-- 左边导航 -->
-		<div class="shop_member_bd_left clearfix">
-			
-			<div class="shop_member_bd_left_pic">
-				<a href="javascript:void(0);"><img src="/shop/Public/images/avatar.png" /></a>
-			</div>
-			<div class="clear"></div>
-			<dl>
-				<dt>我的账户</dt>
-				<dd><span><a href="/shop/index.php/Home/User/index">个人资料</a></span></dd>
-				<dd><span><a href="/shop/index.php/Home/User/password">密码修改</a></span></dd>
-				<dd><span><a href="/shop/index.php/Home/Address/index">收货地址</a></span></dd>
-			</dl>
-			<dl>
-				<dt>我的交易</dt>
-				<dd><span><a href="">已购买商品</a></span></dd>
-				<dd><span><a href="">我的收藏</a></span></dd>
-				<dd><span><a href="">评价管理</a></span></dd>
-			</dl>
-
-			
-
-		</div>
-		<!-- 左边导航 End -->
-		<!-- 左边导航 End -->
-		
-		<!-- 右边购物列表 -->
-		<div class="shop_member_bd_right clearfix">
-			
-			<div class="shop_meber_bd_good_lists clearfix">
-				<div class="title"><h3>基本信息</h3></div>
-				<div class="clear"></div>
-				<dic class="shop_home_form">
-					<form athion="" name="" class="shop_form" method="post">
-						<ul>
-							<li><label>用户名称：</label><?php echo ($userInfo[0]["user_name"]); ?></li>
-							<li><label>电子邮件：</label><input type="text" value="<?php echo ($userInfo[0]["email"]); ?>" name="email" class="truename form-text" /></li>
-							<!-- <li><label>真实姓名：</label><input type="text" value="<?php echo ($userInfo[""]); ?>" class="truename form-text" /></li> -->
-							<li><label>性别:</label>
-								<input type="radio" class="ml10 mr5" name="sex"  value="男" />男
-								<input type="radio" class="ml10 mr5" name="sex"  value="女" />女
-							</li>
-							<li class="bn"><label>&nbsp;</label><input type="submit" id="submit" class="form-submit" value="保存修改" /></li>
-						</ul>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- 右边购物列表 End -->
-
-	</div>
-	<!-- 我的个人中心 End -->
-
-	<!-- Footer - wll - 2013/3/24 -->
 	<!-- Footer - wll - 2013/3/24 -->
 	<div class="clear"></div>
 	<div class="shop_footer">
             <div class="shop_footer_link">
                 <p>
-                    <a href="/shop/index.php/Home/Index/index">首页</a>|
+                    <a href="">首页</a>|
                     <a href="">招聘英才</a>|
                     <a href="">广告合作</a>|
+                    <a href="">关于ShopCZ</a>|
                     <a href="">关于我们</a>
                 </p>
             </div>
             <div class="shop_footer_copy">
-               <p>Copyright MyShop,All rights reserved.</p>
+                <p>Copyright 2007-2013 ShopCZ Inc.,All rights reserved.<br />d by ShopCZ 2.4 </p>
             </div>
         </div>
 	<!-- Footer End -->
-	<!-- Footer End -->
 </body>
+
 <script type="text/javascript">
-	var sex = "<?php echo ($userInfo[0]["sex"]); ?>";
-	var rObj = document.getElementsByName("sex");
-	for(var i = 0;i < rObj.length;i++){
-
-	    if(rObj[i].value == sex){
-	        rObj[i].checked =  'checked';
-	    }
-	}
-
+(function(){
+ var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+ var interval = setInterval(function(){
+     	var time = --wait.innerHTML;
+     	if(time <= 0) {
+     		location.href = href;
+     		clearInterval(interval);
+     	};
+     }, 1000);
+  window.stop = function (){
+         console.log(111);
+            clearInterval(interval);
+ }
+ })();
 </script>
 </html>

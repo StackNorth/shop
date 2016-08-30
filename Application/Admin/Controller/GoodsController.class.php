@@ -5,7 +5,7 @@ class GoodsController extends BaseController {
 	
 	//显示商品
 	public function index(){
-		$goodsModel = M(goods);
+		$goodsModel = M('goods');
 
 		$count = $goodsModel->count();
 		
@@ -16,8 +16,8 @@ class GoodsController extends BaseController {
 			$where .= "goods_id like '%{$keyWord}%' or goods_name like '%{$keyWord}%' or goods_sn like '%{$keyWord}%' or shop_price like '%{$keyWord}%' ";	
 			$count = count($goodsModel->where($where)->select());
 			/*echo $goodsModel->getLastSql();
-			exit;*/
-			echo $count;
+			  exit;
+			  echo $count;*/
 			
 		}
 		$page = new \Think\Page($count,5);
@@ -35,16 +35,13 @@ class GoodsController extends BaseController {
 	//添加商品
 	public function add(){
 		if (IS_POST) {
-			//入库
-			
-			
-			$data['goods_name'] = I('goods_name'); 
+			//入库		 
 			if (I('goods_sn')) {
 				$data['goods_sn'] = I('goods_sn'); 
 			} else {
 				$data['goods_sn'] = rand(0,99999999);
 			}
-
+			$data['goods_name'] = I('goods_name');
 			$data['cat_id'] = I('cat_id'); 
 			$data['brand_id'] = I('brand_id'); 
 			$data['shop_price'] = I('shop_price'); 
@@ -57,7 +54,7 @@ class GoodsController extends BaseController {
 			}
 
 			//处理上传图片
-			if ($_FILES['goods_img']['tmp_name'] != '') {
+				if ($_FILES['goods_img']['tmp_name'] != '') {
 				$upload = new \Think\Upload();// 实例化上传类
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
@@ -84,8 +81,8 @@ class GoodsController extends BaseController {
 					$thumbs = $upload->getUploadFileInfo();
 					$goodsThumbModel = M('goods_thumb');
 					foreach ($thumbs as $thumb) {
-						$arr['thumb_img'] = $thumb['savepath'].$thumb['savename'];
-						$arr['goods_sn'] = $data['goods_sn'];
+						$arr['thumb_img']  = $thumb['savepath'].$thumb['savename'];
+						$arr['goods_sn']   = $data['goods_sn'];
 						$arr['thumb_time'] = time();
 						if (!M('goods_thumb')->add($arr)) {
 							$this->error('添加失败，写入地址失败');
@@ -96,30 +93,30 @@ class GoodsController extends BaseController {
 			}
 			
 
-			$data['goods_desc'] = I('goods_desc'); 
+			$data['goods_desc']   = I('goods_desc'); 
 			$data['goods_number'] = I('goods_number'); 
-			$data['goods_brief'] = I('goods_brief'); 
-			$data['goods_desc'] = I('goods_desc'); 
-			$data['is_best'] = I('is_best'); 
-			$data['is_new'] = I('is_new'); 
-			$data['is_hot'] = I('is_hot'); 
-			$data['is_onsale'] = I('is_onsale'); 
-			$data['add_time'] = time();
+			$data['goods_brief']  = I('goods_brief'); 
+			$data['goods_desc']   = I('goods_desc'); 
+			$data['is_best']      = I('is_best'); 
+			$data['is_new']       = I('is_new'); 
+			$data['is_hot']       = I('is_hot'); 
+			$data['is_onsale']    = I('is_onsale'); 
+			$data['add_time']     = time();
 			$goodsModel = D('goods');
 
 			if ($goodsModel->create($data)) {
 				//创建成功
 				if ($goods_id = $goodsModel->add()) {
 					//添加成功，添加其他表数据
-					$attr_ids = I('attr_id_list');
+					$attr_ids    = I('attr_id_list');
 					$attr_values = I('attr_value_list');
 					$attr_prices = I('attr_price_list');
 					$attrs = array();
 					foreach ($attr_ids as $k => $v) {
 						$attrs = array(
-							"goods_id" => $goods_id,
+							"goods_id"   => $goods_id,
 							"attr_price" => $attr_prices[$k],
-							"attr_id" => $v,
+							"attr_id"    => $v,
 							"attr_value" => $attr_values[$k]
 							);
 					}
