@@ -32,10 +32,13 @@ class UserController extends BaseController {
 		$this->assign('admin',$admin);
 		//编辑信息
 		if (IS_POST) {
-			$data['admin_id'] = I('post.admin_id');
-			$data['admin_name'] = I('post.admin_name');
-			$data['password'] = md5(I('post.password'));
-			$data['email'] = I('post.email');
+			foreach (I('post.') as $key => $value) {
+				if ($key == 'password') {
+					$data[$key] = md5($value);
+				} else {
+					$data[$key] = $value;
+				}
+			}
 			$userModel = D('Admin');
 			
 			if ($userModel->updateUser($data)) {
@@ -57,11 +60,13 @@ class UserController extends BaseController {
 		$this->assign('user',$user);
 		//编辑信息
 		if (IS_POST) {
-			$data['user_id'] = I('post.user_id');
-			$data['user_name'] = I('post.user_name');
-			$data['password'] = md5(I('post.password'));
-			$data['email'] = I('post.email');
-			$data['sex'] = I('post.sex');
+			foreach (I('post.') as $key => $value) {
+				if ($key == 'password') {
+					$data[$key] = md5($value);
+				} else {
+					$data[$key] = $value;
+				}
+			}
 			if ($userModel->where($data['user_id'])->save($data)) {
 				$this->success('用户更新成功',U('customer'),3);
 				return ;

@@ -10,13 +10,13 @@ class TypeController extends BaseController {
 		$Page    = new \Think\Page($count,3);// 实例化分页类 传入总记录数和每页显示的记录数(25)
 		$Page->setConfig('prev',"上一页");
 		$Page->setConfig('next',"下一页");
-		$show    = $Page->show();// 分页显示输出
+		$show  = $Page->show();// 分页显示输出
 		$types = $typeModel->order('type_id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 		$this->assign('types',$types);
 		$this->assign('page',$show);
 		$this->display();
 	}
-	
+
 	//添加类型
 	public function add(){
 		if (IS_POST) {
@@ -66,7 +66,6 @@ class TypeController extends BaseController {
 	//删除类型
 	public function delete(){
 		$type_id = I('id',0,'int');
-
 		if (M('goods_type')->delete($type_id)) {
 			$this->success('删除商品类型成功',U('index'),1);
 		} else {
