@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-08-30 16:14:43
+Date: 2016-08-31 09:14:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -433,14 +433,14 @@ CREATE TABLE `cz_order` (
   KEY `address_id` (`address_id`),
   KEY `pay_id` (`pay`),
   KEY `shipping_id` (`shipping`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_order
 -- ----------------------------
-INSERT INTO `cz_order` VALUES ('24', '1166726728', '5', '3', '已发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 17:16:23');
-INSERT INTO `cz_order` VALUES ('25', '1163085095', '5', '3', '待发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 17:16:41');
-INSERT INTO `cz_order` VALUES ('23', '1036629072', '5', '3', '待发货', '空运', '韵达', '货到付款', '3010.00', '2016-08-29 15:01:23');
+INSERT INTO `cz_order` VALUES ('40', '55296_1019885068', '5', '3', '待付款', '空运', '韵达', '货到付款', '9030.00', '2016-08-30 17:29:11');
+INSERT INTO `cz_order` VALUES ('41', '14150_1069128458', '5', '3', '待付款', '空运', '韵达', '货到付款', '18060.00', '2016-08-30 17:33:25');
+INSERT INTO `cz_order` VALUES ('43', '27937_1381232684', '5', '3', '待付款', '空运', '韵达', '货到付款', '3010.00', '2016-08-30 17:35:06');
 
 -- ----------------------------
 -- Table structure for cz_order.bak
@@ -485,17 +485,15 @@ CREATE TABLE `cz_order_goods` (
   `goods_attr` varchar(255) NOT NULL DEFAULT '' COMMENT '商品属性',
   `subtotal` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品小计',
   PRIMARY KEY (`rec_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cz_order_goods
 -- ----------------------------
-INSERT INTO `cz_order_goods` VALUES ('10', '24', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
-INSERT INTO `cz_order_goods` VALUES ('11', '25', '5', '心里大师', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '3010.00', '0.00', '1', '', '3010.00');
-INSERT INTO `cz_order_goods` VALUES ('5', '23', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
-INSERT INTO `cz_order_goods` VALUES ('6', '23', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '1', '', '3010.00');
-INSERT INTO `cz_order_goods` VALUES ('7', '25', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '1', '', '3010.00');
-INSERT INTO `cz_order_goods` VALUES ('8', '24', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '1', '', '3010.00');
+INSERT INTO `cz_order_goods` VALUES ('13', '40', '3', '衬衫1', './Public/Uploads/2016-08-12/57ad7c9169849.jpg', '3010.00', '0.00', '3', '', '9030.00');
+INSERT INTO `cz_order_goods` VALUES ('14', '41', '5', '心里大师', './Public/Uploads/2016-08-04/57a2de5598d97.jpg', '3010.00', '0.00', '3', '', '9030.00');
+INSERT INTO `cz_order_goods` VALUES ('15', '41', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '3', '', '9030.00');
+INSERT INTO `cz_order_goods` VALUES ('16', '43', '4', '短袖', './Public/Uploads/2016-08-12/57ad7cb25443b.jpg', '3010.00', '0.00', '1', '', '3010.00');
 
 -- ----------------------------
 -- Table structure for cz_payment

@@ -53,7 +53,6 @@ class UserController extends BaseController {
 	}
 
 	public function editUser() {
-
 		$data['user_id'] = I('get.user_id');
 		$userModel = M('User');
 		$user = $userModel->where($data)->select();
