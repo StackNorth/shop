@@ -43,8 +43,8 @@
             <ul class="nav navbar-nav pull-right">
                 <li ><a href="javascript:window.document.location.reload()">刷新&nbsp;<i class="iconfont">&#xe665;</i></a></li>
                 <li><a href="/shop/index.php/Admin/User/index">管理员&nbsp;<i class="iconfont">&#xf003f;</i></a></li>
-                <li><a href="#">帮助&nbsp;<i class="iconfont">&#xf0012;</i></a></li>
                 <li><a href="/shop/index.php/Admin/Index/clearCache" target="main-frame" class="fix-submenu">清除缓存</a></li>
+                 <li><a href="/shop/index.php/Admin/Login/logout">退出登录&nbsp;<i class="iconfont">&#xf0012;</i></a></li>
             </ul>
         </div>
     </div>
