@@ -30,22 +30,31 @@ class BaseController extends Controller {
      * @return [type]          [description]
      */
     protected function rmdirr($dirname) {
-        if (!file_exists($dirname)) {
+        echo "3";
+	 if (!file_exists($dirname)) {
             return false;
         }
+	echo "2";
         if (is_file($dirname) || is_link($dirname)) {
             return unlink($dirname);
         }
+	echo "0";
         $dir = dir($dirname);
         if ($dir) {
             while (false !== $entry = $dir->read()) {
+		echo "1";
                 if ($entry == '.' || $entry == '..') {
                     continue;
                 }
+		echo "4";
                 //递归
-                $this->rmdirr($dirname . DIRECTORY_SEPARATOR . $entry);
+            //    $this->rmdirr($dirname . DIRECTORY_SEPARATOR . $entry);
+		dump($dir);
+		 $this->rmdirr($dirname .  $entry);
+	
             }
         }
+exit;
         $dir->close();
         return rmdir($dirname);
     }

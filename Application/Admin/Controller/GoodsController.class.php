@@ -47,35 +47,38 @@ class GoodsController extends BaseController {
 			$data['shop_price'] = I('shop_price'); 
 			$data['market_price'] = I('market_price'); 
 			$is_promote = I('is_promote');
-
+			//echo dirname('../');
 			if ($is_promote == 1){
 				$data['promote_start_time'] = I('promote_start_time'); 
 				$data['promote_end_time'] = I('promote_end_time'); 
 			}
 
 			//处理上传图片
-				if ($_FILES['goods_img']['tmp_name'] != '') {
+			if ($_FILES['goods_img']['tmp_name'] != '') {
 				$upload = new \Think\Upload();// 实例化上传类
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-				$upload->rootPath = "./"; //注意，一定要设置这个
-				$upload->savePath  =  './Public/Uploads/'; // 设置附件上传目录
+				$upload->rootPath = "/home/wwwroot/www.stackwin.cn/shop/Public"; //注意，一定要设置这个
+				$upload->savePath  =  '/Uploads/'; // 设置附件上传目录
+				//var_dump($upload);
 				$info  =  $upload->uploadOne($_FILES['goods_img']);
-				
+				//var_dump($info);
 				if ($info) {
 					// 上传成功
 					$data['goods_img'] = $info['savepath'].$info['savename'];
+				} else {
+					echo $upload->getError();
 				}
 			}
 			//处理上传图片
-			
+	
 			if ($_FILES['goods_thumbs']['tmp_name'] != '') {
 				import("Org.Net.UploadFile");  
 				$upload = new \UploadFile();// 实例化上传类
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-				$upload->rootPath = "./"; //注意，一定要设置这个
-				$upload->savePath  =  './Public/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
+				$upload->rootPath = "/home/wwwroot/www.stackwin.cn/shop/Public"; //注意，一定要设置这个
+				$upload->savePath  =  '/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
 				if ($upload->upload('goods_thumbs')) {
 					// 上传成功
 					$thumbs = $upload->getUploadFileInfo();
@@ -103,7 +106,7 @@ class GoodsController extends BaseController {
 			$data['is_onsale']    = I('is_onsale'); 
 			$data['add_time']     = time();
 			$goodsModel = D('goods');
-
+			//var_dump($data);exit;
 			if ($goodsModel->create($data)) {
 				//创建成功
 				if ($goods_id = $goodsModel->add()) {
@@ -122,7 +125,8 @@ class GoodsController extends BaseController {
 					}
 					M('goods_attr')->addAll($attrs);
 					$this->success('商品添加成功',U('index'),1);
-				} else {
+		
+	} else {
 					$this->error("商品添加失败");
 				} 
 			} else {

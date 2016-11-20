@@ -11,7 +11,6 @@ class IndexController extends BaseController {
    
     public function clearCache() {
         $result = 0;
-
         if (is_dir(RUNTIME_PATH) && $this->rmdirr(RUNTIME_PATH)) {
             $result = 1;
             $this->success('缓存清除成功',U('Index/index'),1);
