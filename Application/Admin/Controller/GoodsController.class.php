@@ -59,7 +59,7 @@ class GoodsController extends BaseController {
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
 				$upload->rootPath = "/home/wwwroot/www.stackwin.cn/shop/Public"; //注意，一定要设置这个
-				$upload->savePath  =  '/Uploads/'; // 设置附件上传目录
+				$upload->savePath  =  '/home/wwwroot/www.stackwin.cn/shop/Public/Uploads/'; // 设置附件上传目录
 				//var_dump($upload);
 				$info  =  $upload->uploadOne($_FILES['goods_img']);
 				//var_dump($info);
@@ -78,7 +78,7 @@ class GoodsController extends BaseController {
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
 				$upload->rootPath = "/home/wwwroot/www.stackwin.cn/shop/Public"; //注意，一定要设置这个
-				$upload->savePath  =  '/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
+				$upload->savePath  =  '/home/wwwroot/www.stackwin.cn/shop/Public/Uploads/thumb/'.date("Y/m/d/H/i/s").'/'; // 设置附件上传目录
 				if ($upload->upload('goods_thumbs')) {
 					// 上传成功
 					$thumbs = $upload->getUploadFileInfo();
@@ -176,8 +176,8 @@ class GoodsController extends BaseController {
 				$upload = new \Think\Upload();// 实例化上传类
 				$upload->maxSize  = 3145728 ;// 设置附件上传大小
 				$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-				$upload->rootPath = "./"; //注意，一定要设置这个
-				$upload->savePath  =  './Public/Uploads/'; // 设置附件上传目录
+				$upload->rootPath = "/home/wwwroot/www.stackwin.cn/shop/Public/"; //注意，一定要设置这个
+				$upload->savePath  =  '/home/wwwroot/www.stackwin.cn/shop/Public/Uploads/'; // 设置附件上传目录
 				$info  =  $upload->uploadOne($_FILES['goods_img']);
 				if ($info) {
 					// 上传成功
