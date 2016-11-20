@@ -5,7 +5,7 @@
 		<div class="shop_hd_topNav_all">
 			<!-- Header TopNav Left -->
 			<div class="shop_hd_topNav_all_left">
-				<p>您好，欢迎来到<b><a href="__MODULE__/Index/index">XXXX商城</a></b>
+				<p>您好，欢迎来到<b><a href="__MODULE__/Index/i张铁军竹柏哦</a></b>
 					<if condition="$Think.session.user eq null">
 						[<a href="__MODULE__/Login/index">登录</a>][<a href="__MODULE__/Register/index">注册</a>]
 						<else />
@@ -51,7 +51,7 @@
 					             <!-- <li><a href="{:U('Goods/index/goods_id/')} ><img src='#'  target='_top' ">商品1</a></li> --> 
 					              <?php
 					              	foreach($_SESSION['user']['shoppingCat'] as $value){
-										$output = "<li><a href='__MODULE__/Goods/index/id/".$value['goods_id']."' ><img src='__ROOT__".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>";
+										$output = "<li><a href='__MODULE__/Goods/index/id/".$value['goods_id']."' ><img src='__ROOT__/".$value['goods_img']."' width='50px' height='30px' target='_top'/>".$value['goods_name']."</a></li>";
 										echo $output;
 										$total += $value['shop_price'];
 										$flag = 1;
