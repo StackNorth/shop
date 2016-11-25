@@ -23,7 +23,7 @@ define('APP_DEBUG',false);
 define('APP_PATH','./Application/');
 
 //定义后台公共资源目录
-define("SITE_URL", "http://www.stackwin.cn/shop");
+define("SITE_URL", "http://localhost/shop");//www.stackwin.cn
 define("ADMIN_PUBLIC", SITE_URL . "/Application/Admin/Public");
 
 // 引入ThinkPHP入口文件

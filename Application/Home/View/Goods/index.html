@@ -44,24 +44,24 @@
 				<div id="preview">
 					<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="__ROOT__/{$goods.goods_img}" jqimg="__ROOT__/{$goods.goods_img}" width="350">
 						</div>
-						<div id="spec-n5">
+						<!--<div id="spec-n5">
 							<div class=control id="spec-left">
 								<img src="__PUBLIC__/images/left.gif" />
 							</div>
-							<div id="spec-list">
+							&lt;!&ndash;<div id="spec-list">
 								<ul class="list-h">
 									
 									<volist name="goodsThumbs" id="goodsThumb">
 									<li><img src="__ROOT__{$goodsThumb.thumb_img}"> </li>
 									</volist>
-																		
+
 								</ul>
-							</div>
+							</div>&ndash;&gt;
 							<div class=control id="spec-right">
 								<img src="__PUBLIC__/images/right.gif" />
 							</div>
 							
-					    </div>
+					    </div>-->
 					</div>
 
 					<SCRIPT type=text/javascript>
@@ -112,8 +112,8 @@
 				<div class="shop_goods_show_right">
 					<ul>
 						
-						<li><label>
-							<strong style="font-size:14px; font-weight:bold;">{$goods.goods_name}</strong></label>
+						<span><label>
+							<strong style="font-size:14px; font-weight:bold;">{$goods.goods_name}</strong></label></span>
 							<input type="hidden" name="goods_name" value="{$goods.goods_name}">
 						</li>
 						<li>

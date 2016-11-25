@@ -155,7 +155,7 @@
                       
                            <if condition="$vo.level eq 1">
                             <dl class="clearfix">
-                            <dt>{$vo.cat_name}</dt>
+                            <dt><a href="__MODULE__/Category/index/id/{$vo.cat_id}">{$vo.cat_name}</a></dt>
                            
                                 <volist name ="leftMenu" id="vo1">  
                                     <if condition="$vo1.level eq 2 AND $vo.cat_id eq $vo1.parent_id  ">
@@ -179,14 +179,18 @@
                     </ul>
                     <div class="tabs-panel">
                         <ul>
-                           <volist name="best" id="vo" offset="0" length='6'>
+                           <volist name="best" id="vo" offset="0" length='9'>
+
                                 <li>
+
                                     <dl>
                                         <dt><a href="__MODULE__/Goods/index/id/{$vo.goods_id}"><img src="__ROOT__/{$vo.goods_img}" style="width:100%;height: auto;"/></a></dt>
                                         <dd><a href="__MODULE__/Goods/index/id/{$vo.goods_id}">{$vo.goods_name}</a></dd>
-                                        <dd> 商城价：<em>{$vo.shop_price}</em>元</dd>
+                                        <!--<dd>商城价：<em>{$vo.shop_price}</em>元</dd>-->
                                     </dl>
+
                                 </li>
+
                              </volist> 
                         </ul>
                     </div>
@@ -228,13 +232,13 @@
                 <!-- 右边商品排行 -->
                 
                 <!-- 品牌展示 -->
-                <div class="shop_bd_home_block_bottom">
+              <!--  <div class="shop_bd_home_block_bottom">
                     <ul class="">
                         <volist name="footer" id="f">
                         <li><a href=""><img src="__ROOT__{$f.img}"></a></li>
                         </volist> 
                     </ul>
-                </div>
+                </div>-->
                 <!-- 品牌展示 End -->
                 
             </div>

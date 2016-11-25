@@ -6,7 +6,7 @@
 						<if condition="$vo.level eq 1">
 							<div class="contents clearfix">
 								<dl class="shop_bd_list_type_links clearfix">
-									<dt><strong>{$vo.cat_name}</strong></dt>
+									<dt><a href="__MODULE__/Category/index/id/{$vo.cat_id}"><strong>{$vo.cat_name}</strong></a></dt>
 									<volist name ="leftMenu" id="vo1">	
 										<if condition="$vo1.level eq 2 AND $vo.cat_id eq $vo1.parent_id  ">
 											<dd><span><a href="__MODULE__/Category/index/id/{$vo1.cat_id}">{$vo1.cat_name}</a></span></dd>

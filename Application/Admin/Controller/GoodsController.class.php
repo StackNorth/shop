@@ -50,7 +50,8 @@ class GoodsController extends BaseController {
 			//echo dirname('../');
 			if ($is_promote == 1){
 				$data['promote_start_time'] = I('promote_start_time'); 
-				$data['promote_end_time'] = I('promote_end_time'); 
+				$data['promote_end_time'] = I('promote_end_time');
+				$data['promote_price'] = $data['shop_price'];
 			}
 
 			//处理上传图片
